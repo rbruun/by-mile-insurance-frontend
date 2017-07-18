@@ -2,25 +2,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { RouterModule }   from '@angular/router';
-import { HttpModule } from '@angular/http';
+import { JsonpModule, HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './routing/routing.module';
+import { VehInfoService } from './veh-info.service';
+import { VehinfoComponent } from './vehinfo/vehinfo.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    VehinfoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    JsonpModule
   ],
-  providers: [],
+  providers: [VehInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
