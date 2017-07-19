@@ -91,10 +91,9 @@ export class VehinfoComponent implements OnInit {
   }
 
     saveVehicle(){
-      console.log(this.vehicle);
       // call api service to save vehicle
-      this.quoteInfoService.addRecord('addVehicle', this.vehicle);
-
+      this.quoteInfoService.addRecord('addVehicle', this.vehicle).subscribe();
+console.log("after API call");
       this.router.navigate(['tripinfo', this.quoteId]);
     }
 

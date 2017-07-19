@@ -22,9 +22,8 @@ export class QuoteInfoService {
     }
 
     addRecord(endpoint: string, record:object): Observable<any> {
-      console.log("here is this" + record)
+        console.log(record);
         let apiUrl = `${this.baseUrl}${endpoint}`;
-        console.log(apiUrl)
         return this.http.post(apiUrl, record)
             .map(this.extractData)
             .catch(this.handleError);
@@ -45,7 +44,6 @@ export class QuoteInfoService {
     private handleError(error: Response | any) {
         // In a real world app, you might use a remote logging infrastructure
         let errMsg: string;
-        console.log("error")
         if(typeof error._body === "string"){
             errMsg = error._body
         }else{
