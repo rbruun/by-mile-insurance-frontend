@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   private quoteId: string;
   private errorMessage: string;
 
-  constructor( 
+  constructor(
     private quoteInfoService: QuoteInfoService,
     private router: Router) { }
 
@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   // call api to get a quote key then route to driver page
       this.quoteInfoService.addRecord('addQuote', {})
       .subscribe(
+
         quote => {this.quoteId = quote.quoteId;
                   this.router.navigate(['driverinfo', this.quoteId]);},
         error =>  this.errorMessage = <any>error);
