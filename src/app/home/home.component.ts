@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+
+import { QuoteInfoService } from '../quote-info.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  private quoteId: string;
+  private errorMessage: string;
+
+  constructor( 
+    private quoteInfoService: QuoteInfoService,
+    private router: Router) { }
 
   ngOnInit() {
+  }
+
+  getQuoteId(){
+  // call api to get a quote key then route to driver page
+      this.quoteInfoService.addRecord('addQuote', {})
+      .subscribe(
+        quote => {this.getQuoteId = quote.quoteId;
+                  this.router.navigate(['vehinfo', this.quoteId]);},
+        error =>  this.errorMessage = <any>error);
+
+      this.router.navigate(['vehinfo', 1]);
   }
 
 }
