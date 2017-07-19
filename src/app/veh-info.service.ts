@@ -13,21 +13,21 @@ export class VehInfoService {
 
     constructor (private jsonp: Jsonp) {}
 
-    getAvailableYears(): Observable<any[]> {
+    getAvailableYears(): Observable<any> {
         let apiUrl = this.baseUrl;
         return this.jsonp.get(apiUrl + 'cmd=getYears')
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    getMakes(modelYear: string): Observable<any[]> {
+    getMakes(modelYear: string): Observable<any> {
         let apiUrl = this.baseUrl + `cmd=getMakes&year=${modelYear}&sold_in_us=1`;     
         return this.jsonp.get(apiUrl)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    getModels(modelYear: string, make: string): Observable<any[]> {
+    getModels(modelYear: string, make: string): Observable<any> {
         let apiUrl = this.baseUrl + `cmd=getModels&make=${make}&year=${modelYear}&sold_in_us=1`;
   console.log(apiUrl);      
         return this.jsonp.get(apiUrl)
@@ -35,7 +35,7 @@ export class VehInfoService {
             .catch(this.handleError);
     }
 
-    getTrimLevels(modelYear: string, make: string, model: string): Observable<any[]> {
+    getTrimLevels(modelYear: string, make: string, model: string): Observable<any> {
         let apiUrl = this.baseUrl + `cmd=getTrims&make=${make}&year=${modelYear}&model=${model}`;
         return this.jsonp.get(apiUrl)
             .map(this.extractData)
