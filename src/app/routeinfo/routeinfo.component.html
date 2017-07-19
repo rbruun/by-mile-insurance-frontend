@@ -1,0 +1,56 @@
+<h1>Please enter your vehicle information:</h1>
+
+  <form #vehinfoForm="ngForm" class="form-horizontal">
+    <!--<input [(ngModel)]="quote_id" #student_id="ngModel" type="hidden" name="quote_id">-->
+    <div class="form-group">
+      <label for="name" class="col-sm-2 control-label">Route Name</label>
+      <div class="col-sm-10">
+           <input [(ngModel)]="path.name" type="text" class="form-control" id="name" name="name" placeholder="Name" required minlength="2" maxlength="30">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="routeMiles" class="col-sm-2 control-label">Miles</label>
+      <div class="col-sm-10">
+           <input [(ngModel)]="path.routeMiles" type="text" class="form-control" id="routeMiles" name="routeMiles" placeholder="Miles" required>
+      </div>
+    </div> 
+    <div class="form-group">
+      <label for="frequency" class="col-sm-2 control-label">Weekly Frequency</label>
+      <div class="col-sm-10">
+           <input [(ngModel)]="path.frequency" type="text" class="form-control" id="frequency" name="frequency" placeholder="Frequency" required>
+      </div>
+    </div>     
+
+    <button (click)=addRoute()>Add route</button>
+  </form>
+
+  <table *ngIf='routes.length > 0' class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Route Name</th>
+        <th>Miles</th>
+        <th>Weekly Frequency</th>
+        <th>Weekly Total Miles</th>
+        <th>Monthly Total Miles</th>
+        <th></th>
+      <tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let route of routes">
+        <td>{{route.name}}</td>
+        <td>{{route.routeMiles}}</td>
+        <td>{{route.frequency}}</td>
+        <td>{{route.weeklyTotalMiles}}</td>
+        <td>{{route.monthlyTotalMiles}}</td>
+        <td><button>delete</button></td>
+      </tr>
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td>{{weeklyTotal}}</td>
+        <td>{{monthlyTotal}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>

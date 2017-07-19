@@ -1,9 +1,10 @@
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit }      from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location }               from '@angular/common';
 
 import { VehInfoService } from '../veh-info.service'
+import { QuoteInfoService } from '../quote-info.service';
 
 @Component({
   selector: 'app-vehinfo',
@@ -16,20 +17,29 @@ export class VehinfoComponent implements OnInit {
     // this is the last model year where information is available
     maxYear: number;
 
+    quoteId: string;
     yearsList = new Array();
     errorMessage: string;
-    modelYear: string;
     makes: any[];
-    make: string;
     models: any[];
-    model: string;
     trims: any[];
-    trim: string;
+
+    vehicle = {
+      quoteId: <string> null,
+      modelYear: <string> null,
+      make: <string> null,
+      model: <string> null,
+      trim: <string> null,
+      antiTheft: <string> null,
+      ownLease: <string> null
+    }
 
     constructor(
     private dataService: VehInfoService,
+    private quoteInfoService: QuoteInfoService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {}
 
   getValidYears(years) {
@@ -41,58 +51,69 @@ export class VehinfoComponent implements OnInit {
     }
   }
 
-  extractMakes(makes) {
-    this.makes = makes.Makes;
-  }
-
-  extractModels(models) {
-    this.models = models.Models;
-  }
-
-  extractTrims(trims) {
-    console.log(trims);
-    this.trims = trims.Trims;
-  }
-
   getValidMakes() {
     this.makes = null;
-    this.make = null;
+    this.vehicle.make = null;
     this.models = null;
-    this.model = null;
+    this.vehicle.model = null;
     this.trims = null;
-    this.trim = null;    
-    this.dataService.getMakes(this.modelYear)
+    this.vehicle.trim = null; 
+    this.vehicle.antiTheft = null;
+    this.vehicle.ownLease = null;   
+    this.dataService.getMakes(this.vehicle.modelYear)
       .subscribe(
-        makes => this.extractMakes(makes),
+        makes => this.makes = makes.Makes,
         error =>  this.errorMessage = <any>error);
   }
 
     getValidModels() {
     this.models = null;
-    this.model = null;
+    this.vehicle.model = null;
     this.trims = null;
-    this.trim = null;    
-    this.dataService.getModels(this.modelYear, this.make)
+    this.vehicle.trim = null;    
+    this.vehicle.antiTheft = null;
+    this.vehicle.ownLease = null;   
+    this.dataService.getModels(this.vehicle.modelYear, this.vehicle.make)
       .subscribe(
-        models => this.extractModels(models),
+        models => this.models = models.Models,
         error =>  this.errorMessage = <any>error);
   }
 
     getValidTrims() {
     this.trims = null;
-    this.trim = null;
-    this.dataService.getTrimLevels(this.modelYear, this.make, this.model)
+    this.vehicle.trim = null;
+    this.vehicle.antiTheft = null;
+    this.vehicle.ownLease = null;   
+    this.dataService.getTrimLevels(this.vehicle.modelYear, this.vehicle.make, this.vehicle.model)
       .subscribe(
-        trims => this.extractTrims(trims),
-        error =>  this.errorMessage = <any>error);
+        trims => this.trims = trims.Trims,
+        error => this.errorMessage = <any>error);
   }
 
+    saveVehicle(){
+      console.log(this.vehicle);
+      // call api service to save vehicle
+      this.quoteInfoService.addRecord('addVehicle', this.vehicle);
+
+      this.router.navigate(['routeinfo', this.quoteId]);
+    }
+
   ngOnInit() {
+
+  this.route.params.subscribe(
+    (params : Params) => {
+        this.quoteId = params["quoteId"];
+        this.vehicle.quoteId = this.quoteId; 
+        console.log(this.quoteId);
+    }
+  );
+
     this.dataService.getAvailableYears()
       .subscribe(
         years => this.getValidYears(years),
         error =>  this.errorMessage = <any>error);
   }
 
+  
 
 }

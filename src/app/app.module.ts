@@ -8,13 +8,16 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './routing/routing.module';
 import { VehInfoService } from './veh-info.service';
-import { VehinfoComponent } from './vehinfo/vehinfo.component'
+import { QuoteInfoService } from './quote-info.service';
+import { VehinfoComponent } from './vehinfo/vehinfo.component';
+import { RouteinfoComponent } from './routeinfo/routeinfo.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    VehinfoComponent
+    VehinfoComponent,
+    RouteinfoComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { VehinfoComponent } from './vehinfo/vehinfo.component'
     HttpModule,
     JsonpModule
   ],
-  providers: [VehInfoService],
+  providers: [VehInfoService, QuoteInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
