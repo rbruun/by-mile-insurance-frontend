@@ -4,16 +4,16 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { QuoteInfoService } from '../quote-info.service';
 
 @Component({
-  selector: 'app-routeinfo',
-  templateUrl: './routeinfo.component.html',
-  styleUrls: ['./routeinfo.component.css']
+  selector: 'app-tripinfo',
+  templateUrl: './tripinfo.component.html',
+  styleUrls: ['./tripinfo.component.css']
 })
-export class RouteinfoComponent implements OnInit {
+export class TripinfoComponent implements OnInit {
 
   constructor(private navRoute: ActivatedRoute,
               private quoteInfoService: QuoteInfoService) { }
 
-  routes = [];
+  trips = [];
   weeklyTotal;
   monthlyTotal;
   quoteId;
@@ -23,7 +23,7 @@ export class RouteinfoComponent implements OnInit {
   path = {
     quoteId: <string> null,
     name: <string> null,
-    routeMiles: null,
+    tripMiles: null,
     frequency: null,
     weeklyTotalMiles: null,
     monthlyTotalMiles: null
@@ -41,44 +41,44 @@ export class RouteinfoComponent implements OnInit {
 
   }
 
-  addRoute(){
-    // call the data service to add route
-    this.quoteInfoService.addRecord('addRoute', this.path);
+  addTrip(){
+    // call the data service to add trip
+    this.quoteInfoService.addRecord('addTrip', this.path);
 
-    // doing this way for now, will eventually call service again to get route list
+    // doing this way for now, will eventually call service again to get trip list
     let rte = Object.assign({},this.path);
-    rte.weeklyTotalMiles = rte.routeMiles * 2 * rte.frequency;
+    rte.weeklyTotalMiles = rte.tripMiles * 2 * rte.frequency;
     rte.monthlyTotalMiles = rte.weeklyTotalMiles * 4;
-    this.routes.push(rte);
+    this.trips.push(rte);
 
     this.calcTableTotals();
-    // this.getRoutes();
+    // this.getTripss();
     this.path.name = null;
-    this.path.routeMiles = null;
+    this.path.tripMiles = null;
     this.path.frequency = null;
   }
 
-  getRoutes() {
-    this.quoteInfoService.getRecords("route")
+  getTrips() {
+    this.quoteInfoService.getRecords("trip")
       .subscribe(
-        routes => {this.routes = routes; this.calcTableTotals()},
+        trips => {this.trips = trips; this.calcTableTotals()},
         error =>  this.errorMessage = <any>error);
   }
 
   deleteStudent(id:number) {
 
-        this.quoteInfoService.deleteRecord("deleteRoute", id)
+        this.quoteInfoService.deleteRecord("deleteTrip", id)
           .subscribe(
-            student => {this.successMesssage = "Record(s) deleted succesfully"; this.getRoutes(); },
+            student => {this.successMesssage = "Record(s) deleted succesfully"; this.getTrips(); },
             error =>  this.errorMessage = <any>error);
   }
 
   calcTableTotals() {
     this.weeklyTotal = 0;
     this.monthlyTotal = 0;
-    for (let i=0; i < this.routes.length; i++) {
-      this.weeklyTotal += this.routes[i].weeklyTotalMiles;
-      this.monthlyTotal += this.routes[i].monthlyTotalMiles;
+    for (let i=0; i < this.trips.length; i++) {
+      this.weeklyTotal += this.trips[i].weeklyTotalMiles;
+      this.monthlyTotal += this.trips[i].monthlyTotalMiles;
     }
   }
 

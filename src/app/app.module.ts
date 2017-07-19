@@ -11,15 +11,15 @@ import { VehInfoService } from './veh-info.service';
 import { DriverinfoComponent } from './driverinfo/driverinfo.component';
 import { QuoteInfoService } from './quote-info.service';
 import { VehinfoComponent } from './vehinfo/vehinfo.component';
-import { RouteinfoComponent } from './routeinfo/routeinfo.component'
+import { TripinfoComponent } from './tripinfo/tripinfo.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     VehinfoComponent,
-    DriverinfoComponent,
-    RouteinfoComponent
+    TripinfoComponent,
+    DriverinfoComponent
   ],
   imports: [
     BrowserModule,
