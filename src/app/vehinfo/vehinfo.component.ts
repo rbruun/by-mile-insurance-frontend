@@ -95,7 +95,7 @@ export class VehinfoComponent implements OnInit {
       // call api service to save vehicle
       this.quoteInfoService.addRecord('addVehicle', this.vehicle);
 
-      this.router.navigate(['routeinfo', this.quoteId]);
+      this.router.navigate(['tripinfo', this.quoteId]);
     }
 
   ngOnInit() {

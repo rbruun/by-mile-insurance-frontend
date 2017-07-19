@@ -3,13 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
  
 import { HomeComponent }   from '../home/home.component';
 import { VehinfoComponent } from '../vehinfo/vehinfo.component';
-import { RouteinfoComponent } from '../routeinfo/routeinfo.component';
+import { TripinfoComponent } from '../tripinfo/tripinfo.component';
  
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'vehinfo/:quoteId', component: VehinfoComponent},
-    { path: 'routeinfo/:quoteId', component: RouteinfoComponent}
+    { path: 'tripinfo/:quoteId', component: TripinfoComponent}
 
 ];
  
