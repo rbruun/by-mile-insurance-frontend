@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './routing/routing.module';
 import { VehInfoService } from './veh-info.service';
+import { DriverinfoComponent } from './driverinfo/driverinfo.component';
 import { QuoteInfoService } from './quote-info.service';
 import { VehinfoComponent } from './vehinfo/vehinfo.component';
 import { RouteinfoComponent } from './routeinfo/routeinfo.component'
@@ -17,6 +18,7 @@ import { RouteinfoComponent } from './routeinfo/routeinfo.component'
     AppComponent,
     HomeComponent,
     VehinfoComponent,
+    DriverinfoComponent,
     RouteinfoComponent
   ],
   imports: [
