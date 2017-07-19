@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './routing/routing.module';
 import { VehInfoService } from './veh-info.service';
-import { VehinfoComponent } from './vehinfo/vehinfo.component'
+import { VehinfoComponent } from './vehinfo/vehinfo.component';
+import { DriverinfoComponent } from './driverinfo/driverinfo.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    VehinfoComponent
+    VehinfoComponent,
+    DriverinfoComponent
   ],
   imports: [
     BrowserModule,
