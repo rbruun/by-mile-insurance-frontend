@@ -24,11 +24,10 @@ export class HomeComponent implements OnInit {
   // call api to get a quote key then route to driver page
       this.quoteInfoService.addRecord('addQuote', {})
       .subscribe(
-        quote => {this.getQuoteId = quote.quoteId;
-                  this.router.navigate(['vehinfo', this.quoteId]);},
+        quote => {this.quoteId = quote.quoteId;
+                  this.router.navigate(['driverinfo', this.quoteId]);},
         error =>  this.errorMessage = <any>error);
 
-      this.router.navigate(['vehinfo', 1]);
   }
 
 }

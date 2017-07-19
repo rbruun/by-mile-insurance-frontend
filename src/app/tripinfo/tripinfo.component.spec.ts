@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RouteinfoComponent } from './routeinfo.component';
+import { TripinfoComponent } from './tripinfo.component';
 
-describe('RouteinfoComponent', () => {
-  let component: RouteinfoComponent;
-  let fixture: ComponentFixture<RouteinfoComponent>;
+describe('TripinfoComponent', () => {
+  let component: TripinfoComponent;
+  let fixture: ComponentFixture<TripinfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RouteinfoComponent ]
+      declarations: [ TripinfoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RouteinfoComponent);
+    fixture = TestBed.createComponent(TripinfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
