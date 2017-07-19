@@ -1,0 +1,137 @@
+
+<h1>Please enter your driver information:</h1>
+
+  <form (ngSubmit)="saveDriver(driver.driver_id)" #driverForm="ngForm" class="form-horizontal">
+    <input [(ngModel)]="driver.driver_id"  type="hidden" name="driver_id">
+
+    <div class="form-group">
+      <label for="firstName" class="col-sm-2 control-label">First Name</label>
+      <div class="col-sm-10">
+        <input [(ngModel)]="driver.firstName" type="text" class="form-control" id="firstName" name="firstName"
+          placeholder="First Name" required minlength="2" maxlength="30">
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+        <div class="col-sm-10">
+            <input [(ngModel)]="driver.lastName" type="text" class="form-control" id="lastName" name="lastName"
+                placeholder="Last Name" required minlength="2" maxlength="30">
+        </div>
+      </div>
+
+    <div class="form-group">
+    <label for="addressLine1" class="col-sm-2 control-label">Street Address 1</label>
+    <div class="col-sm-10">
+      <input [(ngModel)]="driver.addressLine1" type="text" class="form-control" id="addressLine1" name="addressLine1" placeholder="Street Address 1">
+    </div>
+  </div>
+
+  <div class="form-group">
+  <label for="addressLine2" class="col-sm-2 control-label">Street Address 2</label>
+  <div class="col-sm-10">
+    <input [(ngModel)]="driver.addressLine2" type="text" class="form-control" id="addressLine2" name="addressLine2" placeholder="Street Address 2">
+  </div>
+</div>
+
+  <div class="form-group">
+  <label for="city" class="col-sm-2 control-label">City</label>
+  <div class="col-sm-10">
+    <input [(ngModel)]="driver.city" type="text" class="form-control" id="city" name="city" placeholder="City">
+  </div>
+  </div>
+
+  <div class="form-group">
+  <label for="state" class="col-sm-2 control-label">State</label>
+  <div class="col-sm-10">
+    <input [(ngModel)]="driver.state" type="text" class="form-control" id="state" name="state" placeholder="State">
+  </div>
+  </div>
+
+  <div class="form-group">
+  <label for="zip_code" class="col-sm-2 control-label">Zip Code</label>
+  <div class="col-sm-10">
+    <input [(ngModel)]="driver.zip_code" type="text" class="form-control" id="zip_code" name="zip_code" placeholder="Zip Code">
+  </div>
+  </div>
+
+  <div class="dropdown">
+    <label for="gender" class="col-sm-2 control-label">Gender</label>
+    <select [(ngModel)]="driver.gender" id="gender" name="gender" class="selectpicker">
+          <option [ngValue]="unselected"> </option>
+          <option value="male">
+            Male
+          </option>
+          <option value="female">
+            Female
+          </option>
+        </select>
+</div>
+
+<br />
+
+  <div class="form-group">
+  <label for="birthDate" class="col-sm-2 control-label">Birth Date</label>
+  <div class="col-sm-10">
+    <input [(ngModel)]="driver.birthDate" type="text" class="form-control" id="birthDate" name="birthDate" placeholder="2017-01-01"
+        required pattern="(\d{4})-(\d{2})-(\d{2})">
+  </div>
+  </div>
+
+  <div class="form-group">
+  <label for="maritalStatus" class="col-sm-2 control-label">Marital Status</label>
+  <div class="dropdown">
+    <select [(ngModel)]="driver.maritalStatus" id="maritalStatus" name="maritalStatus" class="selectpicker">
+          <option [ngValue]="unselected"> </option>
+          <option value="married">
+            Married
+          </option>
+          <option value="single">
+            Single
+          </option>
+          <option value="widowed">
+            Widow/Widowed
+          </option>
+        </select>
+</div>
+  </div>
+
+  <div class="form-group">
+  <label for="education" class="col-sm-2 control-label">Education</label>
+  <select [(ngModel)]="driver.education" id="education" name="education" class="selectpicker">
+        <option [ngValue]="unselected"> </option>
+        <option value="high_school">
+          High School Degree
+        </option>
+        <option value="undergrad">
+          Undergraduate Degree
+        </option>
+        <option value="somegrad">
+          Some Graduate
+        </option>
+        <option value="grad">
+          Graduate Degree
+        </option>
+      </select>
+  </div>
+
+  <div class="form-group">
+  <label for="homeOwnerStatus" class="col-sm-2 control-label">Home Owner Status</label>
+  <select [(ngModel)]="driver.homeOwnerStatus" id="homeOwnerStatus" name="homeOwnerStatus" class="selectpicker">
+        <option [ngValue]="unselected"> </option>
+        <option value="own">
+          Own
+        </option>
+        <option value="rent">
+          Rent
+        </option>
+
+      </select>
+  </div>
+
+  <br/>
+
+<!-- <button>Save and Continue to Vehicle Info Screen</button> -->
+<a (click)="buttonClicked()" class="btn btn-primary" routerLink="/vehinfo">Save and Continue to Vehicle Info Screen</a>
+
+</form>

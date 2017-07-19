@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './routing/routing.module';
 import { VehInfoService } from './veh-info.service';
+import { DriverinfoComponent } from './driverinfo/driverinfo.component';
 import { QuoteInfoService } from './quote-info.service';
 import { VehinfoComponent } from './vehinfo/vehinfo.component';
 import { TripinfoComponent } from './tripinfo/tripinfo.component'
@@ -17,7 +18,8 @@ import { TripinfoComponent } from './tripinfo/tripinfo.component'
     AppComponent,
     HomeComponent,
     VehinfoComponent,
-    TripinfoComponent
+    TripinfoComponent,
+    DriverinfoComponent
   ],
   imports: [
     BrowserModule,
