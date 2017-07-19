@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   private quoteId: string;
   private errorMessage: string;
 
-  constructor( 
+  constructor(
     private quoteInfoService: QuoteInfoService,
     private router: Router) { }
 
@@ -25,10 +25,9 @@ export class HomeComponent implements OnInit {
       this.quoteInfoService.addRecord('addQuote', {})
       .subscribe(
         quote => {this.getQuoteId = quote.quoteId;
-                  this.router.navigate(['vehinfo', this.quoteId]);},
+                  this.router.navigate(['driverinfo', this.quoteId]);},
         error =>  this.errorMessage = <any>error);
 
-      this.router.navigate(['vehinfo', 1]);
   }
 
 }
