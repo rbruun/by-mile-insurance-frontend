@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { RouterModule }   from '@angular/router';
 import { JsonpModule, HttpModule } from '@angular/http';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import { MdDialogModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
@@ -33,11 +35,12 @@ import { DistanceapiComponent } from './tripinfo/distanceapi.component';
     AppRoutingModule,
     HttpModule,
     JsonpModule,
+    MdDialogModule,
     AgmCoreModule.forRoot({
       libraries: ["places"],
       apiKey: 'AIzaSyCvMeDoja1YeBEe9nRgvc1mKmrhBfyFzSM'
     }),
-    ReactiveFormsModule
+    BrowserAnimationsModule
   ],
   providers: [VehInfoService, QuoteInfoService],
   bootstrap: [AppComponent]
