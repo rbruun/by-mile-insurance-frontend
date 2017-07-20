@@ -5,6 +5,7 @@ import { HomeComponent }   from '../home/home.component';
 import { VehinfoComponent } from '../vehinfo/vehinfo.component';
 import { TripinfoComponent } from '../tripinfo/tripinfo.component';
 import { DriverinfoComponent } from '../driverinfo/driverinfo.component';
+import { DistanceapiComponent } from '../tripinfo/distanceapi.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'vehinfo/:quoteId', component: VehinfoComponent},
     { path: 'tripinfo/:quoteId', component: TripinfoComponent},
-    { path: 'driverinfo/:quoteId', component: DriverinfoComponent}
+    { path: 'driverinfo/:quoteId', component: DriverinfoComponent},
+    { path: 'googleapi', component: DistanceapiComponent}
 ];
 
 @NgModule({

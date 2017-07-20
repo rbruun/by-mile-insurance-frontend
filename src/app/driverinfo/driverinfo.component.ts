@@ -19,7 +19,7 @@ export class DriverinfoComponent implements OnInit {
 
   driver =
   {
-    quoteId: <string>null,
+    quote: {quoteId: <string>null},
     firstName: <string>null,
     last_name: <string>null,
     addressLine1: <string>null,
@@ -46,7 +46,7 @@ export class DriverinfoComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.quoteId = params['quoteId'];
-        this.driver.quoteId = this.quoteId;
+        this.driver.quote.quoteId = this.quoteId;
         console.log(this.quoteId);
       }
     );

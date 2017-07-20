@@ -45,7 +45,7 @@ export class TripinfoComponent implements OnInit {
 
     let rte = Object.assign({},this.trip);
     rte.weeklyTotalMiles = rte.tripMiles * 2 * rte.frequency;
-    rte.monthlyTotalMiles = rte.weeklyTotalMiles * 52 / 12;
+    rte.monthlyTotalMiles = Math.ceil(rte.weeklyTotalMiles * 52 / 12);
 
     // call the data service to add trip
     this.quoteInfoService.addRecord('addTrip', rte);

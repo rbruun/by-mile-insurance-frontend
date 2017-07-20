@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { RouterModule }   from '@angular/router';
 import { JsonpModule, HttpModule } from '@angular/http';
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -11,7 +13,9 @@ import { VehInfoService } from './veh-info.service';
 import { DriverinfoComponent } from './driverinfo/driverinfo.component';
 import { QuoteInfoService } from './quote-info.service';
 import { VehinfoComponent } from './vehinfo/vehinfo.component';
-import { TripinfoComponent } from './tripinfo/tripinfo.component'
+import { TripinfoComponent } from './tripinfo/tripinfo.component';
+import { DistanceapiComponent } from './tripinfo/distanceapi.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +23,8 @@ import { TripinfoComponent } from './tripinfo/tripinfo.component'
     HomeComponent,
     VehinfoComponent,
     TripinfoComponent,
-    DriverinfoComponent
+    DriverinfoComponent,
+    DistanceapiComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,12 @@ import { TripinfoComponent } from './tripinfo/tripinfo.component'
     RouterModule,
     AppRoutingModule,
     HttpModule,
-    JsonpModule
+    JsonpModule,
+    AgmCoreModule.forRoot({
+      libraries: ["places"],
+      apiKey: 'AIzaSyCvMeDoja1YeBEe9nRgvc1mKmrhBfyFzSM'
+    }),
+    ReactiveFormsModule
   ],
   providers: [VehInfoService, QuoteInfoService],
   bootstrap: [AppComponent]
