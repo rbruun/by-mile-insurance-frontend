@@ -53,8 +53,8 @@ export class DriverinfoComponent implements OnInit {
   }
 
     saveDriver() {
-      console.log(this.driver)
-      this.quoteInfoService.addRecord('addDriver', this.driver)
+      //console.log(this.driver)
+      this.quoteInfoService.addRecord('addDriver', this.driver).subscribe();
       this.router.navigate(['vehinfo', this.quoteId]);
       // .subscribe(
       //   student => this.successMessage = 'Record added succesfully',

@@ -20,7 +20,7 @@ export class TripinfoComponent implements OnInit {
   errorMessage: string;
   successMesssage: string;
 
-  path = {
+  trip = {
     quoteId: <string> null,
     name: <string> null,
     tripMiles: null,
@@ -34,7 +34,7 @@ export class TripinfoComponent implements OnInit {
     this.navRoute.params.subscribe(
       (params : Params) => {
           this.quoteId = params["quoteId"];
-          this.path.quoteId = this.quoteId; 
+          this.trip.quoteId = this.quoteId; 
           console.log(this.quoteId);
       }
     );
@@ -42,20 +42,22 @@ export class TripinfoComponent implements OnInit {
   }
 
   addTrip(){
-    // call the data service to add trip
-    this.quoteInfoService.addRecord('addTrip', this.path);
 
-    // doing this way for now, will eventually call service again to get trip list
-    let rte = Object.assign({},this.path);
+    let rte = Object.assign({},this.trip);
     rte.weeklyTotalMiles = rte.tripMiles * 2 * rte.frequency;
-    rte.monthlyTotalMiles = rte.weeklyTotalMiles * 4;
-    this.trips.push(rte);
+    rte.monthlyTotalMiles = rte.weeklyTotalMiles * 52 / 12;
 
+    // call the data service to add trip
+    this.quoteInfoService.addRecord('addTrip', rte);
+    
+    // doing this way for now, will eventually call service again to get updated trip list
+    //this.getTrips();
+    this.trips.push(rte);
     this.calcTableTotals();
-    // this.getTripss();
-    this.path.name = null;
-    this.path.tripMiles = null;
-    this.path.frequency = null;
+
+    this.trip.name = null;
+    this.trip.tripMiles = null;
+    this.trip.frequency = null;
   }
 
   getTrips() {
@@ -65,9 +67,8 @@ export class TripinfoComponent implements OnInit {
         error =>  this.errorMessage = <any>error);
   }
 
-  deleteStudent(id:number) {
-
-        this.quoteInfoService.deleteRecord("deleteTrip", id)
+  deleteTrip(id:number) {
+        this.quoteInfoService.deleteRecord("trip", id)
           .subscribe(
             student => {this.successMesssage = "Record(s) deleted succesfully"; this.getTrips(); },
             error =>  this.errorMessage = <any>error);
