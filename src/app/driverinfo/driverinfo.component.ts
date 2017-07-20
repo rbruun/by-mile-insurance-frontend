@@ -21,6 +21,7 @@ export class DriverinfoComponent implements OnInit {
   quoteId: string;
 
   driver =
+
   {
     quote: {quoteID: <string>null},
     firstName: <string>null,
