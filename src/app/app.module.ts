@@ -6,7 +6,9 @@ import { JsonpModule, HttpModule } from '@angular/http';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { MdDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from '@angular/material';
+import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -40,7 +42,9 @@ import { DistanceapiComponent } from './tripinfo/distanceapi.component';
       libraries: ["places"],
       apiKey: 'AIzaSyCvMeDoja1YeBEe9nRgvc1mKmrhBfyFzSM'
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    MaterialModule
   ],
   providers: [VehInfoService, QuoteInfoService],
   bootstrap: [AppComponent]
