@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import {MdDialog, MdDialogRef} from '@angular/material';
 
 import { QuoteInfoService } from '../quote-info.service';
+import { DistanceapiComponent } from './distanceapi.component';
 
 @Component({
   selector: 'app-tripinfo',
@@ -11,7 +13,8 @@ import { QuoteInfoService } from '../quote-info.service';
 export class TripinfoComponent implements OnInit {
 
   constructor(private navRoute: ActivatedRoute,
-              private quoteInfoService: QuoteInfoService) { }
+              private quoteInfoService: QuoteInfoService,
+              public dialog: MdDialog) { }
 
   trips = [];
   weeklyTotal;
@@ -45,7 +48,7 @@ export class TripinfoComponent implements OnInit {
 
     let rte = Object.assign({},this.trip);
     rte.weeklyTotalMiles = rte.tripMiles * 2 * rte.frequency;
-    rte.monthlyTotalMiles = rte.weeklyTotalMiles * 52 / 12;
+    rte.monthlyTotalMiles = Math.ceil(rte.weeklyTotalMiles * 52 / 12);
 
     // call the data service to add trip
     this.quoteInfoService.addRecord('addTrip', rte);
@@ -83,4 +86,14 @@ export class TripinfoComponent implements OnInit {
     }
   }
 
+  openDistanceDialog() {
+    let dialogRef = this.dialog.open(DistanceapiComponent, {
+      height: '300px',
+      width: '600px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.trip.tripMiles = result;
+    });
+  }
 }
