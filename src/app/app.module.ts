@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { RouterModule }   from '@angular/router';
 import { JsonpModule, HttpModule } from '@angular/http';
+import { FlexLayoutModule } from '@angular/flex-layout'
+import { MaterialModule } from '@angular/material';
+import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -27,7 +30,9 @@ import { TripinfoComponent } from './tripinfo/tripinfo.component'
     RouterModule,
     AppRoutingModule,
     HttpModule,
-    JsonpModule
+    JsonpModule,
+    FlexLayoutModule,
+    MaterialModule
   ],
   providers: [VehInfoService, QuoteInfoService],
   bootstrap: [AppComponent]

@@ -1,3 +1,11 @@
-.dropdown {
-  position: relative;
+h2, label {
+  color: #0C0C8D;
+}
+
+img {
+  height: 60%;
+}
+
+select {
+  float: left;
 }

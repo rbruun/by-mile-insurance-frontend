@@ -1,0 +1,16 @@
+h1, h2, p {
+  color: #0C0C8D;
+}
+
+p {
+  font-size: 16px;
+}
+
+.jumbotron {
+  background-image: url("../../assets/images/car-insurance-1600x682.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  height: 500px;
+  /*padding-bottom: 20px;*/
+}
