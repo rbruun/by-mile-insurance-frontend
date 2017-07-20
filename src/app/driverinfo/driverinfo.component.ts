@@ -1,6 +1,6 @@
 
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
@@ -15,11 +15,15 @@ import { QuoteInfoService } from '../quote-info.service';
 
 export class DriverinfoComponent implements OnInit {
 
+  studentForm: NgForm;
+  @ViewChild('driverForm') currentForm: NgForm;
+
   quoteId: string;
 
   driver =
+
   {
-    quoteId: <string>null,
+    quote: {quoteID: <string>null},
     firstName: <string>null,
     last_name: <string>null,
     addressLine1: <string>null,
@@ -46,18 +50,15 @@ export class DriverinfoComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.quoteId = params['quoteId'];
-        this.driver.quoteId = this.quoteId;
+        this.driver.quote.quoteID = this.quoteId;
         console.log(this.quoteId);
       }
     );
   }
 
     saveDriver() {
-      //console.log(this.driver)
-      this.quoteInfoService.addRecord('addDriver', this.driver).subscribe();
-      this.router.navigate(['vehinfo', this.quoteId]);
-      // .subscribe(
-      //   student => this.successMessage = 'Record added succesfully',
-      //   error =>  this.errorMessage = <any>error);
+      console.log(this.driver)
+      this.quoteInfoService.addRecord('addDriver', this.driver).subscribe()
+      this.router.navigate(['vehinfo', this.quoteId])
     }
 };
