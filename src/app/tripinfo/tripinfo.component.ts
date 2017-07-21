@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {MdDialog, MdDialogRef} from '@angular/material';
+import {DataSource} from '@angular/cdk';
 
 import { QuoteInfoService } from '../quote-info.service';
 import { DistanceapiComponent } from './distanceapi.component';
@@ -64,14 +65,14 @@ console.log("getTrips");
   deleteTrip(id:number) {
         this.quoteInfoService.deleteRecord("deleteTrip", id)
           .subscribe(
-            trip => {this.successMesssage = "Record(s) deleted succesfully"; this.getTrips(); },
-            error =>  this.errorMessage = <any>error);
+            trip => {this.successMesssage = "Record(s) deleted succesfully"; 
+                    console.log("record deleted");this.getTrips(); },
+            error =>  console.log(error));
   }
 
   calcTableTotals() {
     this.weeklyGrandTotal = 0;
-    this.monthlyGrandTotal = 0;
-console.log("Length: " + this.trips.length)    
+    this.monthlyGrandTotal = 0;   
     for (let i=0; i < this.trips.length; i++) {    
       this.trips[i].weeklyTotalMiles = parseInt(this.trips[i].distance) * 2 * parseInt(this.trips[i].frequency);
       this.weeklyGrandTotal += this.trips[i].weeklyTotalMiles;
@@ -86,7 +87,6 @@ console.log("Length: " + this.trips.length)
       height: '300px',
       width: '600px'
     });
-    dialogRef.updatePosition({ top: '-150px', left: '150px' });
 
     dialogRef.afterClosed().subscribe(result => {
       this.trip.distance = result;

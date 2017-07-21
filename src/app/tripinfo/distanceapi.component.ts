@@ -14,64 +14,63 @@ declare var google: any;
 })
 export class DistanceapiComponent implements OnInit {
 
-    private startPlace;
-    private endPlace;
-    errorMessage = null;
+  private startPlace;
+  private endPlace;
+  errorMessage = null;
 
-   public distanceBetween = 0;
+  public distanceBetween;
 
   constructor(
     private _loader: MapsAPILoader,
     private _zone: NgZone
-    
-    ) { }
-     
+
+  ) { }
+
   setDistance(someDistance) {
-     console.log("hi disntace");
-      this.distanceBetween = someDistance;
+    console.log("hi disntace");
+    this.distanceBetween = someDistance;
   }
 
 
-  ngOnInit()
-  {
+  ngOnInit() {
     this.autocomplete();
   }
 
-autocomplete() {
+  autocomplete() {
     this._loader.load().then(() => {
-        var autocompleteStart = new google.maps.places.Autocomplete(document.getElementById("autocompleteStart"), {});
-        google.maps.event.addListener(autocompleteStart, 'place_changed', () => {
-            this._zone.run(() => {
-              this.startPlace = autocompleteStart.getPlace();
-              
-              console.log(this.startPlace.formatted_address);
-            });
-        });
+      var autocompleteStart = new google.maps.places.Autocomplete(document.getElementById("autocompleteStart"), {});
+      google.maps.event.addListener(autocompleteStart, 'place_changed', () => {
+        this._zone.run(() => {
+          this.startPlace = autocompleteStart.getPlace();
 
-        var autocompleteEnd = new google.maps.places.Autocomplete(document.getElementById("autocompleteEnd"), {});
-        google.maps.event.addListener(autocompleteEnd, 'place_changed', () => {
-            this._zone.run(() => {
-              this.endPlace = autocompleteEnd.getPlace();
-              console.log(this.endPlace.formatted_address);
-            });
+          console.log(this.startPlace.formatted_address);
         });
+      });
+
+      var autocompleteEnd = new google.maps.places.Autocomplete(document.getElementById("autocompleteEnd"), {});
+      google.maps.event.addListener(autocompleteEnd, 'place_changed', () => {
+        this._zone.run(() => {
+          this.endPlace = autocompleteEnd.getPlace();
+          console.log(this.endPlace.formatted_address);
+        });
+      });
     });
   }
 
-calculateDistance() {
+  calculateDistance() {
     var service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix(
-    {
-      origins: [this.startPlace.formatted_address],
-      destinations: [this.endPlace.formatted_address],
-      travelMode: google.maps.TravelMode.DRIVING,
-      unitSystem: google.maps.UnitSystem.IMPERIAL,
-      avoidHighways: false,
-      avoidTolls: false
-    }, (response, status) => this.distanceCallback(response, status));
+      {
+        origins: [this.startPlace.formatted_address],
+        destinations: [this.endPlace.formatted_address],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.IMPERIAL,
+        avoidHighways: false,
+        avoidTolls: false
+      }, (response, status) => this.distanceCallback(response, status));
   }
 
-distanceCallback(response, status) {
+  distanceCallback(response, status) {
     if (status != google.maps.DistanceMatrixStatus.OK) {
       console.log(status);
     } else {
@@ -81,10 +80,12 @@ distanceCallback(response, status) {
         console.log("no routes available for those addresses");
         this.errorMessage = ("no routes available for those addresses");
       } else {
-        this.distanceBetween = response.rows[0].elements[0].distance.text;
-        console.log("distanceBetween: " + this.distanceBetween );
-      }
+        this._zone.run(() => {
+          this.distanceBetween = response.rows[0].elements[0].distance.text;
+          this.distanceBetween = this.distanceBetween.replace(/[^\d]/g, '');
+          console.log("distanceBetween: " + this.distanceBetween);
+      })
     }
   }
-    
+}
 }
