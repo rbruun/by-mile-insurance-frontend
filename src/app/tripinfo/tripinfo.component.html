@@ -27,13 +27,13 @@
     <div class="form-group">
       <label for="name" class="col-sm-2 control-label">Trip Name</label>
       <div class="col-sm-10">
-           <input [(ngModel)]="trip.name" type="text" class="form-control" id="name" name="name" placeholder="Name" required minlength="2" maxlength="30">
+           <input [(ngModel)]="trip.tripName" type="text" class="form-control" id="tripName" name="tripName" placeholder="Name" required minlength="2" maxlength="30">
       </div>
     </div>
     <div class="form-group">
       <label for="tripMiles" class="col-sm-2 control-label">Miles</label>
       <div class="col-sm-10">
-           <input [(ngModel)]="trip.tripMiles" type="text" class="form-control" id="tripMiles" name="tripMiles" placeholder="Miles" required> <button (click)="openDistanceDialog()">Distance Help</button>
+           <input [(ngModel)]="trip.distance" type="text" class="form-control" id="distance" name="distance" placeholder="Miles" required> <button (click)="openDistanceDialog()">Distance Help</button>
       </div>
     </div>
     <div class="form-group">
@@ -60,19 +60,19 @@
     </thead>
     <tbody>
       <tr *ngFor="let trip of trips">
-        <td>{{trip.name}}</td>
-        <td>{{trip.tripMiles}}</td>
+        <td>{{trip.tripName}}</td>
+        <td>{{trip.distance}}</td>
         <td>{{trip.frequency}}</td>
         <td>{{trip.weeklyTotalMiles}}</td>
         <td>{{trip.monthlyTotalMiles}}</td>
-        <td><button>delete</button></td>
+        <td><button (click)=deleteTrip(trip.tripId)>delete</button></td>
       </tr>
       <tr>
         <td>Total</td>
         <td></td>
         <td></td>
-        <td>{{weeklyTotal}}</td>
-        <td>{{monthlyTotal}}</td>
+        <td>{{weeklyGrandTotal}}</td>
+        <td>{{monthlyGrandTotal}}</td>
         <td></td>
       </tr>
     </tbody>
