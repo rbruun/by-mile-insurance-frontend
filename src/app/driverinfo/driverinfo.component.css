@@ -1,11 +1,63 @@
 h2, label {
   color: #0C0C8D;
+  float: left;
+}
+
+label {
+  padding: 0;
+}
+
+p {
+  color: #0C0C8D;
 }
 
 img {
   height: 60%;
 }
 
-select {
-  float: left;
+.container {
+  margin-left: 0;
+  margin-right: 75px;
 }
+
+#youngDriver {
+  height: 280px;
+  width: 1200px;
+}
+
+#marital, #ed, #owner, #gen {
+  padding-top: 0;
+}
+
+#firstName, #lastName, #addressLine1, #addressLine2,
+#city, #state, #zip_code, #birthDate {
+  width: 350px;
+}
+
+#birthDate {
+  margin-left: 0;
+}
+
+.dropdown {
+  float: left;
+  margin-left: 15px
+}
+
+.item {
+  padding-left: 10px;
+}
+
+.btn-primary {
+  background-color: #0C0C8D;
+  float: left;
+  margin-left: 145px;
+}
+
+.panel-heading {
+  background-color: #0C0C8D;
+  color: white;
+}
+
+/*.selectpicker {
+  float: left;
+}*/
