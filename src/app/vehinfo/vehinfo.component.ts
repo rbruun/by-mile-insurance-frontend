@@ -25,7 +25,7 @@ export class VehinfoComponent implements OnInit {
     trims: any[];
 
     vehicle = {
-      quoteId: <string> null,
+      quote: {quoteId: <string> null},
       modelYear: <string> null,
       make: <string> null,
       model: <string> null,
@@ -102,7 +102,7 @@ console.log("after API call");
   this.route.params.subscribe(
     (params : Params) => {
         this.quoteId = params["quoteId"];
-        this.vehicle.quoteId = this.quoteId; 
+        this.vehicle.quote.quoteId = this.quoteId; 
         console.log(this.quoteId);
     }
   );
