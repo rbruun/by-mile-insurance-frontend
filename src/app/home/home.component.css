@@ -14,3 +14,8 @@ p {
   height: 500px;
   /*padding-bottom: 20px;*/
 }
+
+.btn-primary {
+  background-color: #0C0C8D;
+  /*float: left;*/
+}

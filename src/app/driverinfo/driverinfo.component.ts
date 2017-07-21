@@ -1,6 +1,6 @@
 
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
@@ -18,7 +18,6 @@ export class DriverinfoComponent implements OnInit {
   quoteId: string;
 
   driver =
-
   {
     quote: {quoteId: <string>null},
     firstName: <string>null,
@@ -29,7 +28,7 @@ export class DriverinfoComponent implements OnInit {
     state: <string>null,
     zip_code: <number>null,
     gender: <string>null,
-    birthDate: <number>null,
+    birthDate: <string>null,
     maritalStatus: <string>null,
     education: <string>null,
     homeOwnerStatus: <string>null,
@@ -55,7 +54,9 @@ export class DriverinfoComponent implements OnInit {
 
     saveDriver() {
       console.log(this.driver)
-      this.quoteInfoService.addRecord('addDriver', this.driver).subscribe()
+      this.quoteInfoService.addRecord('addDriver', this.driver).subscribe();
+      console.log("after API call");
       this.router.navigate(['vehinfo', this.quoteId])
+      console.log("after pass");
     }
 };
