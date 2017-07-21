@@ -15,15 +15,12 @@ import { QuoteInfoService } from '../quote-info.service';
 
 export class DriverinfoComponent implements OnInit {
 
-  studentForm: NgForm;
-  @ViewChild('driverForm') currentForm: NgForm;
-
   quoteId: string;
 
   driver =
 
   {
-    quote: {quoteID: <string>null},
+    quote: {quoteId: <string>null},
     firstName: <string>null,
     last_name: <string>null,
     addressLine1: <string>null,
@@ -50,7 +47,7 @@ export class DriverinfoComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.quoteId = params['quoteId'];
-        this.driver.quote.quoteID = this.quoteId;
+        this.driver.quote.quoteId = this.quoteId;
         console.log(this.quoteId);
       }
     );

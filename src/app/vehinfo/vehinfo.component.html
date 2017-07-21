@@ -1,7 +1,7 @@
 
   <h1>Please enter your vehicle information:</h1>
 
-  <form #vehinfoForm="ngForm" class="form-horizontal">
+  <form (ngSubmit)="saveVehicle()" #vehinfoForm="ngForm" class="form-horizontal">
     <!--<input [(ngModel)]="quote_id" #student_id="ngModel" type="hidden" name="quote_id">-->
     <div class="form-group">
       <label for="model_year" class="col-sm-2 control-label">Model Year</label>
@@ -75,7 +75,7 @@
         </select>
       </div>
     </div>  
-    <div>
-      <button (click)=saveVehicle()>Next</button>
+    <div *ngIf="vehicle.trim">
+      <button>Next</button>
     </div>    
   </form>

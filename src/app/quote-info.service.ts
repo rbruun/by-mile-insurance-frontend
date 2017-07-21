@@ -14,8 +14,8 @@ export class QuoteInfoService {
   constructor (private http: Http) {}
 
 
-    getRecords(endpoint: string): Observable<any[]> {
-        let apiUrl = this.baseUrl+endpoint;
+    getRecords(endpoint: string, quoteId: string): Observable<any[]> {
+        let apiUrl = this.baseUrl+endpoint + "/" + quoteId;
         return this.http.get(apiUrl)
             .map(this.extractData)
             .catch(this.handleError);
