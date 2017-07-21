@@ -1,0 +1,62 @@
+h2, label {
+  color: #0C0C8D;
+  float: left;
+}
+
+label {
+  padding: 0;
+}
+
+p {
+  color: #0C0C8D;
+}
+
+img {
+  height: 60%;
+}
+
+.container {
+  margin-left: 0;
+  margin-right: 75px;
+}
+
+#youngDriver {
+  height: 280px;
+  width: 1200px;
+}
+
+#marital, #ed, #owner, #gen {
+  padding-top: 0;
+}
+
+#name, #tripMiles, #frequency {
+  width: 350px;
+}
+
+#birthDate {
+  margin-left: 0;
+}
+
+/*#gender, #maritalStatus, #education, #homeOwnerStatus {
+  float: left;
+  padding-left: 15px;
+}*/
+
+select {
+  align-items: left;
+    padding-left: 15px;
+}
+
+.item {
+  padding-left: 10px;
+}
+
+.btn-primary {
+  background-color: #0C0C8D;
+  /*float: left;*/
+}
+
+.panel-heading {
+  background-color: #0C0C8D;
+  color: white;
+}
