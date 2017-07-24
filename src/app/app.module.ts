@@ -19,6 +19,7 @@ import { QuoteInfoService } from './quote-info.service';
 import { VehinfoComponent } from './vehinfo/vehinfo.component';
 import { TripinfoComponent } from './tripinfo/tripinfo.component';
 import { DistanceapiComponent } from './tripinfo/distanceapi.component';
+import { SummaryComponent } from './summary/summary.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { DistanceapiComponent } from './tripinfo/distanceapi.component';
     VehinfoComponent,
     TripinfoComponent,
     DriverinfoComponent,
-    DistanceapiComponent
+    DistanceapiComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,
