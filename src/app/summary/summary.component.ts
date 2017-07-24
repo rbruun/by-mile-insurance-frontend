@@ -18,6 +18,11 @@ export class SummaryComponent implements OnInit {
   quoteId;
   errorMessage;
   premium;
+  totalMonthlyMiles;
+  monthlyByMileCost;
+  totalMonthlyByMileCost;
+  monthlySavings;
+  annualSavings;
 
   ngOnInit() {
 
@@ -27,15 +32,31 @@ export class SummaryComponent implements OnInit {
           console.log(this.quoteId);
       }
     );
-    this.getPremium();
-  }
 
+    this.getPremium();
+
+  }
 
   getPremium() {
     this.quoteInfoService.getRecords("getPremium", this.quoteId)
       .subscribe(
-        premium => {this.premium = premium; console.log(this.premium)},
+        premium => {this.premium = premium; this.getMileTotal()},
         error =>  this.errorMessage = <any>error);
+  }
+
+  getMileTotal() {
+    this.quoteInfoService.getRecord("getTotalTrip", this.quoteId)
+      .subscribe(
+        total => {this.totalMonthlyMiles = total.totalMiles; this.calcTotals()},
+        error =>  this.errorMessage = <any>error);
+
+  }
+
+  calcTotals() {
+      this.monthlyByMileCost = (this.totalMonthlyMiles * this.premium.byMileRate).toFixed(2);
+      this.totalMonthlyByMileCost = (parseFloat(this.premium.monthlyByMileBasePremium) + parseFloat(this.monthlyByMileCost)).toFixed(2);
+      this.monthlySavings = (this.premium.monthlyPremium - this.totalMonthlyByMileCost).toFixed(2);
+      this.annualSavings = (this.monthlySavings * 12).toFixed(2);
   }
 
 }
