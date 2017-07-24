@@ -20,6 +20,8 @@ import { VehinfoComponent } from './vehinfo/vehinfo.component';
 import { TripinfoComponent } from './tripinfo/tripinfo.component';
 import { DistanceapiComponent } from './tripinfo/distanceapi.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { SummaryComponent } from './summary/summary.component';
+
 
 
 @NgModule({
@@ -31,6 +33,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     DriverinfoComponent,
     DistanceapiComponent,
     NavigationComponent
+    SummaryComponent
   ],
   imports: [
     BrowserModule,

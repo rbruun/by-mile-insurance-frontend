@@ -1,19 +1,22 @@
-<h1 md-dialog-title>Select trip start and end points</h1>
 
-<div *ngIf="errorMessage" class="danger">{{errorMessage}}</div>
 
-<div md-dialog-content>
-    <div class="textColor">
-Start Location: <input type="text" id="autocompleteStart" size="50"><br/><br/>
-End Location: <input type="text" id="autocompleteEnd" size="50"><br/><br/>
-    </div>
+    <h1 md-dialog-title>Select trip start and end points</h1>
 
-<button md-button (click)="calculateDistance()">Calculate</button>
+    <div *ngIf="errorMessage" class="danger">{{errorMessage}}</div>
 
-    <div>
-    <div class="textColor">
-        Distance:{{distanceBetween}}
-    </div>
-        <button md-button md-dialog-close="{{distanceBetween}}">Return</button>
-    </div>
-</div>
+
+    <div md-dialog-content>
+        <md-input-container>
+           <input mdInput placeholder="Starting Location" type="text" id="autocompleteStart" size="50">
+        </md-input-container>
+        <br/><br/> 
+        <md-input-container>
+        <input mdInput placeholder="Ending Location" type="text" id="autocompleteEnd"
+            size="50"><br/><br/>
+        </md-input-container>
+        <button md-raised-button (click)="calculateDistance()">Calculate</button>
+
+        <div>
+            Distance:{{distanceBetween}} <button md-raised-button md-dialog-close="{{distanceBetween}}">Return</button>
+        </div>
+  

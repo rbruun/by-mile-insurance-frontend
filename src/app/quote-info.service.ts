@@ -14,8 +14,8 @@ export class QuoteInfoService {
   constructor (private http: Http) {}
 
 
-    getRecords(endpoint: string): Observable<any[]> {
-        let apiUrl = this.baseUrl+endpoint;
+    getRecords(endpoint: string, quoteId: string): Observable<any[]> {
+        let apiUrl = this.baseUrl+endpoint + "/" + quoteId;
         return this.http.get(apiUrl)
             .map(this.extractData)
             .catch(this.handleError);
@@ -37,12 +37,20 @@ export class QuoteInfoService {
     }
 
     private extractData(res: Response) {
-        let results = res.json();
+        let results = false
+        try{
+            results = res.json();
+        }catch(e){
+            if(res.status !== 200){
+                return Observable.throw(e);
+            }
+        }
         return results || [];
     }
 
     private handleError(error: Response | any) {
         // In a real world app, you might use a remote logging infrastructure
+        console.log(error)
         let errMsg: string;
         if(typeof error._body === "string"){
             errMsg = error._body

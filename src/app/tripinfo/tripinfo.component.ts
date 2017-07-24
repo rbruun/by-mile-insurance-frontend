@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {MdDialog, MdDialogRef} from '@angular/material';
+import {DataSource} from '@angular/cdk';
 
 import { QuoteInfoService } from '../quote-info.service';
 import { DistanceapiComponent } from './distanceapi.component';
@@ -14,22 +15,26 @@ export class TripinfoComponent implements OnInit {
 
   constructor(private navRoute: ActivatedRoute,
               private quoteInfoService: QuoteInfoService,
-              public dialog: MdDialog) { }
+              public dialog: MdDialog,
+              private router: Router) { }
 
   trips = [];
-  weeklyTotal;
-  monthlyTotal;
+  tripsTotal = {
+    quote: {quoteId: <string> null},
+    totalMiles: <number> null
+  }
+
+  weeklyGrandTotal;
+  monthlyGrandTotal;
   quoteId;
   errorMessage: string;
   successMesssage: string;
 
   trip = {
-    quoteId: <string> null,
-    name: <string> null,
-    tripMiles: null,
-    frequency: null,
-    weeklyTotalMiles: null,
-    monthlyTotalMiles: null
+    quote: {quoteId: <string> null},
+    tripName: <string> null,
+    distance: null,
+    frequency: null
   }
 
   ngOnInit() {
@@ -37,63 +42,71 @@ export class TripinfoComponent implements OnInit {
     this.navRoute.params.subscribe(
       (params : Params) => {
           this.quoteId = params["quoteId"];
-          this.trip.quoteId = this.quoteId; 
+          this.trip.quote.quoteId = this.quoteId; 
           console.log(this.quoteId);
       }
     );
-
+    this.getTrips();
   }
 
   addTrip(){
-
-    let rte = Object.assign({},this.trip);
-    rte.weeklyTotalMiles = rte.tripMiles * 2 * rte.frequency;
-    rte.monthlyTotalMiles = Math.ceil(rte.weeklyTotalMiles * 52 / 12);
-
     // call the data service to add trip
-    this.quoteInfoService.addRecord('addTrip', rte);
-    
-    // doing this way for now, will eventually call service again to get updated trip list
-    //this.getTrips();
-    this.trips.push(rte);
-    this.calcTableTotals();
+    this.quoteInfoService.addRecord('addTrip', this.trip).subscribe(
+      trip => this.getTrips()
+    );
 
-    this.trip.name = null;
-    this.trip.tripMiles = null;
+    this.trip.tripName = null;
+    this.trip.distance = null;
     this.trip.frequency = null;
   }
 
   getTrips() {
-    this.quoteInfoService.getRecords("trip")
+console.log("getTrips");
+    this.quoteInfoService.getRecords("getTrips", this.quoteId)
       .subscribe(
         trips => {this.trips = trips; this.calcTableTotals()},
         error =>  this.errorMessage = <any>error);
   }
 
   deleteTrip(id:number) {
-        this.quoteInfoService.deleteRecord("trip", id)
+        this.quoteInfoService.deleteRecord("deleteTrip", id)
           .subscribe(
-            student => {this.successMesssage = "Record(s) deleted succesfully"; this.getTrips(); },
-            error =>  this.errorMessage = <any>error);
+            trip => {this.successMesssage = "Record(s) deleted succesfully"; 
+                    console.log("record deleted");this.getTrips(); },
+            error =>  console.log(error));
   }
 
   calcTableTotals() {
-    this.weeklyTotal = 0;
-    this.monthlyTotal = 0;
-    for (let i=0; i < this.trips.length; i++) {
-      this.weeklyTotal += this.trips[i].weeklyTotalMiles;
-      this.monthlyTotal += this.trips[i].monthlyTotalMiles;
+    this.weeklyGrandTotal = 0;
+    this.monthlyGrandTotal = 0;   
+    for (let i=0; i < this.trips.length; i++) {    
+      this.trips[i].weeklyTotalMiles = parseInt(this.trips[i].distance) * 2 * parseInt(this.trips[i].frequency);
+      this.weeklyGrandTotal += this.trips[i].weeklyTotalMiles;
+
+      this.trips[i].monthlyTotalMiles = Math.ceil(parseInt(this.trips[i].weeklyTotalMiles) * 52 / 12);
+      this.monthlyGrandTotal += this.trips[i].monthlyTotalMiles;
     }
   }
 
   openDistanceDialog() {
     let dialogRef = this.dialog.open(DistanceapiComponent, {
       height: '300px',
-      width: '600px',
+      width: '600px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.trip.tripMiles = result;
+      this.trip.distance = result;
     });
   }
+
+  goToSummary() {
+    this.tripsTotal.quote.quoteId = this.quoteId;
+    this.tripsTotal.totalMiles = this.monthlyGrandTotal;
+    // call the data service to add trip totals
+    this.quoteInfoService.addRecord('addTotalTrip', this.tripsTotal).subscribe();
+
+    // route to the summary page
+    this.router.navigate(['summary', this.quoteId]);
+  }
+
 }
