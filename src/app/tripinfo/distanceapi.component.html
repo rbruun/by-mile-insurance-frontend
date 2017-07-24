@@ -1,7 +1,9 @@
 
+
     <h1 md-dialog-title>Select trip start and end points</h1>
 
     <div *ngIf="errorMessage" class="danger">{{errorMessage}}</div>
+
 
     <div md-dialog-content>
         <md-input-container>
@@ -17,4 +19,4 @@
         <div>
             Distance:{{distanceBetween}} <button md-raised-button md-dialog-close="{{distanceBetween}}">Return</button>
         </div>
-    </div>
+  

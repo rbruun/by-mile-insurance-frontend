@@ -1,4 +1,4 @@
-<img src="../../assets/images/roadtrip.jpg" alt="Young Driver" id="youngDriver" class="img-responsive">
+<!-- <img src="../../assets/images/roadtrip.jpg" alt="Young Driver" id="youngDriver" class="img-responsive"> -->
 
 <h2>Please enter your trip information:</h2>
 
@@ -17,19 +17,25 @@
     </p>
   </div>
 </div>
+<img src="../../assets/images/roadtrip.jpg" alt="Young Driver" id="youngDriver" class="img-responsive">
     <!-- <img src="../../assets/images/DrivingNYC_night.jpg" alt="Smiley face" class="img-responsive"> -->
   </div>
 
   <div class="item item-1" fxFlex>
 
   <form #vehinfoForm="ngForm" class="form-horizontal">
-    <!--<input [(ngModel)]="quote_id" #student_id="ngModel" type="hidden" name="quote_id">-->
+    <input [(ngModel)]="quote_id" #student_id="ngModel" type="hidden" name="quote_id">
     <div class="form-group">
       <label for="name" class="col-sm-2 control-label">Trip Name</label>
       <div class="col-sm-10">
            <input [(ngModel)]="trip.tripName" type="text" class="form-control" id="tripName" name="tripName" placeholder="Name" required minlength="2" maxlength="30">
       </div>
     </div>
+    </div>
+
+    <!-- <md-input-container>
+      <input mdInput [(ngModel)]="trip.name" type="text" class="form-control" id="name" name="name" placeholder="Name" required minlength="2" maxlength="30">
+    </md-input-container> -->
     <div class="form-group">
       <label for="tripMiles" class="col-sm-2 control-label">Miles</label>
       <div class="col-sm-10">
@@ -77,6 +83,7 @@
       </tr>
     </tbody>
   </table>
+
     <button class="btn btn-primary"(click)=goToSummary()>Get Quote</button>
 </div>
 </div>

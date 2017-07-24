@@ -1,6 +1,10 @@
-h2, label {
+h3, label {
   color: #0C0C8D;
   float: left;
+}
+
+h3 {
+  padding-top: 20px;
 }
 
 label {
@@ -13,6 +17,12 @@ p {
 
 img {
   height: 60%;
+  width: 100%;
+  padding-top: 40px;
+}
+
+input {
+  color: #0C0C8D !important;
 }
 
 .container {
@@ -20,23 +30,29 @@ img {
   margin-right: 75px;
 }
 
-#youngDriver {
+/*#youngDriver {
   height: 280px;
   width: 1200px;
+}*/
+
+ #gender, #maritalStatus, #education, #homeOwnerStatus {
+  padding-top: 0;
+  padding-right: 50px;
+  width: 173px;
 }
 
-#marital, #ed, #owner, #gen {
-  padding-top: 0;
+#gender, #maritalStatus {
+  padding-bottom: 20px;
 }
 
 #firstName, #lastName, #addressLine1, #addressLine2,
 #city, #state, #zip_code, #birthDate {
-  width: 350px;
+  width: 400px;
 }
 
-#birthDate {
-  margin-left: 0;
-}
+/*#birthDate {
+  margin-left: 20px;
+}*/
 
 .dropdown {
   float: left;
@@ -44,18 +60,45 @@ img {
 }
 
 .item {
-  padding-left: 10px;
+  padding-left: 20px;
+}
+.item-1 {
+  text-align: left;
+  padding-top: 20px;
+  color: white;
 }
 
-.btn-primary {
+.item-2 {
+  color: #0C0C8D;
+  margin: 20px;
+}
+
+button {
   background-color: #0C0C8D;
+  color: white;
   float: left;
-  margin-left: 145px;
+  margin-left: 50px;
+  border-radius: 5px;
 }
 
+/*md-card-content {
+padding: 20px;
+}*/
+
+.panel-default {
+  border: 2px;
+  border-color: #0C0C8D;
+  border-style: solid;
+    border-radius: 5px;
+}
 .panel-heading {
   background-color: #0C0C8D;
   color: white;
+}
+
+.panel-body {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 /*.selectpicker {
