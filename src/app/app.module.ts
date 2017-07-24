@@ -32,7 +32,7 @@ import { SummaryComponent } from './summary/summary.component';
     TripinfoComponent,
     DriverinfoComponent,
     DistanceapiComponent,
-    NavigationComponent
+    NavigationComponent,
     SummaryComponent
   ],
   imports: [
