@@ -7,13 +7,17 @@ label {
   padding: 0;
 }
 
-p {
+p, table {
   color: #0C0C8D;
 }
 
 img {
   height: 60%;
 }
+
+/*.item-1 {
+  float: left;
+}*/
 
 .container {
   margin-left: 0;
@@ -29,12 +33,20 @@ img {
   padding-top: 0;
 }
 
-#name, #tripMiles, #frequency {
+#name, #frequency {
   width: 350px;
 }
 
 #birthDate {
   margin-left: 0;
+}
+
+#tripTable {
+  padding-top: 30px;
+}
+
+#miles {
+  width: 375px;
 }
 
 /*#gender, #maritalStatus, #education, #homeOwnerStatus {
@@ -59,4 +71,18 @@ select {
 .panel-heading {
   background-color: #0C0C8D;
   color: white;
+}
+
+.miles {
+  margin-right: 100px;
+}
+
+#tripMiles {
+  width: 200px;
+  float: left;
+}
+
+
+#distHelp {
+  float: right;
 }
