@@ -15,9 +15,15 @@ export class TripinfoComponent implements OnInit {
 
   constructor(private navRoute: ActivatedRoute,
               private quoteInfoService: QuoteInfoService,
-              public dialog: MdDialog) { }
+              public dialog: MdDialog,
+              private router: Router) { }
 
   trips = [];
+  tripsTotal = {
+    quote: {quoteId: <string> null},
+    totalMiles: <number> null
+  }
+
   weeklyGrandTotal;
   monthlyGrandTotal;
   quoteId;
@@ -92,4 +98,15 @@ console.log("getTrips");
       this.trip.distance = result;
     });
   }
+
+  goToSummary() {
+    this.tripsTotal.quote.quoteId = this.quoteId;
+    this.tripsTotal.totalMiles = this.monthlyGrandTotal;
+    // call the data service to add trip totals
+    this.quoteInfoService.addRecord('addTotalTrip', this.tripsTotal).subscribe();
+
+    // route to the summary page
+    this.router.navigate(['summary', this.quoteId]);
+  }
+
 }
