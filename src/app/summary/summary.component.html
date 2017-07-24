@@ -1,3 +1,106 @@
-<p>
-  Total Premium: ${{premium?.premium}}
-</p>
+
+<div class="container" fxLayout fxLayout.xs="column" fxLayoutGap="10px" fxLayoutGap.xs="0" >
+
+  <!-- <div class="item item-1" fxFlex="20%">Item 1</div> -->
+
+  <div class="item item-2" fxFlex="40%" fxFlexOrder="2" fxLayout="column" fxLayoutGap="20px">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <md-card-title class="panel-title">ByMile Insurance</md-card-title>
+      </div>
+      <div class="panel-body">
+        <md-card-content>
+          When enrolled in ByMile, your monthly premium is a combination of a pre-determined base rate and a per-mile rate calculated according to the distance you drove during the previous month. Simply put, the less you drive, the lower your insurance bill will be.
+        </md-card-content>
+      </div>
+    </div>
+    <div>
+    <img src="../../assets/images/lady-driving.jpg" alt="lady driving" class="img-responsive">
+    </div>
+  </div>
+
+  <div class="item item-1" fxFlex fxLayoutAlign="center" >
+
+  <div fxLayout="column" fxLayoutGap="20px">
+
+    <div class="panel panel-default panel-summary">
+      <div class="panel-heading">
+        <md-card-title class="panel-title">Summary Results</md-card-title>
+      </div>
+      <div class="panel-body">
+        <md-card-content >
+          <div fxLayout="column" fxFlex class="summary-detail" >
+            <div>
+            <b>Drivers:</b>
+            </div>
+            <div>
+            <b>Vehicles:</b>
+            </div>
+            <div>
+            <b>Coverages Used in Estimate:</b> Comprehensive
+                                        Collision
+                                        Liability
+            </div>
+          </div>
+        </md-card-content>
+      </div>
+    </div>
+   
+    <div class="panel panel-default panel-summary">
+      <div class="panel-heading">
+        <md-card-title class="panel-title">By Mile Insurance Estimate</md-card-title>
+      </div>
+      <div class="panel-body">
+        <md-card-content>
+          <div fxLayout="column" class="summary-detail">
+            <div>
+            <b>Estimated montly cost: (Miles x Rate):</b> {{monthlyByMileCost}}
+            </div>
+            <div>
+            <b>Monthly By-Mile Base Cost:</b> ${{premium?.monthlyByMileBasePremium.toFixed(2)}}
+            </div>
+            <div>
+            <b>Total Monthly By-Mile Cost:</b> {{totalMonthlyByMileCost}}
+            </div>
+          </div>
+        </md-card-content>
+      </div>
+    </div>
+   
+    <div class="panel panel-default panel-summary">
+      <div class="panel-heading">
+        <md-card-title class="panel-title">Traditional Insurance Estimate</md-card-title>
+      </div>
+      <div class="panel-body">
+        <md-card-content>
+          <div fxLayout="column" class="summary-detail">
+            <div>
+            <b>Total Monthly Cost:</b> ${{premium?.monthlyPremium.toFixed(2)}}
+            </div>
+          </div>
+        </md-card-content>
+      </div>
+    </div>
+
+        <div class="panel panel-default panel-summary">
+      <div class="panel-heading">
+        <md-card-title class="panel-title">Cost Savings</md-card-title>
+      </div>
+      <div class="panel-body">
+        <md-card-content>
+          <div fxLayout="column" class="summary-detail">
+            <div *ngIf="monthlySavings > 0">
+            <b>You will save an estimated ${{monthlySavings}} monthly or ${{annualSavings}}  annually</b>
+            </div>
+            <div *ngIf="monthlySavings <= 0">
+            <b>Based on your driving habits, our standard monthly premium plan would be a better option for you</b>
+            </div>            
+          </div>
+        </md-card-content>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
