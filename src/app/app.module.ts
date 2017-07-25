@@ -21,6 +21,7 @@ import { TripinfoComponent } from './tripinfo/tripinfo.component';
 import { DistanceapiComponent } from './tripinfo/distanceapi.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SummaryComponent } from './summary/summary.component';
+import { DateformatDirective } from './directives/dateformat.directive'
 
 
 
@@ -33,7 +34,8 @@ import { SummaryComponent } from './summary/summary.component';
     DriverinfoComponent,
     DistanceapiComponent,
     NavigationComponent,
-    SummaryComponent
+    SummaryComponent,
+    DateformatDirective
   ],
   imports: [
     BrowserModule,
