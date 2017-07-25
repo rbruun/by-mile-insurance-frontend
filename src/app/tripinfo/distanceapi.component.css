@@ -7,13 +7,15 @@ h1 {
   background-color: #0C0C8D;
   color: white;
   margin-left: 42%;
+  margin-top: 20px;
+  margin-right: 50px;
 }
 
 
 
 #distBetween {
   color: #0C0C8D;
-  text-align: center;
+  text-align: left;
 }
 
 /*table {

@@ -1,25 +1,39 @@
+<h1 md-dialog-title>
+
+  Select trip start and end points</h1>
 
 
-    <h1 md-dialog-title>Select trip start and end points</h1>
+<div md-dialog-content>
+  <form #distanceForm="ngForm">
+    <div *ngIf="errorMessage" class="mat-input-error">{{errorMessage}}</div>
 
-    <div *ngIf="errorMessage" class="danger">{{errorMessage}}</div>
+    <md-input-container>
+      <input mdInput placeholder="Starting Location" type="text" name="autocompleteStart" [formControl]="autocompleteStartFormControl"
+        id="autocompleteStart" size="50" required>
+      <md-error *ngIf="autocompleteStartFormControl.hasError('required')">
+        Starting location is <strong>required</strong>
+      </md-error>
+    </md-input-container>
 
+    <md-input-container>
+      <input mdInput placeholder="Ending Location" type="text" [formControl]="autocompleteEndFormControl" name="autocompleteEnd"
+        id="autocompleteEnd" size="50" required>
+      <md-error *ngIf="autocompleteEndFormControl.hasError('required')">
+        Ending location is <strong>required</strong>
+      </md-error>
+    </md-input-container>
 
-    <div md-dialog-content>
-        <md-input-container>
-           <input mdInput placeholder="Starting Location" type="text" id="autocompleteStart" size="50">
-        </md-input-container>
-
-        <md-input-container>
-        <input mdInput placeholder="Ending Location" type="text" id="autocompleteEnd"
-            size="50"><br/><br/>
-        </md-input-container>
-
-        <button md-raised-button (click)="calculateDistance()">Calculate</button>
-
-        <br /> 
-        <div id="distBetween">
-            Distance:{{distanceBetween}}
-        </div>
-        <br />
+    <div id="distBetween">
+      Distance:{{distanceBetween}}
+    </div>
+    <div fxLayout.xs="column">
+      <div>
+        <button md-raised-button [disabled]="autocompleteStartFormControl.hasError('required') || autocompleteEndFormControl.hasError('required')"
+          (click)="calculateDistance()">Calculate</button>
+      </div>
+      <div>
         <button md-raised-button md-dialog-close="{{distanceBetween}}">Return</button>
+      </div>
+    </div>
+  </form>
+</div>
