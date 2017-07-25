@@ -54,7 +54,7 @@
 
       <div class="form-group" *ngIf="vehicle.trim">
           <md-select placeholder="Anti-Theft Device" [(ngModel)]="vehicle.antiTheft" id="antiTheft" name="antiTheft" class="selectpicker">
-          <md-option [value]="autod">
+          <md-option value="autod">
               Automatic Disabling
           </md-option>
           <md-option value="onstar">
@@ -68,7 +68,7 @@
 
       <div class="form-group" *ngIf="vehicle.trim">
           <md-select placeholder="Own or Lease" [(ngModel)]="vehicle.ownLease" id="ownLease" name="ownLease" class="selectpicker">
-          <md-option [value]="owned">
+          <md-option value="owned">
               Own without payments
           </md-option>
           <md-option value="ownpay">
@@ -94,3 +94,17 @@
     </form>
   </div>
 </div>
+
+<div id="footer">
+
+            <div>© 2017 Liberty Mutual Insurance, 175 Berkeley Street, Boston, MA 02116 | 36 USC 220506 </div>
+
+            <div id="social">
+
+                <a href="https://www.facebook.com/libertymutual/">Facebook</a>
+
+                <a href="https://twitter.com/LibertyMutual">Twitter</a>
+
+            </div>
+
+        </div>

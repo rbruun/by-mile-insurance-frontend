@@ -1,7 +1,14 @@
 md-toolbar {
-    background-color: #0C0C8D;
-    color: white;
-    margin-bottom: 20px;
+    background-color: #0C0C8D !important;
+    color: white !important;
+    margin-bottom: 10px;
+}
+
+img {
+  transform:scale(0.7);
+  margin-top: 9px;
+  width: 180px;
+height: 100px;
 }
 
 
@@ -11,11 +18,6 @@ li a {
 
 li a:hover {
     background-color: #0C0C8D;
-}
-
-#color {
-  background-color: #0C0C8D !important;
-  color: white !important;
 }
 
 .spacer {

@@ -3,9 +3,9 @@ h3, label {
   float: left;
 }
 
-h3 {
+/*h3 {
   padding-top: 20px;
-}
+}*/
 
 p {
   color: #0C0C8D;
@@ -17,9 +17,21 @@ img {
   padding-top: 40px;
 }
 
+form {
+  width:500px;
+}
+
+a {
+  color: white;
+}
+
 input {
   color: #0C0C8D !important;
 }
+
+/*#fbook {
+    transform: scale(0.10);
+}*/
 
 
  #gender, #maritalStatus, #education, #homeOwnerStatus {
@@ -37,16 +49,13 @@ input {
   width: 400px;
 }
 
-/*.item {
-  padding-left: 20px;
-}*/
 
 .item-1 {
   text-align: left;
-  padding-top: 20px;
+  /*padding-top: 20px;*/
   color: white;
   padding-left: 20px;
-  width: 500px;
+
 }
 
 .item-2 {
@@ -77,4 +86,17 @@ button {
 .panel-body {
   padding-top: 20px;
   padding-bottom: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+#footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0C0C8D;
+  color: white;
+  padding-left: 5%;
+  padding-right: 5%;
+  height: 50px;
 }
