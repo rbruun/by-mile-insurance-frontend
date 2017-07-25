@@ -23,6 +23,7 @@ export class VehinfoComponent implements OnInit {
     makes: any[];
     models: any[];
     trims: any[];
+    drivers: any[];
 
     vehicle = {
       quote: {quoteId: <string> null},
@@ -31,7 +32,8 @@ export class VehinfoComponent implements OnInit {
       model: <string> null,
       trim: <string> null,
       antiTheft: <string> null,
-      ownLease: <string> null
+      ownLease: <string> null,
+      driver: {driverId: <string> null}
     }
 
     constructor(
@@ -95,7 +97,6 @@ export class VehinfoComponent implements OnInit {
     saveVehicle(){
       // call api service to save vehicle
       this.quoteInfoService.addRecord('addVehicle', this.vehicle).subscribe();
-console.log("after API call");
       this.router.navigate(['tripinfo', this.quoteId]);
     }
 
@@ -113,8 +114,11 @@ console.log("after API call");
       .subscribe(
         years => this.getValidYears(years),
         error =>  this.errorMessage = <any>error);
-  }
 
-
+    this.quoteInfoService.getRecords("getDrivers", this.quoteId)
+      .subscribe(
+        drivers => {this.drivers = drivers; console.log(this.drivers)},
+        error =>  this.errorMessage = <any>error);
+  }    
 
 }
