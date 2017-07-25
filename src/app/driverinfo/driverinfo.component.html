@@ -53,7 +53,7 @@
       </md-input-container>
 
       <md-input-container>
-        <input mdInput [(ngModel)]="driver.birthDate" type="text" class="form-control" id="birthDate" name="birthDate" placeholder="2017-01-01" required pattern="(\d{4})-(\d{2})-(\d{2})">
+        <input mdInput [dateFormat] [(ngModel)]="driver.birthDate" type="text" class="form-control" id="birthDate" name="birthDate" placeholder="2017-01-01" required pattern="(\d{4})-(\d{2})-(\d{2})">
       </md-input-container>
 
       <md-select placeholder="Gender" [(ngModel)]="driver.gender" id="gender" name="gender" class="selectpicker">
