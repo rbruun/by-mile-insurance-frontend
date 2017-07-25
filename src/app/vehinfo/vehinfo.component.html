@@ -30,7 +30,7 @@
 
       <div class="form-group" *ngIf="makes">
           <md-select placeholder="Manufacturer" [(ngModel)]="vehicle.vehicleMakeRatingFactor.make" id="make" name="make" class="selectpicker" (change)="getValidModels()">
-          <md-option *ngFor="let make of makes;" [value]="make.make_display">
+          <md-option *ngFor="let make of makes;" [value]="make.make_id">
               {{make.make_display}}
           </md-option>
         </md-select>
