@@ -2,17 +2,21 @@
 h1 {
   color: #0C0C8D;
   }
+
   button {
   background-color: #0C0C8D;
   color: white;
   margin-left: 42%;
 }
-.textColor {
+
+
+
+#distBetween {
   color: #0C0C8D;
   text-align: center;
 }
 
-table {
+/*table {
   border-collapse: collapse;
 }
 
@@ -20,5 +24,4 @@ td, th {
   border: 1px solid #999;
   padding: 0.5rem;
   text-align: left;
-}
-
+}*/

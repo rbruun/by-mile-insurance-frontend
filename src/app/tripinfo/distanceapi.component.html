@@ -9,14 +9,17 @@
         <md-input-container>
            <input mdInput placeholder="Starting Location" type="text" id="autocompleteStart" size="50">
         </md-input-container>
-        <br/><br/> 
+
         <md-input-container>
         <input mdInput placeholder="Ending Location" type="text" id="autocompleteEnd"
             size="50"><br/><br/>
         </md-input-container>
+
         <button md-raised-button (click)="calculateDistance()">Calculate</button>
 
-        <div>
-            Distance:{{distanceBetween}} <button md-raised-button md-dialog-close="{{distanceBetween}}">Return</button>
+        <br /> 
+        <div id="distBetween">
+            Distance:{{distanceBetween}}
         </div>
-  
+        <br />
+        <button md-raised-button md-dialog-close="{{distanceBetween}}">Return</button>

@@ -42,7 +42,7 @@ export class TripinfoComponent implements OnInit {
     this.navRoute.params.subscribe(
       (params : Params) => {
           this.quoteId = params["quoteId"];
-          this.trip.quote.quoteId = this.quoteId; 
+          this.trip.quote.quoteId = this.quoteId;
           console.log(this.quoteId);
       }
     );
@@ -71,15 +71,15 @@ console.log("getTrips");
   deleteTrip(id:number) {
         this.quoteInfoService.deleteRecord("deleteTrip", id)
           .subscribe(
-            trip => {this.successMesssage = "Record(s) deleted succesfully"; 
+            trip => {this.successMesssage = "Record(s) deleted succesfully";
                     console.log("record deleted");this.getTrips(); },
             error =>  console.log(error));
   }
 
   calcTableTotals() {
     this.weeklyGrandTotal = 0;
-    this.monthlyGrandTotal = 0;   
-    for (let i=0; i < this.trips.length; i++) {    
+    this.monthlyGrandTotal = 0;
+    for (let i=0; i < this.trips.length; i++) {
       this.trips[i].weeklyTotalMiles = parseInt(this.trips[i].distance) * 2 * parseInt(this.trips[i].frequency);
       this.weeklyGrandTotal += this.trips[i].weeklyTotalMiles;
 
@@ -90,7 +90,7 @@ console.log("getTrips");
 
   openDistanceDialog() {
     let dialogRef = this.dialog.open(DistanceapiComponent, {
-      height: '300px',
+      height: '400px',
       width: '600px'
     });
 

@@ -1,89 +1,91 @@
 <!-- <img src="../../assets/images/roadtrip.jpg" alt="Young Driver" id="youngDriver" class="img-responsive"> -->
 
-<h2>Please enter your trip information:</h2>
+<h3>Please enter your trip information:</h3>
 
 <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
 
   <!-- <div class="item item-1" fxFlex="20%">Item 1</div> -->
 
-  <div class="item item-2" fxFlex="40%" fxFlexOrder="2">
+  <div class="item item-2" fxFlex="45%" fxFlexOrder="2">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Factors That Affect Rate</h3>
+        <md-card-title class="panel-title">Factors That Affect Rate</md-card-title>
       </div>
       <div class="panel-body">
-        <p>
+        <md-card-content>
           <b>Mileage:</b> For everyday cars, the more mileage you put on your car, the more you are using it and the risk of damage increases. Therefore, the less you drive, the less you will usually pay.
-        </p>
+        </md-card-content>
       </div>
     </div>
     <img src="../../assets/images/roadtrip.jpg" alt="Young Driver" id="youngDriver" class="img-responsive">
-    <!-- <img src="../../assets/images/DrivingNYC_night.jpg" alt="Smiley face" class="img-responsive"> -->
   </div>
 
   <div class="item item-1" fxFlex>
 
     <form #vehinfoForm="ngForm" class="form-horizontal">
       <input [(ngModel)]="quote_id" #student_id="ngModel" type="hidden" name="quote_id">
-      <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">Trip Name</label>
-        <div class="col-sm-10">
-          <input [(ngModel)]="trip.tripName" type="text" class="form-control" id="tripName" name="tripName" placeholder="Name" required minlength="2" maxlength="30">
-        </div>
-      </div>
+
+      <md-input-container>
+        <input mdInput placeholder="Trip Name" [(ngModel)]="trip.tripName" type="text" class="form-control" id="tripName" name="tripName" required minlength="2" maxlength="30">
+      </md-input-container>
+
+      <br />
+
+      <md-input-container>
+        <input mdInput placeholder="Miles" [(ngModel)]="trip.distance" type="text" class="form-control" id="distance" name="distance" required>
+      </md-input-container>
+
+      <button md-button id="distHelp" (click)="openDistanceDialog()">Distance Help</button>
 
 
-  <!-- <md-input-container>
-      <input mdInput [(ngModel)]="trip.name" type="text" class="form-control" id="name" name="name" placeholder="Name" required minlength="2" maxlength="30">
-    </md-input-container> -->
-  <div class="form-group">
-    <label for="tripMiles" class="col-sm-2 control-label">Miles</label>
-    <div class="col-sm-10">
-      <input [(ngModel)]="trip.distance" type="text" class="form-control" id="distance" name="distance" placeholder="Miles" required> <button (click)="openDistanceDialog()">Distance Help</button>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="frequency" class="col-sm-2 control-label">Weekly Frequency</label>
-    <div class="col-sm-10">
-      <input [(ngModel)]="trip.frequency" type="text" class="form-control" id="frequency" name="frequency" placeholder="Frequency" required>
-    </div>
-  </div>
+      <md-input-container>
+        <input mdInput placeholder="Weekly Frequency" [(ngModel)]="trip.frequency" type="text" class="form-control" id="frequency" name="frequency" required>
+      </md-input-container>
 
-  <button class="btn btn-primary" (click)=addTrip()>Add Trip</button>
-  </form>
+      <br />
 
-  <div *ngIf='trips.length > 0'>
-    <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th>Trip Name</th>
-          <th>Miles</th>
-          <th>Weekly Frequency</th>
-          <th>Weekly Total Miles</th>
-          <th>Monthly Total Miles</th>
-          <th></th>
+      <button md-button id="tripButton" (click)=addTrip()>Add Trip</button>
+
+    </form>
+
+    <br />
+    <br />
+
+
+
+    <div *ngIf='trips.length > 0'>
+      <table class="table table-striped table-bordered">
+        <thead>
           <tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let trip of trips">
-          <td>{{trip.tripName}}</td>
-          <td>{{trip.distance}}</td>
-          <td>{{trip.frequency}}</td>
-          <td>{{trip.weeklyTotalMiles}}</td>
-          <td>{{trip.monthlyTotalMiles}}</td>
-          <td><button (click)=deleteTrip(trip.tripId)>delete</button></td>
-        </tr>
-        <tr>
-          <td>Total</td>
-          <td></td>
-          <td></td>
-          <td>{{weeklyGrandTotal}}</td>
-          <td>{{monthlyGrandTotal}}</td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
+            <th>Trip Name</th>
+            <th>Miles</th>
+            <th>Weekly Frequency</th>
+            <th>Weekly Total Miles</th>
+            <th>Monthly Total Miles</th>
+            <th></th>
+            <tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let trip of trips">
+            <td>{{trip.tripName}}</td>
+            <td>{{trip.distance}}</td>
+            <td>{{trip.frequency}}</td>
+            <td>{{trip.weeklyTotalMiles}}</td>
+            <td>{{trip.monthlyTotalMiles}}</td>
+            <td><button md-button (click)=deleteTrip(trip.tripId)>delete</button></td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td></td>
+            <td></td>
+            <td>{{weeklyGrandTotal}}</td>
+            <td>{{monthlyGrandTotal}}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
 
-    <button class="btn btn-primary" (click)=goToSummary()>Get Quote</button>
+      <button md-button (click)=goToSummary()>Get Quote</button>
+    </div>
   </div>
 </div>
