@@ -22,7 +22,6 @@
   <div class="item item-1" fxFlex>
 
     <form #vehinfoForm="ngForm" class="form-horizontal">
-
           <md-select placeholder="Model Year" [(ngModel)]="vehicle.modelYear" id="modelYear" name="modelYear" class="selectpicker" (change)="getValidMakes()">
           <md-option *ngFor="let year of yearsList;" [value]="year">
               {{year}}

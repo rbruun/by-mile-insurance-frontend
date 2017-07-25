@@ -9,12 +9,20 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class QuoteInfoService {
 
-  private baseUrl = 'http://localhost:8080/'
+  //private baseUrl = 'http://localhost:8080/'
+  private baseUrl = 'https://arcane-beyond-83669.herokuapp.com/';
 
   constructor (private http: Http) {}
 
 
     getRecords(endpoint: string, quoteId: string): Observable<any[]> {
+        let apiUrl = this.baseUrl+endpoint + "/" + quoteId;
+        return this.http.get(apiUrl)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    getRecord(endpoint: string, quoteId: string): Observable<any> {
         let apiUrl = this.baseUrl+endpoint + "/" + quoteId;
         return this.http.get(apiUrl)
             .map(this.extractData)

@@ -1,0 +1,24 @@
+.panel-default {
+  border: 2px;
+  border-color: #0C0C8D;
+  border-style: solid;
+    border-radius: 5px;
+}
+.panel-heading {
+  background-color: #0C0C8D;
+  color: white;
+}
+
+.panel-body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.panel-summary {
+    width: 650px;
+}
+.summary-detail {
+    text-align: left;
+}
