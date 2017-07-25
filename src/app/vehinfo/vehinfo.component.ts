@@ -28,7 +28,7 @@ export class VehinfoComponent implements OnInit {
     vehicle = {
       quote: {quoteId: <string> null},
       modelYear: <string> null,
-      make: <string> null,
+      vehicleMakeRatingFactor: {make: <string> null},
       model: <string> null,
       trim: <string> null,
       antiTheft: <string> null,
@@ -55,7 +55,7 @@ export class VehinfoComponent implements OnInit {
 
   getValidMakes() {
     this.makes = null;
-    this.vehicle.make = null;
+    this.vehicle.vehicleMakeRatingFactor.make = null;
     this.models = null;
     this.vehicle.model = null;
     this.trims = null;
@@ -76,8 +76,8 @@ export class VehinfoComponent implements OnInit {
     this.vehicle.trim = null;    
     this.vehicle.antiTheft = null;
     this.vehicle.ownLease = null;
-    console.log(this.vehicle.make)
-    this.dataService.getModels(this.vehicle.modelYear, this.vehicle.make)
+    console.log(this.vehicle.vehicleMakeRatingFactor.make)
+    this.dataService.getModels(this.vehicle.modelYear, this.vehicle.vehicleMakeRatingFactor.make)
       .subscribe(
         models => this.models = models.Models,
         error =>  this.errorMessage = <any>error);
@@ -88,7 +88,7 @@ export class VehinfoComponent implements OnInit {
     this.vehicle.trim = null;
     this.vehicle.antiTheft = null;
     this.vehicle.ownLease = null;
-    this.dataService.getTrimLevels(this.vehicle.modelYear, this.vehicle.make, this.vehicle.model)
+    this.dataService.getTrimLevels(this.vehicle.modelYear, this.vehicle.vehicleMakeRatingFactor.make, this.vehicle.model)
       .subscribe(
         trims => this.trims = trims.Trims,
         error => this.errorMessage = <any>error);
