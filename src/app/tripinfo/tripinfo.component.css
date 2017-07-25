@@ -1,11 +1,8 @@
-h2, label {
+h3 {
   color: #0C0C8D;
   float: left;
 }
 
-label {
-  padding: 0;
-}
 
 p, table {
   color: #0C0C8D;
@@ -13,76 +10,70 @@ p, table {
 
 img {
   height: 60%;
+  width: 100%;
+  padding-top: 40px;
 }
 
-/*.item-1 {
-  float: left;
-}*/
-
-.container {
-  margin-left: 0;
-  margin-right: 75px;
+md-card {
+  float: right;
 }
 
-#youngDriver {
-  height: 280px;
-  width: 1200px;
+.item-1 {
+  text-align: left;
+  padding-top: 20px;
+  color: #0C0C8D;
 }
 
-#marital, #ed, #owner, #gen {
-  padding-top: 0;
+.item-2 {
+  color: #0C0C8D;
+  margin: 20px;
 }
 
-#name, #frequency {
+#tripName, #frequency {
   width: 350px;
 }
 
-#birthDate {
-  margin-left: 0;
+#distance {
+  width: 200px;
 }
 
 #tripTable {
   padding-top: 30px;
 }
 
-#miles {
-  width: 375px;
-}
 
-/*#gender, #maritalStatus, #education, #homeOwnerStatus {
-  float: left;
-  padding-left: 15px;
-}*/
-
-select {
-  align-items: left;
-    padding-left: 15px;
-}
 
 .item {
-  padding-left: 10px;
+  padding-left: 20px;
 }
 
-.btn-primary {
+#distHelp {
   background-color: #0C0C8D;
-  /*float: left;*/
+  color: white;
+  border-radius: 5px;
+  margin-left: 20px;
 }
 
+#tripButton {
+  background-color: #0C0C8D;
+  color: white;
+  border-radius: 5px;
+}
+
+.panel-default {
+  border: 2px;
+  border-color: #0C0C8D;
+  border-style: solid;
+  border-radius: 5px;
+  font-family: "Roboto", "Heletica", sans-serif;
+}
 .panel-heading {
   background-color: #0C0C8D;
   color: white;
 }
 
-.miles {
-  margin-right: 100px;
-}
-
-#tripMiles {
-  width: 200px;
-  float: left;
-}
-
-
-#distHelp {
-  float: right;
+.panel-body {
+  color: #0C0C8D;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }

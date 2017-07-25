@@ -1,10 +1,6 @@
-h2, label {
+h3, label {
   color: #0C0C8D;
   float: left;
-}
-
-label {
-  padding: 0;
 }
 
 p {
@@ -13,51 +9,53 @@ p {
 
 img {
   height: 60%;
+  width: 100%;
+  padding-top: 40px;
 }
 
-.container {
-  margin-left: 0;
-  margin-right: 75px;
-}
-
-#youngDriver {
-  height: 280px;
-  width: 1200px;
-}
-
-#marital, #ed, #owner, #gen {
-  padding-top: 0;
-}
-
-#firstName, #lastName, #addressLine1, #addressLine2,
-#city, #state, #zip_code, #birthDate {
+#modelYear, #make, #model, #trim, #antiTheft, #ownLease {
   width: 350px;
+  padding-bottom: 20px;
 }
-
-#birthDate {
-  margin-left: 0;
-}
-
-/*#gender, #maritalStatus, #education, #homeOwnerStatus {
-  float: left;
-  padding-left: 15px;
-}*/
-
-select {
-  align-items: left;
-    padding-left: 15px;
+#modelYear{
+  padding-top: 20px;
 }
 
 .item {
   padding-left: 10px;
 }
 
-.btn-primary {
-  background-color: #0C0C8D;
-  /*float: left;*/
+.item-1 {
+  text-align: left;
+  padding-top: 20px;
+  color: white;
 }
 
+.item-2 {
+  color: #0C0C8D;
+  margin: 20px;
+}
+
+button {
+  background-color: #0C0C8D;
+  color: white;
+  float: left;
+  margin-left: 50px;
+  border-radius: 5px;
+}
+
+.panel-default {
+  border: 2px;
+  border-color: #0C0C8D;
+  border-style: solid;
+    border-radius: 5px;
+}
 .panel-heading {
   background-color: #0C0C8D;
   color: white;
+}
+
+.panel-body {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }

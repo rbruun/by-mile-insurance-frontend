@@ -57,9 +57,10 @@ export class VehinfoComponent implements OnInit {
     this.models = null;
     this.vehicle.model = null;
     this.trims = null;
-    this.vehicle.trim = null; 
+    this.vehicle.trim = null;
     this.vehicle.antiTheft = null;
-    this.vehicle.ownLease = null;   
+    this.vehicle.ownLease = null;
+    console.log(this.vehicle.modelYear)
     this.dataService.getMakes(this.vehicle.modelYear)
       .subscribe(
         makes => this.makes = makes.Makes,
@@ -72,7 +73,8 @@ export class VehinfoComponent implements OnInit {
     this.trims = null;
     this.vehicle.trim = null;    
     this.vehicle.antiTheft = null;
-    this.vehicle.ownLease = null;   
+    this.vehicle.ownLease = null;
+    console.log(this.vehicle.make)
     this.dataService.getModels(this.vehicle.modelYear, this.vehicle.make)
       .subscribe(
         models => this.models = models.Models,
@@ -83,7 +85,7 @@ export class VehinfoComponent implements OnInit {
     this.trims = null;
     this.vehicle.trim = null;
     this.vehicle.antiTheft = null;
-    this.vehicle.ownLease = null;   
+    this.vehicle.ownLease = null;
     this.dataService.getTrimLevels(this.vehicle.modelYear, this.vehicle.make, this.vehicle.model)
       .subscribe(
         trims => this.trims = trims.Trims,
@@ -102,7 +104,7 @@ console.log("after API call");
   this.route.params.subscribe(
     (params : Params) => {
         this.quoteId = params["quoteId"];
-        this.vehicle.quote.quoteId = this.quoteId; 
+        this.vehicle.quote.quoteId = this.quoteId;
         console.log(this.quoteId);
     }
   );
@@ -113,6 +115,6 @@ console.log("after API call");
         error =>  this.errorMessage = <any>error);
   }
 
-  
+
 
 }

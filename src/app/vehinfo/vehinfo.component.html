@@ -1,102 +1,86 @@
-<img src="../../assets/images/ParkedCars.jpg" alt="Young Driver" id="youngDriver" class="img-responsive">
+<!-- <img src="../../assets/images/ParkedCars.jpg" alt="Young Driver" id="youngDriver" class="img-responsive"> -->
 
-<h2>Please enter your vehicle information:</h2>
+<h3>Please enter your vehicle information:</h3>
 <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
 
   <!-- <div class="item item-1" fxFlex="20%">Item 1</div> -->
 
-  <div class="item item-2" fxFlex="40%" fxFlexOrder="2">
+  <div class="item item-2" fxFlex="45%" fxFlexOrder="2">
     <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Factors That Affect Rate</h3>
+    <md-card-title class="panel-title">Factors That Affect Rate</md-card-title>
   </div>
   <div class="panel-body">
-    <p>
+    <md-card-content>
       <b>Your Vehicle:</b> The more expensive a car is to repair or replace, the more it costs to insure. Your vehicle's safety features can help lower your auto insurance quote, as can how often you drive the car and what type of driving it's used for (business or personal).
-    </p>
+    </md-card-content>
   </div>
 </div>
-    <!-- <img src="../../assets/images/DrivingNYC_night.jpg" alt="Smiley face" class="img-responsive"> -->
+    <img src="../../assets/images/ParkedCars.jpg" alt="Young Driver" id="youngDriver" class="img-responsive">
   </div>
 
   <div class="item item-1" fxFlex>
 
     <form #vehinfoForm="ngForm" class="form-horizontal">
-      <!--<input [(ngModel)]="quote_id" #student_id="ngModel" type="hidden" name="quote_id">-->
-      <div class="form-group">
-        <label for="model_year" class="col-sm-2 control-label">Model Year</label>
-        <div class="col-sm-10">
-          <select [(ngModel)]="vehicle.modelYear" id="modelYear" name="modelYear" class="selectpicker" (change)="getValidMakes()">
-          <option *ngFor="let year of yearsList;" [value]="year">
+          <md-select placeholder="Model Year" [(ngModel)]="vehicle.modelYear" id="modelYear" name="modelYear" class="selectpicker" (change)="getValidMakes()">
+          <md-option *ngFor="let year of yearsList;" [value]="year">
               {{year}}
-          </option>
-        </select>
-        </div>
-      </div>
+          </md-option>
+        </md-select>
+
       <div class="form-group" *ngIf="makes">
-        <label for="make" class="col-sm-2 control-label">Manufacturer</label>
-        <div class="col-sm-10">
-          <select [(ngModel)]="vehicle.make" id="make" name="make" class="selectpicker" (change)="getValidModels()">
-          <option *ngFor="let make of makes;" [value]="make.make_id">
+          <md-select placeholder="Manufacturer" [(ngModel)]="vehicle.make" id="make" name="make" class="selectpicker" (change)="getValidModels()">
+          <md-option *ngFor="let make of makes;" [value]="make.make_id">
               {{make.make_display}}
-          </option>
-        </select>
-        </div>
+          </md-option>
+        </md-select>
       </div>
+
       <div class="form-group" *ngIf="models">
-        <label for="model" class="col-sm-2 control-label">Model</label>
-        <div class="col-sm-10">
-          <select [(ngModel)]="vehicle.model" id="model" name="model" class="selectpicker" (change)="getValidTrims()">
-          <option *ngFor="let model of models;" [value]="model.model_name">
+          <md-select placeholder="Model" [(ngModel)]="vehicle.model" id="model" name="model" class="selectpicker" (change)="getValidTrims()">
+          <md-option *ngFor="let model of models;" [value]="model.model_name">
               {{model.model_name}}
-          </option>
-        </select>
-        </div>
+          </md-option>
+        </md-select>
       </div>
+
       <div class="form-group" *ngIf="trims">
-        <label for="trim" class="col-sm-2 control-label">Trim Level</label>
-        <div class="col-sm-10">
-          <select [(ngModel)]="vehicle.trim" id="trim" name="trim" class="selectpicker">
-          <option *ngFor="let trim of trims;" [ngValue]="trim.model_id">
+          <md-select placeholder="Trim Level" [(ngModel)]="vehicle.trim" id="trim" name="trim" class="selectpicker">
+          <md-option *ngFor="let trim of trims;" [value]="trim.model_id">
               {{trim.model_trim}}
-          </option>
-        </select>
-        </div>
+          </md-option>
+        </md-select>
       </div>
+
       <div class="form-group" *ngIf="vehicle.trim">
-        <label for="trim" class="col-sm-2 control-label">Anti-theft Device</label>
-        <div class="col-sm-10">
-          <select [(ngModel)]="vehicle.antiTheft" id="antiTheft" name="antiTheft" class="selectpicker">
-          <option [ngValue]="autod">
+          <md-select placeholder="Anti-Theft Device" [(ngModel)]="vehicle.antiTheft" id="antiTheft" name="antiTheft" class="selectpicker">
+          <md-option [value]="autod">
               Automatic Disabling
-          </option>
-          <option value="onstar">
+          </md-option>
+          <md-option value="onstar">
               OnStar
-          </option>
-          <option value="vrd">
+          </md-option>
+          <md-option value="vrd">
               Vehicle Recovery Device
-          </option>
-        </select>
-        </div>
+          </md-option>
+        </md-select>
       </div>
+
       <div class="form-group" *ngIf="vehicle.trim">
-        <label for="trim" class="col-sm-2 control-label">Own or Lease</label>
-        <div class="col-sm-10">
-          <select [(ngModel)]="vehicle.ownLease" id="ownLease" name="ownLease" class="selectpicker">
-          <option value="owned">
+          <md-select placeholder="Own or Lease" [(ngModel)]="vehicle.ownLease" id="ownLease" name="ownLease" class="selectpicker">
+          <md-option [value]="owned">
               Own without payments
-          </option>
-          <option value="ownpay">
+          </md-option>
+          <md-option value="ownpay">
               Own with payments
-          </option>
-          <option value="lease">
+          </md-option>
+          <md-option value="lease">
               Leased
-          </option>
-        </select>
-        </div>
+          </md-option>
+        </md-select>
       </div>
       <div>
-        <button class="btn btn-primary"(click)=saveVehicle()>Save and Continue to Trip Info Page </button>
+        <button md-button (click)=saveVehicle()>Save and Continue to Trip Info Page </button>
       </div>
     </form>
   </div>

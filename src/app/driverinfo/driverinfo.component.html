@@ -1,6 +1,5 @@
-<!-- <img src="../../assets/images/happy-family-driving-car.jpg" alt="Young Driver" id="youngDriver" class="img-responsive"> -->
-
 <h3>Please enter your driver information:</h3>
+
 
 <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="10px" fxLayoutGap.xs="0">
 
@@ -17,7 +16,7 @@
         </md-card-content>
       </div>
     </div>
-    <img src="../../assets/images/lady-driving.jpg" alt="lady driving" class="img-responsive">
+    <img src="../../assets/images/lady-driving2.png" alt="lady driving" class="img-responsive">
   </div>
 
   <div class="item item-1" fxFlex>
@@ -26,15 +25,15 @@
       <!-- <input mdInput [(ngModel)]="driver.driver_id" type="hidden" name="driver_id"> -->
 
       <md-input-container>
-        <input mdInput placeholder="First Name" [(ngModel)]="driver.firstName" type="text" class="form-control" id="firstName" name="firstName">
+        <input mdInput placeholder="First Name" [(ngModel)]="driver.firstName" type="text" class="form-control" id="firstName" name="firstName" required minlength="2" maxlength="30">
       </md-input-container>
 
       <md-input-container>
-        <input mdInput placeholder="Last Name" [(ngModel)]="driver.lastName" type="text" class="form-control" id="lastName" name="lastName">
+        <input mdInput placeholder="Last Name" [(ngModel)]="driver.lastName" type="text" class="form-control" id="lastName" name="lastName" required minlength="2" maxlength="30">
       </md-input-container>
 
       <md-input-container>
-        <input mdInput placeholder="Address Line 1" [(ngModel)]="driver.addressLine1" type="text" class="form-control" id="addressLine1" name="addressLine1">
+        <input mdInput placeholder="Address Line 1" [(ngModel)]="driver.addressLine1" type="text" class="form-control" id="addressLine1" name="addressLine1" required>
       </md-input-container>
 
       <md-input-container>
@@ -42,15 +41,15 @@
       </md-input-container>
 
       <md-input-container>
-        <input mdInput placeholder="City" [(ngModel)]="driver.city" type="text" class="form-control" id="city" name="city">
+        <input mdInput placeholder="City" [(ngModel)]="driver.city" type="text" class="form-control" id="city" name="city" required>
       </md-input-container>
 
       <md-input-container>
-        <input mdInput placeholder="State" [(ngModel)]="driver.state" type="text" class="form-control" id="state" name="state">
+        <input mdInput placeholder="State" [(ngModel)]="driver.state" type="text" class="form-control" id="state" name="state" required>
       </md-input-container>
 
       <md-input-container>
-        <input mdInput placeholder="Zip Code" [(ngModel)]="driver.zip_code" type="text" class="form-control" id="zip_code" name="zip_code">
+        <input mdInput placeholder="Zip Code" [(ngModel)]="driver.zip_code" type="text" class="form-control" id="zip_code" name="zip_code" required>
       </md-input-container>
 
       <md-input-container>
@@ -100,7 +99,7 @@
         </md-option>
       </md-select>
 
-              <md-select placeholder="Home Owner Status"[(ngModel)]="driver.homeOwnerStatus" id="homeOwnerStatus" name="homeOwnerStatus" class="selectpicker">
+      <md-select placeholder="Home Owner Status" [(ngModel)]="driver.homeOwnerStatus" id="homeOwnerStatus" name="homeOwnerStatus" class="selectpicker">
         <md-option value="unselected"> </md-option>
         <md-option value="own">
           Own
@@ -110,11 +109,11 @@
         </md-option>
       </md-select>
 
-<br/>
-<br/>
-          <button md-button>Save and Continue to Vehicle Info Screen</button>
+      <br/>
+      <br/>
+      <button md-button>Save and Continue to Vehicle Info Screen</button>
 
-</form>
-</div>
+    </form>
+  </div>
 
 </div>
