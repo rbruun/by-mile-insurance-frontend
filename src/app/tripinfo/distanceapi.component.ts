@@ -1,5 +1,5 @@
 import { Component, NgModule, NgZone, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormsModule } from "@angular/forms";
+import { FormControl, FormsModule, Validators } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
@@ -18,6 +18,12 @@ export class DistanceapiComponent implements OnInit {
   private endPlace;
   errorMessage = null;
 
+    autocompleteEndFormControl = new FormControl('', [
+    Validators.required]);
+
+    autocompleteStartFormControl = new FormControl('', [
+    Validators.required]);    
+
   public distanceBetween;
 
   constructor(
@@ -25,12 +31,6 @@ export class DistanceapiComponent implements OnInit {
     private _zone: NgZone
 
   ) { }
-
-  setDistance(someDistance) {
-    console.log("hi disntace");
-    this.distanceBetween = someDistance;
-  }
-
 
   ngOnInit() {
     this.autocomplete();
@@ -58,6 +58,7 @@ export class DistanceapiComponent implements OnInit {
   }
 
   calculateDistance() {
+    this.errorMessage = null;
     var service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix(
       {
@@ -77,9 +78,11 @@ export class DistanceapiComponent implements OnInit {
       var origin = response.originAddresses[0];
       var destination = response.destinationAddresses[0];
       if (response.rows[0].elements[0].status === "ZERO_RESULTS") {
-        console.log("no routes available for those addresses");
-        this.errorMessage = ("no routes available for those addresses");
+        this._zone.run(() => {
+          this.errorMessage = ("No routes available for those addresses");
+        })
       } else {
+        // need to do this inside of run because API is not part of Angular default zonee
         this._zone.run(() => {
           this.distanceBetween = response.rows[0].elements[0].distance.text;
           this.distanceBetween = this.distanceBetween.replace(/[^\d]/g, '');

@@ -38,6 +38,7 @@ import { SummaryComponent } from './summary/summary.component';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     AppRoutingModule,
     HttpModule,
