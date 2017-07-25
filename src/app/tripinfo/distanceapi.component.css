@@ -6,15 +6,23 @@ h1 {
   button {
   background-color: #0C0C8D;
   color: white;
-  margin-left: 42%;
+  /*margin-left: 42%;*/
 }
-
-
 
 #distBetween {
   color: #0C0C8D;
-  text-align: center;
+  float: left;
+  font-weight: bold;
 }
+
+/*#calButton {
+  margin-left: 200px;
+}*/
+
+#return {
+  float: right;
+}
+
 
 /*table {
   border-collapse: collapse;

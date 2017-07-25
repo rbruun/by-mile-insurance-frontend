@@ -5,7 +5,7 @@ h3 {
 
 
 p, table {
-  color: #0C0C8D;
+  color:#0C0C8D;
 }
 
 img {
@@ -14,13 +14,36 @@ img {
   padding-top: 40px;
 }
 
+a {
+  color: white;
+}
+
 md-card {
   float: right;
 }
 
+table {
+  border: 2px solid #0C0C8D;
+  border-collapse: collapse;
+  border-radius: 10px;
+  width: 100%;
+}
+
+tr, td, th {
+  border: 2px solid #0C0C8D;
+}
+
+th {
+  background-color: #0C0C8D;
+  color: white;
+  width: 160px;
+  font-style: normal;
+}
+
 .item-1 {
   text-align: left;
-  padding-top: 20px;
+  padding-top: 70px;
+  padding-left: 40px;
   color: #0C0C8D;
 }
 
@@ -28,6 +51,14 @@ md-card {
   color: #0C0C8D;
   margin: 20px;
 }
+
+.item-3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
 
 #tripName, #frequency {
   width: 350px;
@@ -37,16 +68,6 @@ md-card {
   width: 200px;
 }
 
-#tripTable {
-  padding-top: 30px;
-}
-
-
-
-.item {
-  padding-left: 20px;
-}
-
 #distHelp {
   background-color: #0C0C8D;
   color: white;
@@ -54,9 +75,15 @@ md-card {
   margin-left: 20px;
 }
 
-#tripButton {
-  background-color: #0C0C8D;
+#tripButton, #quoteButton{
+  background-color:#0C0C8D;
   color: white;
+  border-radius: 5px;
+}
+
+#delete {
+  background-color: #C5CAE9;
+  color: #0C0C8D;
   border-radius: 5px;
 }
 
@@ -65,7 +92,7 @@ md-card {
   border-color: #0C0C8D;
   border-style: solid;
   border-radius: 5px;
-  font-family: "Roboto", "Heletica", sans-serif;
+
 }
 .panel-heading {
   background-color: #0C0C8D;
@@ -76,4 +103,18 @@ md-card {
   color: #0C0C8D;
   padding-top: 20px;
   padding-bottom: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+#footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0C0C8D;
+  color: white;
+  padding-left: 5%;
+  padding-right: 5%;
+  height: 60px;
+
 }

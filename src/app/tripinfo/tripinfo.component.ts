@@ -91,7 +91,7 @@ console.log("getTrips");
   openDistanceDialog() {
     let dialogRef = this.dialog.open(DistanceapiComponent, {
       height: '400px',
-      width: '600px'
+      width: '500px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

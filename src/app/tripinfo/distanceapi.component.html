@@ -15,11 +15,16 @@
             size="50"><br/><br/>
         </md-input-container>
 
+        <div id="calButton">
         <button md-raised-button (click)="calculateDistance()">Calculate</button>
-
-        <br /> 
-        <div id="distBetween">
-            Distance:{{distanceBetween}}
-        </div>
+      </div>
         <br />
-        <button md-raised-button md-dialog-close="{{distanceBetween}}">Return</button>
+        <br />
+        <div id="distBetween">
+            Distance: {{distanceBetween}} miles
+        </div>
+
+        <br />
+                    <button id="return" md-raised-button md-dialog-close="{{distanceBetween}}">Return</button>
+
+    </div>
