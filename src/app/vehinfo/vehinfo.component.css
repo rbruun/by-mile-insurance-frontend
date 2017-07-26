@@ -3,10 +3,13 @@ h3, label {
   float: left;
 }
 
-p {
-  color: #0C0C8D;
+p, a{
+  color: #0C0C8D !important;
 }
 
+.vehList {
+  border-bottom: lightgray 1px dotted
+}
 img {
   height: 60%;
   width: 100%;
@@ -76,4 +79,9 @@ button {
   padding-left: 5%;
   padding-right: 5%;
   height: 60px;
+}
+
+.vehButton{
+  float: right;
+  margin-left: 10px;
 }
