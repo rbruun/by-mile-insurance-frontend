@@ -2,6 +2,7 @@ import 'rxjs/add/operator/switchMap';
 import { Component, OnInit }      from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location }               from '@angular/common';
+import { FormControl, FormsModule, Validators } from "@angular/forms";
 
 import { VehInfoService } from '../veh-info.service'
 import { QuoteInfoService } from '../quote-info.service';
@@ -35,6 +36,10 @@ export class VehinfoComponent implements OnInit {
       ownLease: <string> null,
       driver: {driverId: <string> null}
     }
+
+
+    driverFormControl = new FormControl('', [
+    Validators.required]);
 
     constructor(
     private dataService: VehInfoService,
@@ -102,23 +107,22 @@ export class VehinfoComponent implements OnInit {
 
   ngOnInit() {
 
-  this.route.params.subscribe(
-    (params : Params) => {
-        this.quoteId = params["quoteId"];
-        this.vehicle.quote.quoteId = this.quoteId;
-        console.log(this.quoteId);
-    }
-  );
+    this.route.params.subscribe(
+      (params : Params) => {
+          this.quoteId = params["quoteId"];
+          this.vehicle.quote.quoteId = this.quoteId;
+          console.log(this.quoteId);
+      })
 
-    this.dataService.getAvailableYears()
-      .subscribe(
-        years => this.getValidYears(years),
-        error =>  this.errorMessage = <any>error);
+      this.dataService.getAvailableYears()
+        .subscribe(
+          years => this.getValidYears(years),
+          error =>  this.errorMessage = <any>error);
 
-    this.quoteInfoService.getRecords("getDrivers", this.quoteId)
-      .subscribe(
-        drivers => {this.drivers = drivers; console.log(this.drivers)},
-        error =>  this.errorMessage = <any>error);
+      this.quoteInfoService.getRecords("getDrivers", this.quoteId)
+        .subscribe(
+          drivers => {this.drivers = drivers; console.log(this.drivers)},
+          error =>  this.errorMessage = <any>error);
   }    
 
 }
