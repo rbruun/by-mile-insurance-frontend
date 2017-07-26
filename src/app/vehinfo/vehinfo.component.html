@@ -12,7 +12,7 @@
           <div>
             {{vehicle.modelYear}} {{vehicle.vehicleMakeRatingFactor.make}} {{vehicle.model}}
           </div>
-          <div class="container">
+          <div>
             <div class="vehButton">
               <a class="btn btn-primary" (click)="editVehicle(vehicle.vehicleId)">Edit</a>
             </div>  
@@ -24,7 +24,6 @@
       </div>
     </div>  
   </div>
-  
   <div class="container" fxFlex fxlayout="column">
     <h3>Enter your vehicle information:</h3>
     <form #vehinfoForm="ngForm" (ngSubmit)="saveVehicle()" class="form-horizontal">
@@ -35,7 +34,7 @@
         </md-select>
 
       <div class="form-group" *ngIf="makes">
-          <md-select placeholder="Manufacturer" [(ngModel)]="vehicle.vehicleMakeRatingFactor.make" id="make" name="make" class="selectpicker" (change)="getValidModels()">
+          <md-select placeholder="Manufacturer" [(ngModel)]="vehicle?.vehicleMakeRatingFactor.make" id="make" name="make" class="selectpicker" (change)="getValidModels()">
           <md-option *ngFor="let make of makes;" [value]="make.make_id">
               {{make.make_display}}
           </md-option>
@@ -48,6 +47,9 @@
               {{model.model_name}}
           </md-option>
         </md-select>
+        <div *ngFor="let driver of drivers;">
+          {{driver.driverId}} {{driver.firstName}} {{driver.lastName}}
+        </div>
       </div>
 
       <div class="form-group" *ngIf="trims">
@@ -87,9 +89,9 @@
       </div>
 
       <div class="form-group" *ngIf="drivers && vehicle.trim">
-          <md-select placeholder="Primary Driver" [(ngModel)]="vehicle.driver.driverId" id="driver" name="driver" class="selectpicker" required [formControl]="driverFormControl">
-          <md-option *ngFor="let driver of drivers;" [value]="driver.driverId">
-              {{driver.firstName}} {{driver.lastName}}
+          <md-select placeholder="Primary Driver" [(ngModel)]="vehicle?.driver.driverId" id="driver" name="driver" class="selectpicker" required [formControl]="driverFormControl">
+          <md-option *ngFor="let driver of drivers;" [value]="driver?.driverId">
+             {{driver.firstName}} {{driver.lastName}}
           </md-option>
         </md-select>
         <md-error *ngIf="driverFormControl.hasError('required')">
@@ -98,7 +100,7 @@
       </div>
 
       <div *ngIf="vehicle.trim">
-        <button md-button >Save Vehicle </button>
+        <button class="btn btn-primary" >Save Vehicle </button>
       </div>
       <div *ngIf="vehicles?.length > 0">
           <a class="btn btn-primary" routerLink="/tripinfo/{{quoteId}}">Continue to Trip Info Page >></a>
