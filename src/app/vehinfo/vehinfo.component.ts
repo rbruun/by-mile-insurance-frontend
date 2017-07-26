@@ -25,6 +25,7 @@ export class VehinfoComponent implements OnInit {
     models: any[];
     trims: any[];
     drivers: any[];
+    vehicles: any[];
 
     vehicle = {
       quote: {quoteId: <string> null},
@@ -101,8 +102,10 @@ export class VehinfoComponent implements OnInit {
 
     saveVehicle(){
       // call api service to save vehicle
-      this.quoteInfoService.addRecord('addVehicle', this.vehicle).subscribe();
-      this.router.navigate(['tripinfo', this.quoteId]);
+      this.quoteInfoService.addRecord('addVehicle', this.vehicle).subscribe(
+        vehicle => {this.getVehicles();this.resetVehicle()}
+      );
+
     }
 
   ngOnInit() {
@@ -116,13 +119,43 @@ export class VehinfoComponent implements OnInit {
 
       this.dataService.getAvailableYears()
         .subscribe(
-          years => this.getValidYears(years),
+          years => {this.getValidYears(years); this.getVehicles()},
           error =>  this.errorMessage = <any>error);
 
       this.quoteInfoService.getRecords("getDrivers", this.quoteId)
         .subscribe(
-          drivers => {this.drivers = drivers; console.log(this.drivers)},
+          drivers => {this.drivers = drivers; console.log("drivers: "); console.log(this.drivers)},
           error =>  this.errorMessage = <any>error);
   }    
 
+  getVehicles() {
+    this.quoteInfoService.getRecords("getVehicles", this.quoteId)
+        .subscribe(
+          vehicles => {this.vehicles = vehicles},
+          error =>  this.errorMessage = <any>error);
+  }
+
+  deleteVehicle(vehicleId) {
+    console.log("deleting vehicle " + vehicleId);
+    // call service to delete vehicle, refresh the vehicle list
+  }
+
+  editVehicle(vehicleId) {
+    console.log("editing vehicle " + vehicleId);
+    // call service to get vehicle, populate vehicle object tied to view
+  }
+
+  resetVehicle(){
+    this.vehicle.modelYear = null;
+    this.vehicle.model = null;
+    this.vehicle.vehicleMakeRatingFactor.make = null;
+    this.trims = null;
+    this.vehicle.trim = null;
+    this.vehicle.antiTheft = null;
+    this.vehicle.ownLease = null;
+    this.vehicle.driver = null;
+    this.makes = null;
+    this.models = null;
+    this.trims = null;
+  }
 }
