@@ -73,7 +73,6 @@ export class TripinfoComponent implements OnInit {
       this.quoteInfoService.getRecords("getTrips", this.vehicles[i].vehicleId)
         .subscribe(
           trips => {this.vehicles[i].trips = trips; 
-                    console.log(JSON.stringify(this.vehicles[i]))
                     this.calcTableTotals(this.vehicles[i])},
           error =>  this.errorMessage = <any>error);
     }

@@ -82,7 +82,7 @@
         <tbody *ngFor="let vehicle of vehicles">
           <tr>
             <td colspan="6">
-              {{vehicle.modelYear}} {{vehicle.model}}
+              {{vehicle.modelYear}} {{vehicle.vehicleMakeRatingFactor.make}} {{vehicle.model}}
             </td>
           </tr>
           <tr *ngFor="let trip of vehicle.trips">
