@@ -32,10 +32,10 @@
       <br />
 
       <md-input-container>
-        <input mdInput placeholder="Miles" [(ngModel)]="trip.distance" type="text" class="form-control" id="distance" name="distance" required>
+        <input mdInput placeholder="Miles one way" [(ngModel)]="trip.distance" type="text" class="form-control" id="distance" name="distance" required>
       </md-input-container>
 
-      <button class="btn bnt-primar" id="distHelp" (click)="openDistanceDialog()">Distance Help</button>
+      <button class="btn btn-primary" id="distHelp" (click)="openDistanceDialog()">Distance Help</button>
 
 
       <md-input-container>
@@ -67,7 +67,7 @@
 
       <div class="item item-3" fxFlex="100%">
 
-    <div *ngIf='vehicles.length > 0'>
+    <div *ngIf='showTable'>
       <table class="tripTable">
         <thead>
           <tr>
@@ -106,7 +106,7 @@
 
       <br />
 
-      <button md-button id="quoteButton" (click)=goToSummary()>Get Quote</button>
+      <button class="btn btn-primary" id="quoteButton" (click)=goToSummary()>Get Quote</button>
     </div>
   </div>
 </div>

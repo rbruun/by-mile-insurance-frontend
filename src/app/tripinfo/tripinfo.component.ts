@@ -23,15 +23,13 @@ export class TripinfoComponent implements OnInit {
   vehicleFormControl = new FormControl('', [
   Validators.required]);
 
-  //trips = [];
   vehicles = [];
   tripsTotal = {
     quote: {quoteId: <string> null},
     totalMiles: <number> null
   }
 
-  weeklyGrandTotal;
-  monthlyGrandTotal;
+  showTable = false;
   quoteId;
   errorMessage: string;
   successMesssage: string;
@@ -69,6 +67,7 @@ export class TripinfoComponent implements OnInit {
   }
 
   getTrips() {
+    this.showTable= false;
     for (let i=0; i < this.vehicles.length; i++) {
       this.quoteInfoService.getRecords("getTrips", this.vehicles[i].vehicleId)
         .subscribe(
@@ -97,6 +96,7 @@ export class TripinfoComponent implements OnInit {
     vehicle.weeklyGrandTotal = 0;
     vehicle.monthlyGrandTotal = 0;
     for (let i=0; i < vehicle.trips.length; i++) {
+      this.showTable = true;
       vehicle.trips[i].weeklyTotalMiles = parseInt(vehicle.trips[i].distance) * 2 * parseInt(vehicle.trips[i].frequency);
       vehicle.weeklyGrandTotal += vehicle.trips[i].weeklyTotalMiles;
 
@@ -119,7 +119,7 @@ export class TripinfoComponent implements OnInit {
 
   goToSummary() {
     this.tripsTotal.quote.quoteId = this.quoteId;
-    this.tripsTotal.totalMiles = this.monthlyGrandTotal;
+    //this.tripsTotal.totalMiles = this.monthlyGrandTotal;
     // call the data service to add trip totals
     this.quoteInfoService.addRecord('addTotalTrip', this.tripsTotal).subscribe();
 
