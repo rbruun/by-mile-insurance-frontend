@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class QuoteInfoService {
 
+
   // private baseUrl = 'http://localhost:8080/'
   private baseUrl = 'https://arcane-beyond-83669.herokuapp.com/';
 
@@ -22,16 +23,15 @@ export class QuoteInfoService {
             .catch(this.handleError);
     }
 
-    getRecord(endpoint: string, quoteId: string): Observable<any> {
-        let apiUrl = this.baseUrl+endpoint + "/" + quoteId;
+    getRecord(endpoint: string, recordId: string): Observable<any> {
+        let apiUrl = this.baseUrl+endpoint + "/" + recordId;
         return this.http.get(apiUrl)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
     addRecord(endpoint: string, record:object): Observable<any> {
-        console.log(record);
-        let apiUrl = `${this.baseUrl}${endpoint}`;
+        let apiUrl = `${this.baseUrl}${endpoint}`;       
         return this.http.post(apiUrl, record)
             .map(this.extractData)
             .catch(this.handleError);
@@ -42,6 +42,13 @@ export class QuoteInfoService {
       return this.http.delete(apiUrl)
           .map(this.extractData)
           .catch(this.handleError);
+    }
+
+    editRecord(endpoint: string, record:object): Observable<object> {
+        let apiUrl = `${this.baseUrl}${endpoint}`;
+        return this.http.put(apiUrl, record)
+            .map(this.extractData)
+            .catch(this.handleError);
     }
 
     private extractData(res: Response) {
