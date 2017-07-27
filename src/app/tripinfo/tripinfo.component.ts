@@ -26,6 +26,7 @@ export class TripinfoComponent implements OnInit {
   vehicles = [];
   tripsTotal = {
     quote: {quoteId: <string> null},
+    vehicle: {vehicleId: <string> null},
     totalMiles: <number> null
   }
 
@@ -118,10 +119,13 @@ export class TripinfoComponent implements OnInit {
   }
 
   goToSummary() {
-    this.tripsTotal.quote.quoteId = this.quoteId;
-    //this.tripsTotal.totalMiles = this.monthlyGrandTotal;
-    // call the data service to add trip totals
-    this.quoteInfoService.addRecord('addTotalTrip', this.tripsTotal).subscribe();
+    for (let i=0; i < this.vehicles.length; i++) {
+      this.tripsTotal.quote.quoteId = this.quoteId;
+      this.tripsTotal.vehicle.vehicleId = this.vehicles[i].vehicleId;
+      this.tripsTotal.totalMiles = this.vehicles[i].monthlyGrandTotal;
+      // call the data service to add trip totals
+      this.quoteInfoService.addRecord('addTotalTrip', this.tripsTotal).subscribe();
+    }
 
     // route to the summary page
     this.router.navigate(['summary', this.quoteId]);
