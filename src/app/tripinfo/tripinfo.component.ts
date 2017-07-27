@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {DataSource} from '@angular/cdk';
-import { FormControl, FormsModule, Validators } from "@angular/forms";
+import { FormControl, NgForm, FormsModule, Validators } from "@angular/forms";
 
 import { QuoteInfoService } from '../quote-info.service';
 import { DistanceapiComponent } from './distanceapi.component';
@@ -20,13 +20,15 @@ export class TripinfoComponent implements OnInit {
               private router: Router) { }
 
 
+  //tripinfoForm: NgForm;
+  @ViewChild('tripinfoForm') tripinfoForm: NgForm;
+
   vehicleFormControl = new FormControl('', [
   Validators.required]);
 
   vehicles = [];
   tripsTotal = {
-    quote: {quoteId: <string> null},
-    vehicle: {vehicleId: <string> null},
+    vehicleId: <string> null,
     totalMiles: <number> null
   }
 
@@ -65,6 +67,7 @@ export class TripinfoComponent implements OnInit {
     this.trip.distance = null;
     this.trip.frequency = null;
     this.trip.vehicle.vehicleId = null;
+
   }
 
   getTrips() {
@@ -96,13 +99,14 @@ export class TripinfoComponent implements OnInit {
   calcTableTotals(vehicle) {
     vehicle.weeklyGrandTotal = 0;
     vehicle.monthlyGrandTotal = 0;
+    vehicle.totalTrip = 0;
     for (let i=0; i < vehicle.trips.length; i++) {
       this.showTable = true;
       vehicle.trips[i].weeklyTotalMiles = parseInt(vehicle.trips[i].distance) * 2 * parseInt(vehicle.trips[i].frequency);
       vehicle.weeklyGrandTotal += vehicle.trips[i].weeklyTotalMiles;
 
       vehicle.trips[i].monthlyTotalMiles = Math.ceil(parseInt(vehicle.trips[i].weeklyTotalMiles) * 52 / 12);
-      vehicle.monthlyGrandTotal += vehicle.trips[i].monthlyTotalMiles;
+      vehicle.totalTrip += vehicle.trips[i].monthlyTotalMiles;
     }
   }
 
@@ -120,11 +124,10 @@ export class TripinfoComponent implements OnInit {
 
   goToSummary() {
     for (let i=0; i < this.vehicles.length; i++) {
-      this.tripsTotal.quote.quoteId = this.quoteId;
-      this.tripsTotal.vehicle.vehicleId = this.vehicles[i].vehicleId;
-      this.tripsTotal.totalMiles = this.vehicles[i].monthlyGrandTotal;
-      // call the data service to add trip totals
-      this.quoteInfoService.addRecord('addTotalTrip', this.tripsTotal).subscribe();
+      // call the data service to update the vehicle with the total trip miles
+      this.tripsTotal.vehicleId = this.vehicles[i].vehicleId;
+      this.tripsTotal.totalMiles = this.vehicles[i].totalTrip;
+      this.quoteInfoService.editRecord("addTotalMiles", this.tripsTotal).subscribe();
     }
 
     // route to the summary page
