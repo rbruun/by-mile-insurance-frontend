@@ -17,22 +17,27 @@ export class SummaryComponent implements OnInit {
 
   quoteId;
   errorMessage;
-  premium;
-  totalMonthlyMiles;
-  monthlyByMileCost;
-  totalMonthlyByMileCost;
-  monthlySavings;
-  annualSavings;
+  // premium;
+  // totalMonthlyMiles;
+  // monthlyByMileCost;
+  totalMonthlyByMileCost = 0;
+  annualByMileCost = 0;
+  traditionalMonthlyCost = 0;
+  traditionalAnnualCost = 0;
+  // monthlySavings;
+  // annualSavings;
+
+  drivers;
+  premiums;
 
   ngOnInit() {
 
     this.navRoute.params.subscribe(
       (params : Params) => {
           this.quoteId = params["quoteId"];
-          console.log(this.quoteId);
       }
     );
-
+    this.getDrivers();
     this.getPremium();
 
   }
@@ -40,23 +45,34 @@ export class SummaryComponent implements OnInit {
   getPremium() {
     this.quoteInfoService.getRecords("getPremium", this.quoteId)
       .subscribe(
-        premium => {this.premium = premium; this.getMileTotal()},
+        premium => {this.premiums = premium; this.calcTotals()},
         error =>  this.errorMessage = <any>error);
   }
 
-  getMileTotal() {
-    this.quoteInfoService.getRecord("getTotalTrip", this.quoteId)
-      .subscribe(
-        total => {this.totalMonthlyMiles = total.totalMiles; this.calcTotals()},
-        error =>  this.errorMessage = <any>error);
+  // getMileTotal() {
+  //   this.quoteInfoService.getRecord("getTotalTrip", this.quoteId)
+  //     .subscribe(
+  //       total => {this.totalMonthlyMiles = total.totalMiles; this.calcTotals()},
+  //       error =>  this.errorMessage = <any>error);
 
+  // }
+
+  getDrivers(){
+      this.quoteInfoService.getRecords("getDrivers", this.quoteId)
+      .subscribe(
+        drivers => {this.drivers = drivers;},
+        error =>  this.errorMessage = <any>error);
   }
 
   calcTotals() {
-      this.monthlyByMileCost = (this.totalMonthlyMiles * this.premium.byMileRate).toFixed(2);
-      this.totalMonthlyByMileCost = (parseFloat(this.premium.monthlyByMileBasePremium) + parseFloat(this.monthlyByMileCost)).toFixed(2);
-      this.monthlySavings = (this.premium.monthlyPremium - this.totalMonthlyByMileCost).toFixed(2);
-      this.annualSavings = (this.monthlySavings * 12).toFixed(2);
+    for (let i=0; i < this.premiums.length; i++) {
+      this.totalMonthlyByMileCost += this.premiums[i].monthlyByMileBasePremium; 
+      this.totalMonthlyByMileCost += (this.premiums[i].byMileRate * this.premiums[i].vehicle.totalMiles);
+      this.traditionalMonthlyCost += this.premiums[i].monthlyPremium;
+      this.traditionalAnnualCost += this.premiums[i].premium;
+      this.annualByMileCost += this.premiums[i].byMileBasePremium;
+      this.annualByMileCost += (this.premiums[i].byMileRate * this.premiums[i].vehicle.totalMiles * 12)
+    }
   }
 
 }

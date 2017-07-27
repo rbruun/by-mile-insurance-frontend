@@ -22,39 +22,48 @@
 
   <div class="item item-1" fxFlex>
 
-    <form #vehinfoForm="ngForm" class="form-horizontal">
+    <form #tripinfoForm="ngForm" class="form-horizontal" (ngSubmit)="addTrip()">
       <input [(ngModel)]="quote_id" #student_id="ngModel" type="hidden" name="quote_id">
 
       <md-input-container>
-        <input mdInput placeholder="Trip Name" [(ngModel)]="trip.tripName" type="text" class="form-control" id="tripName" name="tripName" required minlength="2" maxlength="30">
+        <input mdInput placeholder="Trip Name" [(ngModel)]="trip.tripName" type="text" class="form-control" id="tripName" name="tripName" required minlength="2" maxlength="30" #tripName="ngModel">
+        <md-error *ngIf="tripName.errors && tripName.touched" class="alert alert-danger">
+          <div>Trip Name is required</div>
+        </md-error>
       </md-input-container>
 
-      <br />
+
+      <br/>
 
       <md-input-container>
-        <input mdInput placeholder="Miles" [(ngModel)]="trip.distance" type="text" class="form-control" id="distance" name="distance" required>
+        <input mdInput placeholder="Miles one way" [(ngModel)]="trip.distance" type="text" class="form-control" id="distance" name="distance" required type="number" #distance="ngModel">
+        <md-error *ngIf="distance.errors && distance.touched" class="alert alert-danger">
+          <div [hidden]="!distance.errors.required">Miles one way is required</div>
+        </md-error>
       </md-input-container>
 
-      <button class="btn bnt-primar" id="distHelp" (click)="openDistanceDialog()">Distance Help</button>
+      <button class="btn btn-primary" id="distHelp" (click)="openDistanceDialog()">Distance Help</button>
 
 
       <md-input-container>
-        <input mdInput placeholder="Weekly Frequency" [(ngModel)]="trip.frequency" type="text" class="form-control" id="frequency" name="frequency" required>
+        <input mdInput placeholder="Weekly Frequency" [(ngModel)]="trip.frequency" type="text" class="form-control" id="frequency" name="frequency" required type="number" #frequency="ngModel">
+        <md-error *ngIf="frequency.errors && frequency.touched" class="alert alert-danger">
+          <div [hidden]="!frequency.errors.required">Trip frequency is required</div>
+        </md-error>     
       </md-input-container>
 
       <div class="form-group" *ngIf="vehicles">
-          <md-select mdInput placeholder="Vehicle" [(ngModel)]="trip.vehicle.vehicleId" id="vehicle" name="vehicle" class="selectpicker" required [formControl]="vehicleFormControl">
-          <md-option *ngFor="let vehicle of vehicles;" [value]="vehicle?.vehicleId">
-             {{vehicle.modelYear}} {{vehicle.vehicleMakeRatingFactor.make}} {{vehicle.model}}
-          </md-option>
-        </md-select>
-        <md-error *ngIf="vehicleFormControl.hasError('required')">
-          A vehicle is <strong>required</strong>
-        </md-error>
+          <md-select placeholder="Vehicle" required [(ngModel)]="trip.vehicle.vehicleId" id="vehicle" name="vehicle" class="selectpicker" [formControl]="vehicleFormControl">
+            <md-option *ngFor="let vehicle of vehicles;" [value]="vehicle?.vehicleId">
+              {{vehicle.modelYear}} {{vehicle.vehicleMakeRatingFactor.make}} {{vehicle.model}}
+            </md-option>
+          </md-select>
+          <md-error *ngIf="vehicleFormControl.hasError('required')">
+            A vehicle is <strong>required</strong>
+          </md-error>
       </div>
 
-      <button class="btn btn-primary" id="tripButton" (click)=addTrip()>Add Trip</button>
-
+      <button [disabled]="!tripinfoForm.form.valid" class="btn btn-primary" id="tripButton" type="submit">Add Trip</button>
     </form>
 
   </div>
@@ -67,7 +76,7 @@
 
       <div class="item item-3" fxFlex="100%">
 
-    <div *ngIf='vehicles.length > 0'>
+    <div *ngIf='showTable'>
       <table class="tripTable">
         <thead>
           <tr>
@@ -98,7 +107,7 @@
             <td></td>
             <td></td>
             <td>{{vehicle.weeklyGrandTotal}}</td>
-            <td>{{vehicle.monthlyGrandTotal}}</td>
+            <td>{{vehicle.totalTrip}}</td>
             <td></td>
           </tr>
         </tbody>
@@ -106,7 +115,7 @@
 
       <br />
 
-      <button md-button id="quoteButton" (click)=goToSummary()>Get Quote</button>
+      <button class="btn btn-primary" id="quoteButton" (click)=goToSummary()>Get Quote</button>
     </div>
   </div>
 </div>

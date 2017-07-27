@@ -31,8 +31,24 @@ h3, md-card-content {
 .panel-summary {
     width: 650px;
 }
+.vehcol {
+  width: 30%;
+}
+.amtcol {
+  width: 22%;
+}
+.labels{
+  width: 20%;
+  font-weight: bold;
+}
+.summary-heading {
+  font-weight: bold;
+}
 .summary-detail {
     text-align: left;
+}
+.summary-row {
+  margin-bottom: 10px;
 }
 
 #lmi {
