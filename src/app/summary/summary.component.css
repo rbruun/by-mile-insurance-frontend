@@ -3,9 +3,6 @@ h3, md-card-content {
   color: #0C0C8D;
 }
 
-a {
-  color: white;
-}
 
 .item-1 {
   text-align: left;
@@ -40,16 +37,4 @@ a {
 
 #lmi {
   color: #0C0C8D;
-}
-
-#footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #0C0C8D;
-  color: white;
-  padding-left: 5%;
-  padding-right: 5%;
-  height: 60px;
-
 }

@@ -9,7 +9,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class QuoteInfoService {
 
-  //private baseUrl = 'http://localhost:8080/'
+
+  // private baseUrl = 'http://localhost:8080/'
   private baseUrl = 'https://arcane-beyond-83669.herokuapp.com/';
 
   constructor (private http: Http) {}

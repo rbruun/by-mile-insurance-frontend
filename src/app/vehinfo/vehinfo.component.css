@@ -16,17 +16,16 @@ img {
   padding-top: 40px;
 }
 
-a {
-  color: white;
-  padding-right: 5px;
-}
-
 #modelYear, #make, #model, #trim, #antiTheft, #ownLease {
   width: 350px;
   padding-bottom: 20px;
 }
 #modelYear{
   padding-top: 20px;
+}
+
+#space {
+  margin: 50px, 50px;
 }
 
 .item {
@@ -37,12 +36,14 @@ a {
   text-align: left;
   padding-top: 70px;
   color: white;
+  height: 680px;
 }
 
 .item-2 {
   color: #0C0C8D;
   margin: 20px;
 }
+
 
 button {
   background-color: #0C0C8D;
@@ -68,17 +69,6 @@ button {
   padding-bottom: 20px;
   padding-left: 50px;
   padding-right: 50px;
-}
-
-#footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #0C0C8D;
-  color: white;
-  padding-left: 5%;
-  padding-right: 5%;
-  height: 60px;
 }
 
 .vehButton{

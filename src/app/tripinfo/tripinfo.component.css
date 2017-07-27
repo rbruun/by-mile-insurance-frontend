@@ -14,10 +14,6 @@ img {
   padding-top: 40px;
 }
 
-a {
-  color: white;
-}
-
 md-card {
   float: right;
 }
@@ -45,6 +41,7 @@ th {
   padding-top: 70px;
   padding-left: 40px;
   color: #0C0C8D;
+  height: 620px;
 }
 
 .item-2 {
@@ -105,16 +102,4 @@ th {
   padding-bottom: 20px;
   padding-left: 50px;
   padding-right: 50px;
-}
-
-#footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #0C0C8D;
-  color: white;
-  padding-left: 5%;
-  padding-right: 5%;
-  height: 60px;
-
 }
