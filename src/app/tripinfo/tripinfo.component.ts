@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {DataSource} from '@angular/cdk';
+import { FormControl, FormsModule, Validators } from "@angular/forms";
 
 import { QuoteInfoService } from '../quote-info.service';
 import { DistanceapiComponent } from './distanceapi.component';
@@ -18,7 +19,12 @@ export class TripinfoComponent implements OnInit {
               public dialog: MdDialog,
               private router: Router) { }
 
-  trips = [];
+
+  vehicleFormControl = new FormControl('', [
+  Validators.required]);
+
+  //trips = [];
+  vehicles = [];
   tripsTotal = {
     quote: {quoteId: <string> null},
     totalMiles: <number> null
@@ -32,6 +38,7 @@ export class TripinfoComponent implements OnInit {
 
   trip = {
     quote: {quoteId: <string> null},
+    vehicle: {vehicleId: <string> null},
     tripName: <string> null,
     distance: null,
     frequency: null
@@ -46,7 +53,7 @@ export class TripinfoComponent implements OnInit {
           console.log(this.quoteId);
       }
     );
-    this.getTrips();
+    this.getVehicles();
   }
 
   addTrip(){
@@ -58,14 +65,24 @@ export class TripinfoComponent implements OnInit {
     this.trip.tripName = null;
     this.trip.distance = null;
     this.trip.frequency = null;
+    this.trip.vehicle.vehicleId = null;
   }
 
   getTrips() {
-console.log("getTrips");
-    this.quoteInfoService.getRecords("getTrips", this.quoteId)
-      .subscribe(
-        trips => {this.trips = trips; this.calcTableTotals()},
-        error =>  this.errorMessage = <any>error);
+    for (let i=0; i < this.vehicles.length; i++) {
+      this.quoteInfoService.getRecords("getTrips", this.vehicles[i].vehicleId)
+        .subscribe(
+          trips => {this.vehicles[i].trips = trips; 
+                    this.calcTableTotals(this.vehicles[i])},
+          error =>  this.errorMessage = <any>error);
+    }
+  }
+
+  getVehicles() {
+    this.quoteInfoService.getRecords("getVehicles", this.quoteId)
+        .subscribe(
+          vehicles => {this.vehicles = vehicles; this.getTrips()},
+          error =>  this.errorMessage = <any>error);
   }
 
   deleteTrip(id:number) {
@@ -76,15 +93,15 @@ console.log("getTrips");
             error =>  console.log(error));
   }
 
-  calcTableTotals() {
-    this.weeklyGrandTotal = 0;
-    this.monthlyGrandTotal = 0;
-    for (let i=0; i < this.trips.length; i++) {
-      this.trips[i].weeklyTotalMiles = parseInt(this.trips[i].distance) * 2 * parseInt(this.trips[i].frequency);
-      this.weeklyGrandTotal += this.trips[i].weeklyTotalMiles;
+  calcTableTotals(vehicle) {
+    vehicle.weeklyGrandTotal = 0;
+    vehicle.monthlyGrandTotal = 0;
+    for (let i=0; i < vehicle.trips.length; i++) {
+      vehicle.trips[i].weeklyTotalMiles = parseInt(vehicle.trips[i].distance) * 2 * parseInt(vehicle.trips[i].frequency);
+      vehicle.weeklyGrandTotal += vehicle.trips[i].weeklyTotalMiles;
 
-      this.trips[i].monthlyTotalMiles = Math.ceil(parseInt(this.trips[i].weeklyTotalMiles) * 52 / 12);
-      this.monthlyGrandTotal += this.trips[i].monthlyTotalMiles;
+      vehicle.trips[i].monthlyTotalMiles = Math.ceil(parseInt(vehicle.trips[i].weeklyTotalMiles) * 52 / 12);
+      vehicle.monthlyGrandTotal += vehicle.trips[i].monthlyTotalMiles;
     }
   }
 

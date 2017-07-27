@@ -35,16 +35,25 @@
         <input mdInput placeholder="Miles" [(ngModel)]="trip.distance" type="text" class="form-control" id="distance" name="distance" required>
       </md-input-container>
 
-      <button md-button id="distHelp" (click)="openDistanceDialog()">Distance Help</button>
+      <button class="btn bnt-primar" id="distHelp" (click)="openDistanceDialog()">Distance Help</button>
 
 
       <md-input-container>
         <input mdInput placeholder="Weekly Frequency" [(ngModel)]="trip.frequency" type="text" class="form-control" id="frequency" name="frequency" required>
       </md-input-container>
 
-      <br />
+      <div class="form-group" *ngIf="vehicles">
+          <md-select mdInput placeholder="Vehicle" [(ngModel)]="trip.vehicle.vehicleId" id="vehicle" name="vehicle" class="selectpicker" required [formControl]="vehicleFormControl">
+          <md-option *ngFor="let vehicle of vehicles;" [value]="vehicle?.vehicleId">
+             {{vehicle.modelYear}} {{vehicle.vehicleMakeRatingFactor.make}} {{vehicle.model}}
+          </md-option>
+        </md-select>
+        <md-error *ngIf="vehicleFormControl.hasError('required')">
+          A vehicle is <strong>required</strong>
+        </md-error>
+      </div>
 
-      <button md-button id="tripButton" (click)=addTrip()>Add Trip</button>
+      <button class="btn btn-primary" id="tripButton" (click)=addTrip()>Add Trip</button>
 
     </form>
 
@@ -58,7 +67,7 @@
 
       <div class="item item-3" fxFlex="100%">
 
-    <div *ngIf='trips.length > 0'>
+    <div *ngIf='vehicles.length > 0'>
       <table class="tripTable">
         <thead>
           <tr>
@@ -70,8 +79,13 @@
             <th></th>
             <tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let trip of trips">
+        <tbody *ngFor="let vehicle of vehicles">
+          <tr>
+            <td colspan="6">
+              {{vehicle.modelYear}} {{vehicle.vehicleMakeRatingFactor.make}} {{vehicle.model}}
+            </td>
+          </tr>
+          <tr *ngFor="let trip of vehicle.trips">
             <td>{{trip.tripName}}</td>
             <td>{{trip.distance}}</td>
             <td>{{trip.frequency}}</td>
@@ -83,8 +97,8 @@
             <td>Total</td>
             <td></td>
             <td></td>
-            <td>{{weeklyGrandTotal}}</td>
-            <td>{{monthlyGrandTotal}}</td>
+            <td>{{vehicle.weeklyGrandTotal}}</td>
+            <td>{{vehicle.monthlyGrandTotal}}</td>
             <td></td>
           </tr>
         </tbody>
