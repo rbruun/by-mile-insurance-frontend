@@ -30,7 +30,7 @@ export class QuoteInfoService {
     }
 
     addRecord(endpoint: string, record:object): Observable<any> {
-        let apiUrl = `${this.baseUrl}${endpoint}`;
+        let apiUrl = `${this.baseUrl}${endpoint}`;       
         return this.http.post(apiUrl, record)
             .map(this.extractData)
             .catch(this.handleError);
