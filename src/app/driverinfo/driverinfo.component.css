@@ -1,11 +1,11 @@
-h3, label {
+h3, h4 {
   color: #0C0C8D;
   float: left;
 }
 
-/*h3 {
-  padding-top: 20px;
-}*/
+h4 {
+  margin-bottom: 5px;
+}
 
 p {
   color: #0C0C8D;
@@ -17,12 +17,28 @@ img {
   padding-top: 40px;
 }
 
-form {
-  width:500px;
+/*form {
+  width: 450px;
+  margin-right: -20px;
+
+}*/
+
+table {
+  border: 2px solid #0C0C8D;
+  border-collapse: collapse;
+  border-radius: 10px;
+  width: 100%;
 }
 
-a {
+tr, td, th {
+  border: 2px solid #0C0C8D;
+}
+
+th {
+  background-color: #0C0C8D;
   color: white;
+  width: 160px;
+  font-style: normal;
 }
 
 input {
@@ -37,7 +53,7 @@ input {
  #gender, #maritalStatus, #education, #homeOwnerStatus {
   padding-top: 0;
   padding-right: 50px;
-  width: 170px;
+  width: 165px;
 }
 
 #gender, #maritalStatus {
@@ -52,24 +68,32 @@ input {
 
 .item-1 {
   text-align: left;
-  /*padding-top: 20px;*/
   color: white;
   padding-left: 20px;
-
+  margin: 0;
 }
 
 .item-2 {
   color: #0C0C8D;
-  margin: 20px;
-  margin-right: 40px;
+  /*margin: 20px;*/
+  /*margin-right: 40px;*/
 }
+
 
 button {
   background-color: #0C0C8D;
   color: white;
   float: left;
-  margin-left: 50px;
+
   border-radius: 5px;
+}
+
+#addButton{
+  margin-left: 150px;
+}
+#delete {
+  background-color: white;
+  color: red
 }
 
 .panel-default {
@@ -88,15 +112,4 @@ button {
   padding-bottom: 20px;
   padding-left: 50px;
   padding-right: 50px;
-}
-
-#footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #0C0C8D;
-  color: white;
-  padding-left: 5%;
-  padding-right: 5%;
-  height: 50px;
 }

@@ -1,11 +1,11 @@
-<h3>Please enter your driver information:</h3>
+<!-- <h3>Please enter your driver information:</h3> -->
 
 
-<div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="10px" fxLayoutGap.xs="0">
+<div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="left"  fxLayoutGap.xs="0">
 
   <!-- <div class="item item-1" fxFlex="20%">Item 1</div> -->
 
-  <div class="item item-2" fxFlex="45%" fxFlexOrder="2">
+  <div class="item item-2" fxFlex="35%" fxFlexOrder="3">
     <div class="panel panel-default">
       <div class="panel-heading">
         <md-card-title class="panel-title">Factors That Affect Rate</md-card-title>
@@ -19,9 +19,11 @@
     <img src="../../assets/images/lady-driving2.png" alt="lady driving" class="img-responsive" id="pageimg">
   </div>
 
-  <div class="item item-1" fxFlex>
 
-    <form (ngSubmit)="saveDriver()" #driverForm="ngForm" class="form-horizontal">
+
+  <div class="item item-1" fxFlex fxFlexOrder="2">
+
+    <form (ngSubmit)="addDriver()" #driverForm="ngForm" class="form-horizontal">
       <!-- <input mdInput [(ngModel)]="driver.driver_id" type="hidden" name="driver_id"> -->
 
       <md-input-container>
@@ -111,24 +113,45 @@
 
       <br/>
       <br/>
-      <button md-button>Save and Continue to Vehicle Info Screen</button>
+      <button id="addButton" md-button>Add Driver</button>
 
     </form>
   </div>
 
+  <div class="item item-3" fxFlex="30%" >
+
+<h3>Please enter your driver information:</h3>
+
+<br />
+<br />
+<br />
+
+<div *ngIf='drivers.length > 0'>
+<h4>Drivers Added</h4>
+  <table class="driverTable">
+    <thead>
+      <tr>
+        <th>Driver</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let driver of drivers">
+        <td>{{driver.firstName}} {{driver.lastName}}</td>
+        <td>
+          <button md-button id="delete"(click)=deleteDriver(driver.driverId)>Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
+  <button md-button id="vehicleButton" (click)=goToVehicle()>Save and Continue to Vehicle</button>
+
+    </div>
+  </div>
+
 </div>
 
-<br/>
-
-<div id="footer">
-
-            <div>© 2017 Liberty Mutual Insurance, 175 Berkeley Street, Boston, MA 02116 | 36 USC 220506 </div>
-
-            <div id="social">
-
-                <a href="https://www.facebook.com/libertymutual/">Facebook</a>
-                <a href="https://twitter.com/LibertyMutual">Twitter</a>
-
-            </div>
-
-        </div>
+<br />

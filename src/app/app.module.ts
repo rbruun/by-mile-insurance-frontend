@@ -21,7 +21,8 @@ import { TripinfoComponent } from './tripinfo/tripinfo.component';
 import { DistanceapiComponent } from './tripinfo/distanceapi.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SummaryComponent } from './summary/summary.component';
-import { DateformatDirective } from './directives/dateformat.directive'
+import { DateformatDirective } from './directives/dateformat.directive';
+import { FooterComponent } from './footer/footer.component'
 
 
 
@@ -35,7 +36,8 @@ import { DateformatDirective } from './directives/dateformat.directive'
     DistanceapiComponent,
     NavigationComponent,
     SummaryComponent,
-    DateformatDirective
+    DateformatDirective,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

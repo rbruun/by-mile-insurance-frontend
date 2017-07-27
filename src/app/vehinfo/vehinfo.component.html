@@ -27,24 +27,25 @@
   <div class="container" fxFlex fxlayout="column">
     <h3>Enter your vehicle information:</h3>
     <form #vehinfoForm="ngForm" (ngSubmit)="saveVehicle()" class="form-horizontal">
-          <md-select placeholder="Model Year" [(ngModel)]="vehicle.modelYear" id="modelYear" name="modelYear" class="selectpicker" (change)="getValidMakes()">
-          <md-option *ngFor="let year of yearsList;" [value]="year">
-              {{year}}
-          </md-option>
-        </md-select>
+      <md-select placeholder="Model Year" [(ngModel)]="vehicle.modelYear" id="modelYear" name="modelYear" class="selectpicker" (change)="getValidMakes()">
+        <md-option *ngFor="let year of yearsList;" [value]="year">
+          {{year}}
+        </md-option>
+      </md-select>
 
       <div class="form-group" *ngIf="makes">
+
           <md-select placeholder="Manufacturer" [(ngModel)]="vehicle?.vehicleMakeRatingFactor.make" id="make" name="make" class="selectpicker" (change)="getValidModels()">
           <md-option *ngFor="let make of makes;" [value]="make.make_id">
-              {{make.make_display}}
+            {{make.make_display}}
           </md-option>
         </md-select>
       </div>
 
       <div class="form-group" *ngIf="models">
-          <md-select placeholder="Model" [(ngModel)]="vehicle.model" id="model" name="model" class="selectpicker" (change)="getValidTrims()">
+        <md-select placeholder="Model" [(ngModel)]="vehicle.model" id="model" name="model" class="selectpicker" (change)="getValidTrims()">
           <md-option *ngFor="let model of models;" [value]="model.model_name">
-              {{model.model_name}}
+            {{model.model_name}}
           </md-option>
         </md-select>
         <div *ngFor="let driver of drivers;">
@@ -52,37 +53,37 @@
       </div>
 
       <div class="form-group" *ngIf="trims">
-          <md-select placeholder="Trim Level" [(ngModel)]="vehicle.trim" id="trim" name="trim" class="selectpicker">
+        <md-select placeholder="Trim Level" [(ngModel)]="vehicle.trim" id="trim" name="trim" class="selectpicker">
           <md-option *ngFor="let trim of trims;" [value]="trim.model_id">
-              {{trim.model_trim}}
+            {{trim.model_trim}}
           </md-option>
         </md-select>
       </div>
 
       <div class="form-group" *ngIf="vehicle.trim">
-          <md-select placeholder="Anti-Theft Device" [(ngModel)]="vehicle.antiTheft" id="antiTheft" name="antiTheft" class="selectpicker">
+        <md-select placeholder="Anti-Theft Device" [(ngModel)]="vehicle.antiTheft" id="antiTheft" name="antiTheft" class="selectpicker">
           <md-option value="autod">
-              Automatic Disabling
+            Automatic Disabling
           </md-option>
           <md-option value="onstar">
-              OnStar
+            OnStar
           </md-option>
           <md-option value="vrd">
-              Vehicle Recovery Device
+            Vehicle Recovery Device
           </md-option>
         </md-select>
       </div>
 
       <div class="form-group" *ngIf="vehicle.trim">
-          <md-select placeholder="Own or Lease" [(ngModel)]="vehicle.ownLease" id="ownLease" name="ownLease" class="selectpicker">
+        <md-select placeholder="Own or Lease" [(ngModel)]="vehicle.ownLease" id="ownLease" name="ownLease" class="selectpicker">
           <md-option value="owned">
-              Own without payments
+            Own without payments
           </md-option>
           <md-option value="ownpay">
-              Own with payments
+            Own with payments
           </md-option>
           <md-option value="lease">
-              Leased
+            Leased
           </md-option>
         </md-select>
       </div>
@@ -123,17 +124,3 @@
   </div>
 
 </div>
-
-<div id="footer">
-
-            <div>© 2017 Liberty Mutual Insurance, 175 Berkeley Street, Boston, MA 02116 | 36 USC 220506 </div>
-
-            <div id="social">
-
-                <a href="https://www.facebook.com/libertymutual/">Facebook</a>
-
-                <a href="https://twitter.com/LibertyMutual">Twitter</a>
-
-            </div>
-
-        </div>
