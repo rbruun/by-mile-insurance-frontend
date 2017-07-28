@@ -9,7 +9,6 @@
   <div class="item-1" fxFlex>
 
     <form #tripinfoForm="ngForm" class="form-horizontal" (ngSubmit)="addTrip()">
-      <input [(ngModel)]="quote_id" #student_id="ngModel" type="hidden" name="quote_id">
 
       <md-input-container>
         <input mdInput placeholder="Trip Name" [(ngModel)]="trip.tripName" type="text" class="form-control" id="tripName" name="tripName" required minlength="2" maxlength="30" #tripName="ngModel">
