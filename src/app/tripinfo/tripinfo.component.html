@@ -6,21 +6,7 @@
 
   <!-- <div class="item item-1" fxFlex="20%">Item 1</div> -->
 
-  <div class="item item-2" fxFlex="45%" fxFlexOrder="2">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <md-card-title class="panel-title">Factors That Affect Rate</md-card-title>
-      </div>
-      <div class="panel-body">
-        <md-card-content>
-          <b>Mileage:</b> For everyday cars, the more mileage you put on your car, the more you are using it and the risk of damage increases. Therefore, the less you drive, the less you will usually pay.
-        </md-card-content>
-      </div>
-    </div>
-    <img src="../../assets/images/roadtrip.jpg" alt="Young Driver" id="youngDriver" class="img-responsive">
-  </div>
-
-  <div class="item item-1" fxFlex>
+  <div class="item-1" fxFlex>
 
     <form #tripinfoForm="ngForm" class="form-horizontal" (ngSubmit)="addTrip()">
       <input [(ngModel)]="quote_id" #student_id="ngModel" type="hidden" name="quote_id">
@@ -31,8 +17,6 @@
           <div>Trip Name is required</div>
         </md-error>
       </md-input-container>
-
-
       <br/>
 
       <md-input-container>
@@ -44,11 +28,11 @@
 
       <button class="btn btn-primary" id="distHelp" (click)="openDistanceDialog()">Distance Help</button>
 
-
+      <br/>
       <md-input-container>
         <input mdInput placeholder="Weekly Frequency" [(ngModel)]="trip.frequency" type="text" class="form-control" id="frequency" name="frequency" required type="number" #frequency="ngModel">
         <md-error *ngIf="frequency.errors && frequency.touched" class="alert alert-danger">
-          <div [hidden]="!frequency.errors.required">Trip frequency is required</div>
+          <div>Trip frequency is required</div>
         </md-error>     
       </md-input-container>
 
@@ -67,46 +51,59 @@
     </form>
 
   </div>
-</div>
 
+  <div class="item-2" fxFlex="45%">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <md-card-title class="panel-title">Factors That Affect Rate</md-card-title>
+      </div>
+      <div class="panel-body">
+        <md-card-content>
+          <b>Mileage:</b> For everyday cars, the more mileage you put on your car, the more you are using it and the risk of damage increases. Therefore, the less you drive, the less you will usually pay.
+        </md-card-content>
+      </div>
+    </div>
+    <img src="../../assets/images/roadtrip.jpg" alt="Young Driver" id="youngDriver" class="img-responsive">
+  </div>
+</div>
 
     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
 
-      <div class="item item-3" fxFlex="100%">
+      <div class="item-3" fxFlex="100%">
 
     <div *ngIf='showTable'>
-      <table class="tripTable">
+      <table id="rounded-corner">
         <thead>
           <tr>
-            <th>Trip Name</th>
+            <th class="top-head-left">Trip Name</th>
             <th>Miles</th>
             <th>Weekly Frequency</th>
             <th>Weekly Total Miles</th>
             <th>Monthly Total Miles</th>
-            <th></th>
+            <th class="top-head-right"></th>
             <tr>
         </thead>
         <tbody *ngFor="let vehicle of vehicles">
-          <tr>
+          <tr class="rowbold">
             <td colspan="6">
               {{vehicle.modelYear}} {{vehicle.vehicleMakeRatingFactor.make}} {{vehicle.model}}
             </td>
           </tr>
-          <tr *ngFor="let trip of vehicle.trips">
-            <td>{{trip.tripName}}</td>
+          <tr *ngFor="let trip of vehicle.trips" class="detailrow">
+            <td class="colleft">{{trip.tripName}}</td>
             <td>{{trip.distance}}</td>
             <td>{{trip.frequency}}</td>
             <td>{{trip.weeklyTotalMiles}}</td>
             <td>{{trip.monthlyTotalMiles}}</td>
-            <td><button md-button id="delete"(click)=deleteTrip(trip.tripId)>Delete</button></td>
+            <td><button class="btn deleteButton" (click)=deleteTrip(trip.tripId)>Delete</button></td>
           </tr>
-          <tr>
-            <td>Total</td>
+          <tr class="rowbold">
+            <td class="rounded-foot-left">Total</td>
             <td></td>
             <td></td>
             <td>{{vehicle.weeklyGrandTotal}}</td>
             <td>{{vehicle.totalTrip}}</td>
-            <td></td>
+            <td class="rounded-foot-right"></td>
           </tr>
         </tbody>
       </table>

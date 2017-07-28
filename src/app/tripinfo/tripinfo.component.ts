@@ -33,6 +33,7 @@ export class TripinfoComponent implements OnInit {
   }
 
   showTable = false;
+  tripsPresent;
   quoteId;
   errorMessage: string;
   successMesssage: string;
@@ -71,14 +72,19 @@ export class TripinfoComponent implements OnInit {
   }
 
   getTrips() {
-    this.showTable= false;
+    this.tripsPresent = false;
     for (let i=0; i < this.vehicles.length; i++) {
       this.quoteInfoService.getRecords("getTrips", this.vehicles[i].vehicleId)
         .subscribe(
           trips => {this.vehicles[i].trips = trips; 
-                    this.calcTableTotals(this.vehicles[i])},
-          error =>  this.errorMessage = <any>error);
-    }
+                    this.calcTableTotals(this.vehicles[i]);
+                        if (this.tripsPresent) {
+                          this.showTable = true;
+                        } else {
+                          this.showTable = false;
+                        }  },
+          error =>  this.errorMessage = <any>error);     
+    } 
   }
 
   getVehicles() {
@@ -101,7 +107,7 @@ export class TripinfoComponent implements OnInit {
     vehicle.monthlyGrandTotal = 0;
     vehicle.totalTrip = 0;
     for (let i=0; i < vehicle.trips.length; i++) {
-      this.showTable = true;
+      this.tripsPresent = true;
       vehicle.trips[i].weeklyTotalMiles = parseInt(vehicle.trips[i].distance) * 2 * parseInt(vehicle.trips[i].frequency);
       vehicle.weeklyGrandTotal += vehicle.trips[i].weeklyTotalMiles;
 
