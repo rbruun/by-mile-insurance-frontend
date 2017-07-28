@@ -1,27 +1,66 @@
 md-toolbar {
-    background-color: #0C0C8D !important;
-    color: white !important;
-    margin-bottom: 10px;
+  background-color: #0C0C8D !important;
+  color: white !important;
+  margin-bottom: 10px;
 }
 
 img {
-  transform:scale(0.7);
-  margin-top: 9px;
-  width: 180px;
-height: 100px;
+  transform: scale(0.7);
+  margin-top: 7px;
+  height: 98px;
 }
 
-
-li a {
-    color: white;
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  height: 40px;
 }
 
-li a:hover {
-    background-color: #0C0C8D;
+li {
+text-align: center;
+vertical-align: middle;
+}
+
+.modProgress {
+  z-index: 100;
+  width: 100%;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+}
+
+.modProgress li {
+  display: inline-block;
+  float: left;
+  width: 20%;
+  background-color: #E5E5E5;
+  border-left: 2px solid #F5F5F5;
+}
+
+.modProgress li a {
+  display: block;
+  color: #0C0C8D;
+  list-style: none;
+  text-decoration: none;
+  padding-top: 10px;
+}
+
+li.nav-home.currentSection {
+  background-color: #0C0C8D;
+  color: white;
+  border-left: none;
+}
+
+li.nav-home.currentSection a {
+  color: white;
+  vertical-align: middle;
 }
 
 .spacer {
-    -webkit-box-flex: 1;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
 };
