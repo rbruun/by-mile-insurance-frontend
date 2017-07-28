@@ -22,9 +22,6 @@ export class TripinfoComponent implements OnInit {
   tripinfoForm: NgForm;
   @ViewChild('tripinfoForm') currentForm: NgForm;
 
-  vehicleFormControl = new FormControl('', [
-  Validators.required]);
-
   vehicles = [];
   tripsTotal = {
     vehicleId: <string> null,

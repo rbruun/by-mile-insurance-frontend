@@ -17,7 +17,7 @@ img {
   padding-top: 40px;
 }
 
-#modelYear, #make, #model, #trim, #antiTheft, #ownLease {
+#modelYear, #make, #model, #trim, #antiTheft, #ownLease, #driver{
   width: 350px;
   padding-bottom: 20px;
 }
