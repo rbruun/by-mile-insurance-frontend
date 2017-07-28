@@ -20,7 +20,7 @@ export class DriverinfoComponent implements OnInit {
   driver =
   {
     quote: {quoteId: <string>null},
-    driver: {driverId: <string>null},
+    driverId: <string>null,
     firstName: <string>null,
     lastName: <string>null,
     addressLine1: <string>null,
@@ -38,7 +38,7 @@ export class DriverinfoComponent implements OnInit {
   drivers = [];
   driversTotal = {
     quote: {quoteId: <string> null},
-    driver: {driverId: <string> null}
+    driverId: <string> null,
   }
 
   errorMessage: string;
@@ -63,36 +63,18 @@ export class DriverinfoComponent implements OnInit {
     );
   }
 
-//     saveDriver() {
-//       console.log(this.driver)
-//       this.quoteInfoService.addRecord('addDriver', this.driver).subscribe();
-//       console.log("after API call");
-//       this.router.navigate(['vehinfo', this.quoteId])
-//       console.log("after pass");
-//     }
-// };
-
-
 
 addDriver() {
   // call the data service to add trip
+  if (this.driver.driverId == null) {
   this.quoteInfoService.addRecord('addDriver', this.driver).subscribe(
-    driver => this.getDrivers()
+    driver => {this.getDrivers(); this.resetDriver()}
   );
-
-  this.driver.firstName = null;
-  this.driver.lastName = null;
-  this.driver.addressLine1 = null;
-  this.driver.addressLine2 = null;
-  this.driver.city = null;
-  this.driver.state = null;
-  this.driver.zip_code = null;
-  this.driver.gender = null;
-  this.driver.birthDate = null;
-  this.driver.maritalStatus = null;
-  this.driver.education = null;
-  this.driver.homeOwnerStatus = null;
-
+}else {
+  this.quoteInfoService.editRecord('updateDriver', this.driver).subscribe(
+    driver => {this.getDrivers(); this.resetDriver()}
+  );
+}
 }
 
 getDrivers() {
@@ -106,20 +88,43 @@ console.log("getDrivers");
 deleteDriver(id: number) {
       this.quoteInfoService.deleteRecord("deleteDriver", id)
         .subscribe(
-          trip => {this.successMesssage = "Record(s) deleted succesfully";
+          driver => {this.successMesssage = "Record(s) deleted succesfully";
                   console.log("record deleted");this.getDrivers(); },
           error =>  console.log(error));
 }
 
 goToVehicle() {
   this.driversTotal.quote.quoteId = this.quoteId;
-  // this.driversTotal.driver.driverId = this.driverId;
-  // call the data service to add trip totals
-  // this.quoteInfoService.addRecord('addDriver', this.driversTotal).subscribe();
-
-  // route to the summary page
+  // route to the vehicle page
   this.router.navigate(['vehinfo', this.quoteId]);
 }
 
+editDriver(driverId) {
+  console.log("editing driver " + driverId);
+  // call service to get vehicle, populate vehicle object tied to view
+  this.quoteInfoService.getRecord("getDriver", driverId)
+  .subscribe(
+      driver => {
+        this.driver = null;
+        this.driver = driver;
+      }
+    )
+
+}
+
+resetDriver(){
+  this.driver.firstName = null;
+  this.driver.lastName = null;
+  this.driver.addressLine1 = null;
+  this.driver.addressLine2 = null;
+  this.driver.city = null;
+  this.driver.state = null;
+  this.driver.zip_code = null;
+  this.driver.gender = null;
+  this.driver.birthDate = null;
+  this.driver.maritalStatus = null;
+  this.driver.education = null;
+  this.driver.homeOwnerStatus = null;
+}
 
 };
