@@ -4,13 +4,12 @@ h3 {
 }
 
 
-p, table {
+p {
   color:#0C0C8D;
 }
 
 img {
-  height: 60%;
-  width: 100%;
+  height: 50%;
   padding-top: 40px;
 }
 
@@ -18,7 +17,7 @@ md-card {
   float: right;
 }
 
-table {
+/*table {
   border: 2px solid #0C0C8D;
   border-collapse: collapse;
   border-radius: 10px;
@@ -34,19 +33,20 @@ th {
   color: white;
   width: 160px;
   font-style: normal;
-}
+}*/
 
 .item-1 {
   text-align: left;
   padding-top: 70px;
   padding-left: 40px;
   color: #0C0C8D;
-  height: 620px;
+  height: 300px;
 }
 
 .item-2 {
   color: #0C0C8D;
   margin: 20px;
+  height: 300px;
 }
 
 .item-3 {
@@ -72,15 +72,9 @@ th {
   margin-left: 20px;
 }
 
-#tripButton, #quoteButton{
+#tripButton, #quoteButton, .deleteButton{
   background-color:#0C0C8D;
   color: white;
-  border-radius: 5px;
-}
-
-#delete {
-  background-color: #C5CAE9;
-  color: #0C0C8D;
   border-radius: 5px;
 }
 
@@ -102,4 +96,59 @@ th {
   padding-bottom: 20px;
   padding-left: 50px;
   padding-right: 50px;
+}
+
+/*sample of rounded corner*/
+#rounded-corner
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 14px;
+  margin-top: 20px;
+	border-collapse: collapse;
+  width: 100%;
+}
+#rounded-corner thead th.top-head-left
+{
+	background-color: #0C0C8D;
+  border-top-left-radius: 5px;
+}
+#rounded-corner thead th.top-head-right
+{
+	background-color: #0C0C8D;
+  border-top-right-radius: 5px;
+}
+#rounded-corner th
+{
+	padding: 8px;
+	font-weight: normal;
+	font-size: 14px;
+	color: #fff;
+	background-color: #0C0C8D;
+}
+#rounded-corner td
+{
+	padding: 8px;
+	background-color: #e8edff;
+	border-top: 1px solid #fff;
+	color: #669;
+}
+#rounded-corner tr.rowbold {
+  font-weight: bold;
+}
+#rounded-corner td.colleft {
+  text-align: left;
+}
+#rounded-corner td.rounded-foot-left
+{
+	background-color: #e8edff;
+  border-bottom-left-radius: 5px;
+}
+#rounded-corner td.rounded-foot-right
+{
+	background-color: #e8edff;
+  border-bottom-right-radius: 5px;
+}
+#rounded-corner tbody tr:hover td
+{
+	background-color: #d0dafd;
 }
