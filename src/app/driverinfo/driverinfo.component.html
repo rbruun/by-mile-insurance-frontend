@@ -1,7 +1,7 @@
 <!-- <h3>Please enter your driver information:</h3> -->
 
 
-<div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="left"  fxLayoutGap.xs="0">
+<div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap.xs="0">
 
   <!-- <div class="item item-1" fxFlex="20%">Item 1</div> -->
 
@@ -24,7 +24,7 @@
   <div class="item item-1" fxFlex fxFlexOrder="2">
 
     <form (ngSubmit)="addDriver()" #driverForm="ngForm" class="form-horizontal">
-      <!-- <input mdInput [(ngModel)]="driver.driver_id" type="hidden" name="driver_id"> -->
+
 
       <md-input-container>
         <input mdInput placeholder="First Name" [(ngModel)]="driver.firstName" type="text" class="form-control" id="firstName" name="firstName" required minlength="2" maxlength="30">
@@ -91,7 +91,7 @@
           High School Degree
         </md-option>
         <md-option value="undergrad">
-          Undergraduate Degree
+          Undergraduate
         </md-option>
         <md-option value="somegrad">
           Some Graduate
@@ -113,41 +113,51 @@
 
       <br/>
       <br/>
-      <button id="addButton" md-button>Add Driver</button>
+      <button id="addButton" md-button>Add/Update Driver</button>
 
     </form>
   </div>
 
-  <div class="item item-3" fxFlex="30%" >
+  <div class="item item-3" fxFlex="30%">
 
 <h3>Please enter your driver information:</h3>
 
-<br />
-<br />
-<br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
 
-<div *ngIf='drivers.length > 0'>
-<h4>Drivers Added</h4>
-  <table class="driverTable">
-    <thead>
-      <tr>
-        <th>Driver</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let driver of drivers">
-        <td>{{driver.firstName}} {{driver.lastName}}</td>
-        <td>
-          <button md-button id="delete"(click)=deleteDriver(driver.driverId)>Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 
-  <br />
 
-  <button md-button id="vehicleButton" (click)=goToVehicle()>Save and Continue to Vehicle</button>
+
+    <div *ngIf='drivers.length > 0'>
+
+      <h4>These are the drivers you have added:</h4>
+
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <div *ngFor="let driver of drivers" class="driverList">
+
+
+        <div class="container" fxLayout="row" fxLayoutAlign="space-between center">
+          <div>{{driver.firstName}} {{driver.lastName}}</div>
+          <div id="modify">
+
+            <a class="btn btn-primary" id="edit" (click)=editDriver(driver.driverId)>Edit</a>
+            <a class="btn btn-danger" id="delete" (click)=deleteDriver(driver.driverId)>Delete</a>
+
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <button md-button id="vehicleButton" (click)=goToVehicle()>Save and Continue to Vehicle</button>
 
     </div>
   </div>

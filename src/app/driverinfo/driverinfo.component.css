@@ -4,6 +4,7 @@ h3, h4 {
 }
 
 h4 {
+  padding-right: 100px;
   margin-bottom: 5px;
 }
 
@@ -23,7 +24,7 @@ img {
 
 }*/
 
-table {
+/*table {
   border: 2px solid #0C0C8D;
   border-collapse: collapse;
   border-radius: 10px;
@@ -39,16 +40,11 @@ th {
   color: white;
   width: 160px;
   font-style: normal;
-}
+}*/
 
 input {
   color: #0C0C8D !important;
 }
-
-/*#fbook {
-    transform: scale(0.10);
-}*/
-
 
  #gender, #maritalStatus, #education, #homeOwnerStatus {
   padding-top: 0;
@@ -79,25 +75,56 @@ input {
   /*margin-right: 40px;*/
 }
 
+.item-3 {
+  width: 350px;
+}
 
-button {
+
+/*button {
   background-color: #0C0C8D;
   color: white;
   float: left;
+  border-radius: 5px;
+}*/
 
+#modify {
+  float: right;
+  margin-left: 10px;
+}
+
+#addButton {
+  background-color: #0C0C8D;
+  color: white;
+  float: left;
+  border-radius: 5px;
+  margin-left: 120px;
+}
+
+#vehicleButton {
+  background-color: #0C0C8D;
+  color: white;
+  float: left;
+  margin-left: 50px;
   border-radius: 5px;
 }
 
-#addButton{
-  margin-left: 150px;
-}
-#delete {
-  background-color: white;
-  color: red
+.driverList {
+  border-bottom: lightgray 1px dotted;
+  
 }
 
+/*#delete {
+  background-color: white;
+  color: red;
+}
+
+#edit {
+  background-color: white;
+  color: #0C0C8D;
+}*/
+
 .panel-default {
-  border: 2px;
+  border: 1px;
   border-color: #0C0C8D;
   border-style: solid;
   border-radius: 5px;
