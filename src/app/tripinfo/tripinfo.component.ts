@@ -113,7 +113,7 @@ export class TripinfoComponent implements OnInit {
     }
   }
 
-  openDistanceDialog() {
+  openDistanceDialog() {   
     let dialogRef = this.dialog.open(DistanceapiComponent, {
       height: '400px',
       width: '500px'

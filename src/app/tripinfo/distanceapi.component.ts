@@ -85,8 +85,7 @@ export class DistanceapiComponent implements OnInit {
         // need to do this inside of run because API is not part of Angular default zonee
         this._zone.run(() => {
           this.distanceBetween = response.rows[0].elements[0].distance.text;
-          this.distanceBetween = this.distanceBetween.replace(/[^\d]/g, '');
-          console.log("distanceBetween: " + this.distanceBetween);
+          this.distanceBetween = Math.ceil(this.distanceBetween.replace(/[^0-9&&^.]/g, ""));  
       })
     }
   }
