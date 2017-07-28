@@ -13,16 +13,19 @@
 
       <md-input-container>
         <input mdInput placeholder="Trip Name" [(ngModel)]="trip.tripName" type="text" class="form-control" id="tripName" name="tripName" required minlength="2" maxlength="30" #tripName="ngModel">
-        <md-error *ngIf="tripName.errors && tripName.touched" class="alert alert-danger">
+        <md-error *ngIf="tripName.errors?.required" class="alert alert-danger">
           <div>Trip Name is required</div>
+        </md-error>
+        <md-error *ngIf="tripName.errors?.minlength" class="alert alert-danger">
+          <div>Trip Name should be at least 2 characters long</div>
         </md-error>
       </md-input-container>
       <br/>
 
       <md-input-container>
         <input mdInput placeholder="Miles one way" [(ngModel)]="trip.distance" type="text" class="form-control" id="distance" name="distance" required type="number" #distance="ngModel">
-        <md-error *ngIf="distance.errors && distance.touched" class="alert alert-danger">
-          <div [hidden]="!distance.errors.required">Miles one way is required</div>
+        <md-error *ngIf="distance.errors" class="alert alert-danger">
+          <div>Miles one way is required</div>
         </md-error>
       </md-input-container>
 
@@ -31,18 +34,18 @@
       <br/>
       <md-input-container>
         <input mdInput placeholder="Weekly Frequency" [(ngModel)]="trip.frequency" type="text" class="form-control" id="frequency" name="frequency" required type="number" #frequency="ngModel">
-        <md-error *ngIf="frequency.errors && frequency.touched" class="alert alert-danger">
+        <md-error *ngIf="frequency.errors" class="alert alert-danger">
           <div>Trip frequency is required</div>
         </md-error>     
       </md-input-container>
 
       <div class="form-group" *ngIf="vehicles">
-          <md-select placeholder="Vehicle" required [(ngModel)]="trip.vehicle.vehicleId" id="vehicle" name="vehicle" class="selectpicker" [formControl]="vehicleFormControl">
+          <md-select placeholder="Vehicle" required [(ngModel)]="trip.vehicle.vehicleId" id="vehicle" name="vehicle" class="selectpicker" #vehicle="ngModel">
             <md-option *ngFor="let vehicle of vehicles;" [value]="vehicle?.vehicleId">
               {{vehicle.modelYear}} {{vehicle.vehicleMakeRatingFactor.make}} {{vehicle.model}}
             </md-option>
           </md-select>
-          <md-error *ngIf="vehicleFormControl.hasError('required')">
+          <md-error *ngIf="vehicle.errors && vehicle.touched" class="alert alert-danger">
             A vehicle is <strong>required</strong>
           </md-error>
       </div>
