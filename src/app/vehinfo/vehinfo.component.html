@@ -89,18 +89,18 @@
       </div>
 
       <div class="form-group" *ngIf="drivers && vehicle.trim">
-          <md-select placeholder="Primary Driver" [(ngModel)]="vehicle?.driver.driverId" id="driver" name="driver" class="selectpicker" required [formControl]="driverFormControl">
+          <md-select placeholder="Primary Driver" [(ngModel)]="vehicle?.driver.driverId" id="driver" name="driver" class="selectpicker" required #driver="ngModel">
           <md-option *ngFor="let driver of drivers;" [value]="driver?.driverId">
              {{driver.firstName}} {{driver.lastName}}
           </md-option>
         </md-select>
-        <md-error *ngIf="driverFormControl.hasError('required')">
-          A driver is <strong>required</strong>
-        </md-error>
+          <md-error *ngIf="driver.errors && driver.touched" class="alert alert-danger">
+            A driver is <strong>required</strong>
+          </md-error>
       </div>
 
       <div *ngIf="vehicle.trim">
-        <button class="btn btn-primary" >Save Vehicle </button>
+        <button [disabled]="!vehinfoForm.form.valid" class="btn btn-primary" >Save Vehicle </button>
       </div>
       <div *ngIf="vehicles?.length > 0">
           <a class="btn btn-primary" routerLink="/tripinfo/{{quoteId}}">Continue to Trip Info Page >></a>

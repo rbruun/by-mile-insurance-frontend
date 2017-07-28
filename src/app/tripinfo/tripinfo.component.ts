@@ -19,12 +19,8 @@ export class TripinfoComponent implements OnInit {
               public dialog: MdDialog,
               private router: Router) { }
 
-
-  //tripinfoForm: NgForm;
-  @ViewChild('tripinfoForm') tripinfoForm: NgForm;
-
-  vehicleFormControl = new FormControl('', [
-  Validators.required]);
+  tripinfoForm: NgForm;
+  @ViewChild('tripinfoForm') currentForm: NgForm;
 
   vehicles = [];
   tripsTotal = {
@@ -69,6 +65,7 @@ export class TripinfoComponent implements OnInit {
     this.trip.frequency = null;
     this.trip.vehicle.vehicleId = null;
 
+    this.tripinfoForm.resetForm();
   }
 
   getTrips() {
@@ -140,4 +137,19 @@ export class TripinfoComponent implements OnInit {
     this.router.navigate(['summary', this.quoteId]);
   }
 
+  ngAfterViewChecked() {
+    this.formChanged();
+  }
+
+  formChanged() {
+    this.tripinfoForm = this.currentForm;
+    this.tripinfoForm.valueChanges
+      .subscribe(
+        data => this.onValueChanged(data)
+      );
+  }
+
+  onValueChanged(data?: any) {
+    let form = this.tripinfoForm.form;
+  }
 }

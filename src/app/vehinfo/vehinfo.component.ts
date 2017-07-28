@@ -1,8 +1,8 @@
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit }      from '@angular/core';
+import { Component, OnInit, ViewChild }      from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location }               from '@angular/common';
-import { FormControl, FormsModule, Validators } from "@angular/forms";
+import { FormControl, NgForm, FormsModule, Validators } from "@angular/forms";
 
 import { VehInfoService } from '../veh-info.service'
 import { QuoteInfoService } from '../quote-info.service';
@@ -26,6 +26,9 @@ export class VehinfoComponent implements OnInit {
     trims: any[];
     drivers: any[];
     vehicles: any[];
+
+    vehinfoForm: NgForm;
+    @ViewChild('vehinfoForm') currentForm: NgForm;
 
     vehicle = {
       vehicleId: <number> null,
@@ -99,7 +102,7 @@ export class VehinfoComponent implements OnInit {
           vehicle => {this.getVehicles();this.resetVehicle()}
         );
       }
-
+      this.vehinfoForm.resetForm();
     }
 
   ngOnInit() {
@@ -168,5 +171,21 @@ export class VehinfoComponent implements OnInit {
     this.makes = null;
     this.models = null;
     this.trims = null;
+  }
+
+  ngAfterViewChecked() {
+    this.formChanged();
+  }
+
+  formChanged() {
+    this.vehinfoForm = this.currentForm;
+    this.vehinfoForm.valueChanges
+      .subscribe(
+        data => this.onValueChanged(data)
+      );
+  }
+
+  onValueChanged(data?: any) {
+    let form = this.vehinfoForm.form;
   }
 }
