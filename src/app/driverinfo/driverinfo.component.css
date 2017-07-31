@@ -18,22 +18,6 @@ img {
   padding-top: 40px;
 }
 
-/*form {
-  width: 450px;
-  margin-right: -20px;
-
-}*/
-
-/*table {
-  border: 2px solid #0C0C8D;
-  border-collapse: collapse;
-  border-radius: 10px;
-  width: 100%;
-}
-
-tr, td, th {
-  border: 2px solid #0C0C8D;
-}
 
 th {
   background-color: #0C0C8D;
@@ -46,15 +30,27 @@ input {
   color: #0C0C8D !important;
 }
 
- #gender, #maritalStatus, #education, #homeOwnerStatus {
-  padding-top: 0;
-  padding-right: 50px;
-  width: 165px;
+.error {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 400px;
 }
 
-#gender, #maritalStatus {
+.errorGender {
   padding-bottom: 20px;
 }
+
+ .errorHome, #gender, #maritalStatus, #education, #homeOwnerStatus{
+  padding-top: 0;
+  width: 180px;
+}
+
+.errorEd {
+  padding-top: 0;
+  width: 160px;
+}
+
 
 #firstName, #lastName, #addressLine1, #addressLine2,
 #city, #state, #zip_code, #birthDate {
@@ -64,28 +60,18 @@ input {
 
 .item-1 {
   text-align: left;
-  color: white;
+  color:  #0C0C8D;
   padding-left: 20px;
   margin: 0;
 }
 
 .item-2 {
   color: #0C0C8D;
-  /*margin: 20px;*/
-  /*margin-right: 40px;*/
 }
 
 .item-3 {
   width: 350px;
 }
-
-
-/*button {
-  background-color: #0C0C8D;
-  color: white;
-  float: left;
-  border-radius: 5px;
-}*/
 
 #modify {
   float: right;
@@ -110,18 +96,9 @@ input {
 
 .driverList {
   border-bottom: lightgray 1px dotted;
-  
+
 }
 
-/*#delete {
-  background-color: white;
-  color: red;
-}
-
-#edit {
-  background-color: white;
-  color: #0C0C8D;
-}*/
 
 .panel-default {
   border: 1px;
