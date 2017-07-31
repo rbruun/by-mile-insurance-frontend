@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 
 
 import { QuoteInfoService } from '../quote-info.service';
+import { NavigationService } from '../navigation.service';
 
 @Component({
   selector: 'app-summary',
@@ -13,19 +14,16 @@ export class SummaryComponent implements OnInit {
 
   constructor(private navRoute: ActivatedRoute,
               private quoteInfoService: QuoteInfoService,
-              private router: Router) { }
+              private router: Router,
+              private navigationService: NavigationService
+            ) { }
 
   quoteId;
   errorMessage;
-  // premium;
-  // totalMonthlyMiles;
-  // monthlyByMileCost;
   totalMonthlyByMileCost = 0;
   annualByMileCost = 0;
   traditionalMonthlyCost = 0;
   traditionalAnnualCost = 0;
-  // monthlySavings;
-  // annualSavings;
 
   drivers;
   premiums;
@@ -39,7 +37,7 @@ export class SummaryComponent implements OnInit {
     );
     this.getDrivers();
     this.getPremium();
-
+    this.announce();
   }
 
   getPremium() {
@@ -75,4 +73,7 @@ export class SummaryComponent implements OnInit {
     }
   }
 
+  announce () {
+    this.navigationService.announceSummary();
+  }
 }
