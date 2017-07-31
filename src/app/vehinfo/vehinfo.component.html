@@ -1,5 +1,3 @@
-<!-- <img src="../../assets/images/ParkedCars.jpg" alt="Young Driver" id="youngDriver" class="img-responsive"> -->
-
 <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
 
   <div fxFlex="30%">
@@ -13,16 +11,18 @@
             {{vehicle.modelYear}} {{vehicle.vehicleMakeRatingFactor.make}} {{vehicle.model}}
           </div>
           <div>
+
             <div class="vehButton">
-              <a class="btn btn-primary" (click)="editVehicle(vehicle.vehicleId)">Edit</a>
-            </div>  
-            <div class="vehButton">
-              <a class="btn btn-danger" (click)="deleteVehicle(vehicle.vehicleId)">Delete</a>
+              <a class="btn btn-danger"  (click)="deleteVehicle(vehicle.vehicleId)">Delete</a>
             </div>
+            <div class="vehButton">
+              <a class="btn btn-primary" id="edit" (click)="editVehicle(vehicle.vehicleId)">Edit</a>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>  
+    </div>
   </div>
   <div class="container" fxFlex fxlayout="column">
     <h3>Enter your vehicle information:</h3>
@@ -35,7 +35,7 @@
 
       <div class="form-group" *ngIf="makes">
 
-          <md-select placeholder="Manufacturer" [(ngModel)]="vehicle?.vehicleMakeRatingFactor.make" id="make" name="make" class="selectpicker" (change)="getValidModels()">
+        <md-select placeholder="Manufacturer" [(ngModel)]="vehicle?.vehicleMakeRatingFactor.make" id="make" name="make" class="selectpicker" (change)="getValidModels()">
           <md-option *ngFor="let make of makes;" [value]="make.make_id">
             {{make.make_display}}
           </md-option>
@@ -89,21 +89,22 @@
       </div>
 
       <div class="form-group" *ngIf="drivers && vehicle.trim">
-          <md-select placeholder="Primary Driver" [(ngModel)]="vehicle?.driver.driverId" id="driver" name="driver" class="selectpicker" required #driver="ngModel">
+        <md-select placeholder="Primary Driver" [(ngModel)]="vehicle?.driver.driverId" id="driver" name="driver" class="selectpicker" required #driver="ngModel">
           <md-option *ngFor="let driver of drivers;" [value]="driver?.driverId">
-             {{driver.firstName}} {{driver.lastName}}
+            {{driver.firstName}} {{driver.lastName}}
           </md-option>
         </md-select>
-          <md-error *ngIf="driver.errors && driver.touched" class="alert alert-danger">
-            A driver is <strong>required</strong>
-          </md-error>
+        <md-error *ngIf="driver.errors && driver.touched" class="alert alert-danger">
+          A driver is <strong>required</strong>
+        </md-error>
       </div>
 
       <div *ngIf="vehicle.trim">
-        <button [disabled]="!vehinfoForm.form.valid" class="btn btn-primary" >Save Vehicle </button>
+        <button [disabled]="!vehinfoForm.form.valid" class="btn btn-primary">Save Vehicle </button>
       </div>
+      <br />
       <div *ngIf="vehicles?.length > 0">
-          <a class="btn btn-primary" routerLink="/tripinfo/{{quoteId}}">Continue to Trip Info Page >></a>
+        <button md-button class="btn btn-primary" id="tripButton" routerLink="/tripinfo/{{quoteId}}">Continue to Trip Info Page >></button>
       </div>
     </form>
 
@@ -111,15 +112,16 @@
 
   <div class="item item-3" fxFlex="30%">
     <div class="panel panel-default">
-  <div class="panel-heading">
-    <md-card-title class="panel-title">Factors That Affect Rate</md-card-title>
-  </div>
-  <div class="panel-body">
-    <md-card-content>
-      <b>Your Vehicle:</b> The more expensive a car is to repair or replace, the more it costs to insure. Your vehicle's safety features can help lower your auto insurance quote, as can how often you drive the car and what type of driving it's used for (business or personal).
-    </md-card-content>
-  </div>
-</div>
+      <div class="panel-heading">
+        <md-card-title class="panel-title">Factors That Affect Rate</md-card-title>
+      </div>
+      <div class="panel-body">
+        <md-card-content>
+          <b>Your Vehicle:</b> The more expensive a car is to repair or replace, the more it costs to insure. Your vehicle's safety features can help lower your auto insurance quote, as can how often you drive the car and what type of driving it's used
+          for (business or personal).
+        </md-card-content>
+      </div>
+    </div>
     <img src="../../assets/images/ParkedCars.jpg" alt="Young Driver" id="youngDriver" class="img-responsive">
   </div>
 

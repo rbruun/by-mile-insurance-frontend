@@ -13,7 +13,7 @@ p {
 }
 
 img {
-  height: 60%;
+  height: 65%;
   width: 100%;
   padding-top: 40px;
 }
@@ -24,10 +24,6 @@ th {
   color: white;
   width: 160px;
   font-style: normal;
-}*/
-
-input {
-  color: #0C0C8D !important;
 }
 
 .error {
@@ -51,12 +47,10 @@ input {
   width: 160px;
 }
 
-
 #firstName, #lastName, #addressLine1, #addressLine2,
 #city, #state, #zip_code, #birthDate {
   width: 400px;
 }
-
 
 .item-1 {
   text-align: left;
@@ -96,9 +90,13 @@ input {
 
 .driverList {
   border-bottom: lightgray 1px dotted;
-
 }
 
+.btn-primary {
+  background-color: #0C0C8D !important;
+  color: white;
+  width: 43.41px !important;
+}
 
 .panel-default {
   border: 1px;
@@ -106,6 +104,7 @@ input {
   border-style: solid;
   border-radius: 5px;
 }
+
 .panel-heading {
   background-color: #0C0C8D;
   color: white;
