@@ -1,6 +1,5 @@
-
-
 <h3>Please enter your trip information:</h3>
+
 
 <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
 
@@ -40,16 +39,16 @@
       </md-input-container>
 
       <div class="form-group" *ngIf="vehicles">
-          <md-select placeholder="Vehicle" required [(ngModel)]="trip.vehicle.vehicleId" id="vehicle" name="vehicle" class="selectpicker" #vehicle="ngModel">
-            <md-option *ngFor="let vehicle of vehicles;" [value]="vehicle?.vehicleId">
-              {{vehicle.modelYear}} {{vehicle.vehicleMakeRatingFactor.make}} {{vehicle.model}}
-            </md-option>
-          </md-select>
-          <md-error *ngIf="vehicle.errors && vehicle.touched" class="alert alert-danger">
-            A vehicle is <strong>required</strong>
-          </md-error>
+        <md-select placeholder="Vehicle" required [(ngModel)]="trip.vehicle.vehicleId" id="vehicle" name="vehicle" class="selectpicker" #vehicle="ngModel">
+          <md-option *ngFor="let vehicle of vehicles;" [value]="vehicle?.vehicleId">
+            {{vehicle.modelYear}} {{vehicle.vehicleMakeRatingFactor.make}} {{vehicle.model}}
+          </md-option>
+        </md-select>
+        <md-error *ngIf="vehicle.errors && vehicle.touched" class="alert alert-danger">
+          A vehicle is <strong>required</strong>
+        </md-error>
       </div>
-
+      <br />
       <button [disabled]="!tripinfoForm.form.valid" class="btn btn-primary" id="tripButton" type="submit">Add Trip</button>
     </form>
 
@@ -70,9 +69,9 @@
   </div>
 </div>
 
-    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+<div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
 
-      <div class="item-3" fxFlex="100%">
+  <div class="item-3" fxFlex="100%">
 
     <div *ngIf='showTable'>
       <table id="rounded-corner">
@@ -98,7 +97,7 @@
             <td>{{trip.frequency}}</td>
             <td>{{trip.weeklyTotalMiles}}</td>
             <td>{{trip.monthlyTotalMiles}}</td>
-            <td><button class="btn deleteButton" (click)=deleteTrip(trip.tripId)>Delete</button></td>
+            <td><button class="btn btn-danger" (click)=deleteTrip(trip.tripId)>Delete</button></td>
           </tr>
           <tr class="rowbold">
             <td class="rounded-foot-left">Total</td>
