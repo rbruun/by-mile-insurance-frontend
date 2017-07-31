@@ -6,6 +6,7 @@
   <!-- <div class="item item-1" fxFlex="20%">Item 1</div> -->
 
   <div class="item item-2" fxFlex="35%" fxFlexOrder="3">
+    <br />
     <div class="panel panel-default">
       <div class="panel-heading">
         <md-card-title class="panel-title">Factors That Affect Rate</md-card-title>
@@ -23,19 +24,37 @@
 
   <div class="item item-1" fxFlex fxFlexOrder="2">
 
+    <h3>Please enter your driver information:</h3>
+
     <form (ngSubmit)="addDriver()" #driverForm="ngForm" class="form-horizontal">
+      <input [(ngModel)]="quote_id" #student_id="ngModel" type="hidden" name=quote_id>
 
 
       <md-input-container>
-        <input mdInput placeholder="First Name" [(ngModel)]="driver.firstName" type="text" class="form-control" id="firstName" name="firstName" required minlength="2" maxlength="30">
+        <input mdInput placeholder="First Name" [(ngModel)]="driver.firstName" type="text" class="form-control" id="firstName" name="firstName" required minlength="2" maxlength="30" #firstName="ngModel">
+        <md-error *ngIf="firstName.errors?.required" class="alert alert-danger">
+          <div>First Name is required</div>
+        </md-error>
+        <md-error *ngIf="firstName.errors?.minlength" class="alert alert-danger">
+          <div>Last Name should be at least 2 characters long</div>
+        </md-error>
       </md-input-container>
 
       <md-input-container>
-        <input mdInput placeholder="Last Name" [(ngModel)]="driver.lastName" type="text" class="form-control" id="lastName" name="lastName" required minlength="2" maxlength="30">
+        <input mdInput placeholder="Last Name" [(ngModel)]="driver.lastName" type="text" class="form-control" id="lastName" name="lastName" required minlength="2" maxlength="30" #lastName="ngModel">
+        <md-error *ngIf="lastName.errors?.required" class="alert alert-danger">
+          <div>Last Name is required</div>
+        </md-error>
+        <md-error *ngIf="lastName.errors?.minlength" class="alert alert-danger">
+          <div>Last Name should be at least 2 characters long</div>
+        </md-error>
       </md-input-container>
 
       <md-input-container>
-        <input mdInput placeholder="Address Line 1" [(ngModel)]="driver.addressLine1" type="text" class="form-control" id="addressLine1" name="addressLine1" required>
+        <input mdInput placeholder="Address Line 1" [(ngModel)]="driver.addressLine1" type="text" class="form-control" id="addressLine1" name="addressLine1" required #addressLine1="ngModel">
+        <md-error *ngIf="addressLine1.errors?.required" class="alert alert-danger">
+          <div>Address Line 1 is required</div>
+        </md-error>
       </md-input-container>
 
       <md-input-container>
@@ -43,98 +62,123 @@
       </md-input-container>
 
       <md-input-container>
-        <input mdInput placeholder="City" [(ngModel)]="driver.city" type="text" class="form-control" id="city" name="city" required>
+        <input mdInput placeholder="City" [(ngModel)]="driver.city" type="text" class="form-control" id="city" name="city" required #city="ngModel">
+        <md-error *ngIf="city.errors?.required" class="alert alert-danger">
+          <div>City is required</div>
+        </md-error>
       </md-input-container>
 
       <md-input-container>
-        <input mdInput placeholder="State" [(ngModel)]="driver.state" type="text" class="form-control" id="state" name="state" required>
+        <input mdInput placeholder="State" [(ngModel)]="driver.state" type="text" class="form-control" id="state" name="state" required #state="ngModel">
+        <md-error *ngIf="state.errors?.required" class="alert alert-danger">
+          <div>State is required</div>
+        </md-error>
       </md-input-container>
 
       <md-input-container>
-        <input mdInput placeholder="Zip Code" [(ngModel)]="driver.zip_code" type="text" class="form-control" id="zip_code" name="zip_code" required>
+        <input mdInput placeholder="Zip Code" [(ngModel)]="driver.zip_code" type="text" class="form-control" id="zip_code" name="zip_code" required #zip_code="ngModel">
+        <md-error *ngIf="zip_code.errors?.required" class="alert alert-danger">
+          <div>Zip Code is required</div>
+        </md-error>
       </md-input-container>
 
       <md-input-container>
-        <input mdInput [dateFormat] [(ngModel)]="driver.birthDate" type="text" class="form-control" id="birthDate" name="birthDate" placeholder="2017-01-01" required pattern="(\d{4})-(\d{2})-(\d{2})">
+        <input mdInput [dateFormat] [(ngModel)]="driver.birthDate" type="text" class="form-control" id="birthDate" name="birthDate" placeholder="2017-01-01" required pattern="(\d{4})-(\d{2})-(\d{2})" #birthDate="ngModel">
+        <md-error *ngIf="birthDate.errors?.required" class="alert alert-danger">
+          <div>Birth Date is required</div>
+        </md-error>
       </md-input-container>
 
-      <md-select placeholder="Gender" [(ngModel)]="driver.gender" id="gender" name="gender" class="selectpicker">
-        <md-option value="unselected"> </md-option>
-        <md-option value="male">
-          Male
-        </md-option>
-        <md-option value="female">
-          Female
-        </md-option>
-      </md-select>
+
+      <div class="error">
+        <div class="errorGender">
+          <md-select placeholder="Gender" required [(ngModel)]="driver.gender" id="gender" name="gender" class="selectpicker" #gender="ngModel">
+            <md-option value="unselected"> </md-option>
+            <md-option value="male">
+              Male
+            </md-option>
+            <md-option value="female">
+              Female
+            </md-option>
+          </md-select>
+          <md-error *ngIf="gender.errors && gender.touched" class="alert alert-danger">
+            <div>Gender is required</div>
+          </md-error>
+        </div>
 
 
-      <md-select placeholder="Marital Status" [(ngModel)]="driver.maritalStatus" id="maritalStatus" name="maritalStatus" class="selectpicker">
-        <md-option value="unselected"> </md-option>
-        <md-option value="married">
-          Married
-        </md-option>
-        <md-option value="single">
-          Single
-        </md-option>
-        <md-option value="divorced">
-          Divorced
-        </md-option>
-        <md-option value="widowed"> Widow/Widowed
-        </md-option>
-      </md-select>
+        <div class="errorMarital">
 
 
-      <md-select placeholder="Education" [(ngModel)]="driver.education" id="education" name="education" class="selectpicker">
-        <md-option value="unselected"> </md-option>
-        <md-option value="high_school">
-          High School Degree
-        </md-option>
-        <md-option value="undergrad">
-          Undergraduate
-        </md-option>
-        <md-option value="somegrad">
-          Some Graduate
-        </md-option>
-        <md-option value="grad">
-          Graduate Degree
-        </md-option>
-      </md-select>
+          <md-select placeholder="Marital Status" required [(ngModel)]="driver.maritalStatus" id="maritalStatus" name="maritalStatus" class="selectpicker" #maritalStatus="ngModel">
+            <md-option value="unselected"> </md-option>
+            <md-option value="married">
+              Married
+            </md-option>
+            <md-option value="single">
+              Single
+            </md-option>
+            <md-option value="divorced">
+              Divorced
+            </md-option>
+            <md-option value="widowed">
+              Widow/Widowed
+            </md-option>
+          </md-select>
+          <md-error *ngIf="maritalStatus.errors && maritalStatus.touched" class="alert alert-danger">
+            <div>Marital Status is required</div>
+          </md-error>
+        </div>
 
-      <md-select placeholder="Home Owner Status" [(ngModel)]="driver.homeOwnerStatus" id="homeOwnerStatus" name="homeOwnerStatus" class="selectpicker">
-        <md-option value="unselected"> </md-option>
-        <md-option value="own">
-          Own
-        </md-option>
-        <md-option value="rent">
-          Rent
-        </md-option>
-      </md-select>
+        <div class="errorEd">
+          <md-select placeholder="Education" required [(ngModel)]="driver.education" id="education" name="education" class="selectpicker" #education="ngModel">
+            <md-option value="unselected"> </md-option>
+            <md-option value="high_school">
+              High School Degree
+            </md-option>
+            <md-option value="undergrad">
+              Undergraduate
+            </md-option>
+            <md-option value="somegrad">
+              Some Graduate
+            </md-option>
+            <md-option value="grad">
+              Graduate Degree
+            </md-option>
+          </md-select>
+          <md-error *ngIf="education.errors && education.touched" class="alert alert-danger">
+            <div class="error">Education is required</div>
+          </md-error>
+        </div>
 
+        <div class="errorHome">
+          <md-select placeholder="Home Owner Status" required [(ngModel)]="driver.homeOwnerStatus" id="homeOwnerStatus" name="homeOwnerStatus" class="selectpicker" #homeOwnerStatus="ngModel">
+            <md-option value="unselected"> </md-option>
+            <md-option value="own">
+              Own
+            </md-option>
+            <md-option value="rent">
+              Rent
+            </md-option>
+          </md-select>
+          <md-error *ngIf="homeOwnerStatus.errors && homeOwnerStatus.touched" class="alert alert-danger">
+            <div class="error">Owner Status is required</div>
+          </md-error>
+        </div>
+
+      </div>
       <br/>
       <br/>
-      <button id="addButton" md-button>Add/Update Driver</button>
+      <button md-button [disabled]="!driverForm.form.valid" id="addButton">Add/Update Driver</button>
 
     </form>
   </div>
 
-  <div class="item item-3" fxFlex="30%">
-
-<h3>Please enter your driver information:</h3>
-
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-
-
-
+  <div class="item item-3" fxFlex="25%">
 
     <div *ngIf='drivers.length > 0'>
 
-      <h4>These are the drivers you have added:</h4>
+      <h3>These are the drivers you have added:</h3>
 
       <br />
       <br />

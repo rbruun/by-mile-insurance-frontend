@@ -1,9 +1,9 @@
 
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { NgForm } from '@angular/forms';
+import { FormControl, NgForm, FormsModule, Validators } from '@angular/forms';
 
 import { QuoteInfoService } from '../quote-info.service';
 
@@ -14,6 +14,9 @@ import { QuoteInfoService } from '../quote-info.service';
 })
 
 export class DriverinfoComponent implements OnInit {
+
+  driverForm: NgForm;
+  @ViewChild('driverForm') currentForm: NgForm;
 
   quoteId: string;
 
@@ -44,6 +47,8 @@ export class DriverinfoComponent implements OnInit {
   errorMessage: string;
   successMesssage: string;
 
+  driverFormControl = new FormControl('', [
+  Validators.required]);
 
   constructor(
     private quoteInfoService: QuoteInfoService,
@@ -51,6 +56,8 @@ export class DriverinfoComponent implements OnInit {
     private location: Location,
     private router: Router
   ) { }
+
+
 
   ngOnInit() {
 
@@ -75,6 +82,7 @@ addDriver() {
     driver => {this.getDrivers(); this.resetDriver()}
   );
 }
+  this.driverForm.resetForm();
 }
 
 getDrivers() {
@@ -125,6 +133,22 @@ resetDriver(){
   this.driver.maritalStatus = null;
   this.driver.education = null;
   this.driver.homeOwnerStatus = null;
+}
+
+ngAfterViewChecked() {
+  this.formChanged();
+}
+
+formChanged() {
+  this.driverForm = this.currentForm;
+  this.driverForm.valueChanges
+    .subscribe(
+      data => this.onValueChanged(data)
+    );
+}
+
+onValueChanged(data?: any) {
+  let form = this.driverForm.form;
 }
 
 };
