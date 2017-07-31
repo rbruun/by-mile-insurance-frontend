@@ -3,18 +3,26 @@ h3, md-card-content {
   color: #0C0C8D;
 }
 
+img {
+  height: 60%;
+  width: 100%;
+  padding-top: 30px;
+}
 
 .item-1 {
   text-align: left;
   padding-top: 20px;
-  /*color: white;*/
+}
+
+.item-2 {
+  padding-top: 20px;
 }
 
 .panel-default {
   border: 2px;
   border-color: #0C0C8D;
   border-style: solid;
-    border-radius: 5px;
+  border-radius: 5px;
 }
 .panel-heading {
   background-color: #0C0C8D;
@@ -23,7 +31,7 @@ h3, md-card-content {
 
 .panel-body {
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 25px;
   padding-left: 50px;
   padding-right: 50px;
 }
@@ -36,8 +44,8 @@ h3, md-card-content {
   text-align: left;
 }
 .amtcol {
-  width: 22%;
-  text-align: right;
+  width: 25%;
+  text-align: center;
 }
 .labels{
   width: 20%;

@@ -7,14 +7,22 @@ p, a{
   color: #0C0C8D !important;
 }
 
-.vehList {
-  border-bottom: lightgray 1px dotted
-}
-
 img {
   height: 60%;
   width: 100%;
   padding-top: 40px;
+}
+
+/*button {
+  background-color: #0C0C8D;
+  color: white;
+  float: left;
+  margin-left: 50px;
+  border-radius: 5px;
+}*/
+
+.vehList {
+  border-bottom: lightgray 1px dotted
 }
 
 #modelYear, #make, #model, #trim, #antiTheft, #ownLease, #driver{
@@ -29,6 +37,27 @@ img {
   margin: 50px, 50px;
 }
 
+#tripButton {
+  background-color: #0C0C8D;
+  color: white;
+  float: left;
+  margin-left: 165px;
+  border-radius: 5px;
+  width: 210px;
+}
+
+.btn-primary {
+  background-color: #0C0C8D !important;
+  color: white !important;
+}
+
+.btn-danger {
+  color: white !important;
+}
+#edit {
+  width: 43.41px !important;
+}
+
 .item {
   padding-left: 10px;
 }
@@ -38,20 +67,22 @@ img {
   padding-top: 70px;
   color: white;
   height: 680px;
+  padding-top: 20px;
 }
 
 .item-2 {
   color: #0C0C8D;
-  margin: 20px;
+  padding-top: 20px;
 }
 
+.item-3 {
+  padding-top: 22px;
+}
 
-button {
-  background-color: #0C0C8D;
-  color: white;
-  float: left;
-  margin-left: 50px;
-  border-radius: 5px;
+.btn-primary {
+  background-color: #0C0C8D !important;
+  color: white !important;
+  /*width: 43.41px !important;*/
 }
 
 .panel-default {
@@ -75,4 +106,5 @@ button {
 .vehButton{
   float: right;
   margin-left: 10px;
+  width: 57.41px;
 }
