@@ -99,13 +99,52 @@
               </div>
               <div class="amtcol">
 
-              </div>
-              <div class="amtcol">
-
-              </div>
-              <div class="amtcol">
-                ${{totalMonthlyByMileCost.toFixed(2)}}
-              </div>
+    <div class="panel panel-default panel-summary">
+      <div class="panel-heading">
+        <md-card-title class="panel-title">By Mile Insurance Estimate</md-card-title>
+      </div>
+      <div class="panel-body" *ngIf="premiums">
+        <md-card-content>
+          <div fxLayout="row" class="summary-heading">
+            <div class="vehcol">
+              Vehicle
+            </div>
+            <div class="amtcol">
+              Monthly By-Mile Base Cost
+            </div>
+            <div class="amtcol">
+              Estimated montly cost (Miles x Rate)
+            </div>
+            <div class="amtcol">
+              Total Monthly By-Mile Cost
+            </div>
+          </div>
+          <div *ngFor="let premium of premiums" fxLayout="row" class="summary-detail">
+            <div class="vehcol">
+              {{premium.vehicle.modelYear}} {{premium.vehicle.vehicleMakeRatingFactor.make}} {{premium.vehicle.model}}
+            </div>
+            <div class="amtcol">
+              ${{premium.monthlyByMileBasePremium.toFixed(2)}}
+            </div>
+            <div class="amtcol">
+              ${{(premium?.vehicle?.totalMiles * premium?.byMileRate).toFixed(2)}}
+            </div>
+            <div class="amtcol">
+              ${{(premium.monthlyByMileBasePremium + (premium.vehicle.totalMiles * premium.byMileRate)).toFixed(2)}}
+            </div>
+          </div>
+          <div fxLayout="row" class="summary-detail">
+            <div class="vehcol">
+              Total monthly cost
+            </div>
+            <div class="amtcol">
+              
+            </div>
+            <div class="amtcol">
+              
+            </div>
+            <div class="amtcol">
+              ${{totalMonthlyByMileCost.toFixed(2)}}
             </div>
           </md-card-content>
         </div>

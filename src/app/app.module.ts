@@ -22,7 +22,8 @@ import { DistanceapiComponent } from './tripinfo/distanceapi.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { SummaryComponent } from './summary/summary.component';
 import { DateformatDirective } from './directives/dateformat.directive';
-import { FooterComponent } from './footer/footer.component'
+import { FooterComponent } from './footer/footer.component';
+import { NavigationService } from './navigation.service';
 
 
 
@@ -56,7 +57,7 @@ import { FooterComponent } from './footer/footer.component'
     FlexLayoutModule,
     MaterialModule
   ],
-  providers: [VehInfoService, QuoteInfoService],
+  providers: [VehInfoService, QuoteInfoService, NavigationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

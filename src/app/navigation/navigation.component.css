@@ -13,10 +13,21 @@ img {
 ul {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   padding: 0;
   margin: 0;
   height: 40px;
+}
+
+.nav-content {
+  display: flex;
+  flex-direction: row;
+  vertical-align: center;
+}
+
+.modProgress li span {
+  display: block;
+  color: #0C0C8D;
+  padding-top: 10px;
 }
 
 li {
@@ -34,7 +45,6 @@ vertical-align: middle;
 
 .modProgress li {
   display: inline-block;
-  float: left;
   width: 20%;
   background-color: #E5E5E5;
   border-left: 2px solid #F5F5F5;
@@ -46,15 +56,32 @@ vertical-align: middle;
   list-style: none;
   text-decoration: none;
   padding-top: 10px;
+  cursor: not-allowed;
+}
+
+.adiv {
+  width: 100%;
+}
+
+.modProgress li span {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 li.nav-home.currentSection {
   background-color: #0C0C8D;
   color: white;
   border-left: none;
+  margin-left: 2px;
 }
 
 li.nav-home.currentSection a {
+  color: white;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+li.nav-home.currentSection span {
   color: white;
   vertical-align: middle;
 }
