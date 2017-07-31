@@ -16,7 +16,7 @@
         <li class="nav-home currentSection">
             <div class="nav-content">
                 <div><span class="fa fa-home fa-lg ng-binding"></span></div>
-                <div class="adiv"><a href="#" data="selection.data" class="ng-binding">Home</a></div>
+                <div class="adiv"><a [routerLink]="homeRouterLink" data="selection.data" class="ng-binding">Home</a></div>
             </div>
         <li [ngClass]="driverEnabled ? 'nav-home currentSection' : 'nav-home'">
             <div class="nav-content">

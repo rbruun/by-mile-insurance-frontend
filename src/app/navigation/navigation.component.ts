@@ -11,40 +11,63 @@ export class NavigationComponent implements OnInit {
 
   constructor(private navigationService: NavigationService) { 
 
+    this.subscription = navigationService.homeAnnounced$.subscribe(
+        empty => {          
+        this.driverEnabled = false;       
+        sessionStorage.setItem('driverEnabled', 'false');
+        this.vehicleEnabled = false;
+        sessionStorage.setItem('vehicleEnabled', 'false');
+        this.tripEnabled = false;
+        sessionStorage.setItem('tripEnabled', 'false');
+        this.summaryEnabled = false;
+        sessionStorage.setItem('summaryEnabled', 'false');
+        this.setNavigation();
+    });
+
     this.subscription = navigationService.driverAnnounced$.subscribe(
-        empty => {        
+        empty => {               
+        sessionStorage.setItem('driverEnabled', 'true');
         this.driverEnabled = true;
         this.vehicleEnabled = false;
+        sessionStorage.setItem('vehicleEnabled', 'false');
         this.tripEnabled = false;
+        sessionStorage.setItem('tripEnabled', 'false');
         this.summaryEnabled = false;
+        sessionStorage.setItem('summaryEnabled', 'false');
         this.setNavigation();
     });
 
     this.subscription = navigationService.vehicleAnnounced$.subscribe(
-        empty => {       
+        empty => {                
         this.vehicleEnabled = true;
+        sessionStorage.setItem('vehicleEnabled', 'true');
         this.tripEnabled = false;
+        sessionStorage.setItem('tripEnabled', 'false');
         this.summaryEnabled = false;
+        sessionStorage.setItem('summaryEnabled', 'false');
         this.setNavigation();
     });  
       
     this.subscription = navigationService.tripAnnounced$.subscribe(
-        empty => {     
+        empty => {              
         this.tripEnabled = true;
+        sessionStorage.setItem('tripEnabled', 'true');
         this.summaryEnabled = false;
+        sessionStorage.setItem('summaryEnabled', 'false');
         this.setNavigation();
     });    
 
     this.subscription = navigationService.summaryAnnounced$.subscribe(
         empty => {        
         this.summaryEnabled = true;
+        sessionStorage.setItem('summaryEnabled', 'true');
         this.setNavigation();
     });     
   }
   quoteId;
 
   subscription: Subscription;
-
+  homeRouterLink = "./home";
   driverEnabled:boolean = false;
   driverRouterLink = null;
   vehicleEnabled:boolean = false;
@@ -58,7 +81,19 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     this.quoteId = sessionStorage.getItem('quoteId');
-    console.log("nav quote id: " + this.quoteId);
+
+    if (sessionStorage.getItem('driverEnabled') == 'true') {
+      this.driverEnabled = true;
+    }
+    if (sessionStorage.getItem('vehicleEnabled') == 'true') {
+      this.vehicleEnabled = true;
+    }
+    if (sessionStorage.getItem('tripEnabled') == 'true') {
+      this.tripEnabled = true;
+    }
+    if (sessionStorage.getItem('summaryEnabled') == 'true') {
+      this.summaryEnabled = true;
+    }
     this.setNavigation();
   }
 
