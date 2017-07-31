@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { QuoteInfoService } from '../quote-info.service';
-import { NavigationService } from '../navigation.service';
 
 @Component({
   selector: 'app-home',
@@ -16,12 +15,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private quoteInfoService: QuoteInfoService,
-    private router: Router,
-    private navigationService: NavigationService) { }
+    private router: Router) { }
 
   ngOnInit() {
-console.log("home oninit")    
-    this.announce();
   }
 
   getQuoteId(){
@@ -36,8 +32,4 @@ console.log("home oninit")
 
   }
 
-  announce() {
-console.log("home announcing");    
-    this.navigationService.announceHome();
-  }
 }

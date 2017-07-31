@@ -41,7 +41,6 @@ img {
 }
 .vehcol {
   width: 30%;
-  text-align: left;
 }
 .amtcol {
   width: 25%;
@@ -55,13 +54,8 @@ img {
   font-weight: bold;
 }
 .summary-detail {
+    text-align: left;
 }
-
-.summary-total {
-    font-weight: bold;
-    border-top: 1px #0C0C8D dotted;  
-}
-
 .summary-row {
   margin-bottom: 10px;
 }
