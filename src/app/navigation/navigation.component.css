@@ -72,6 +72,7 @@ li.nav-home.currentSection {
   background-color: #0C0C8D;
   color: white;
   border-left: none;
+  margin-left: 2px;
 }
 
 li.nav-home.currentSection a {

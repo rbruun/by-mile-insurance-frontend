@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationService } from '../navigation.service';
+import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-navigation',
@@ -7,8 +9,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private navigationService: NavigationService) { 
+
+    this.subscription = navigationService.driverAnnounced$.subscribe(
+        empty => {        
+        this.driverEnabled = true;
+        this.vehicleEnabled = false;
+        this.tripEnabled = false;
+        this.summaryEnabled = false;
+        this.setNavigation();
+    });
+
+    this.subscription = navigationService.vehicleAnnounced$.subscribe(
+        empty => {       
+        this.vehicleEnabled = true;
+        this.tripEnabled = false;
+        this.summaryEnabled = false;
+        this.setNavigation();
+    });  
+      
+    this.subscription = navigationService.tripAnnounced$.subscribe(
+        empty => {     
+        this.tripEnabled = true;
+        this.summaryEnabled = false;
+        this.setNavigation();
+    });    
+
+    this.subscription = navigationService.summaryAnnounced$.subscribe(
+        empty => {        
+        this.summaryEnabled = true;
+        this.setNavigation();
+    });     
+  }
   quoteId;
+
+  subscription: Subscription;
 
   driverEnabled:boolean = false;
   driverRouterLink = null;
@@ -35,7 +70,7 @@ export class NavigationComponent implements OnInit {
     }
 
     if (this.vehicleEnabled) {
-      this.vehicleRouterLink = "./vehicleinfo/" + this.quoteId;
+      this.vehicleRouterLink = "./vehinfo/" + this.quoteId;
     }  else {
       this.vehicleRouterLink = null;
     }
@@ -52,10 +87,6 @@ export class NavigationComponent implements OnInit {
       this.summaryRouterLink = null;
     }
 
-    console.log("Driver: " + this.driverRouterLink);
-    console.log("Vehicle: " + this.vehicleRouterLink);
-    console.log("Trip: " + this.tripRouterLink);
-    console.log("Summary: " + this.summaryRouterLink);
   }
 
 }

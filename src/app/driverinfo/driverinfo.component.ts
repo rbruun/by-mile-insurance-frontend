@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { FormControl, NgForm, FormsModule, Validators } from '@angular/forms';
 
 import { QuoteInfoService } from '../quote-info.service';
+import { NavigationService } from '../navigation.service';
 
 @Component({
   selector: 'app-driverinfo',
@@ -54,7 +55,8 @@ export class DriverinfoComponent implements OnInit {
     private quoteInfoService: QuoteInfoService,
     private route: ActivatedRoute,
     private location: Location,
-    private router: Router
+    private router: Router,
+    private navService: NavigationService
   ) { }
 
 
@@ -68,6 +70,8 @@ export class DriverinfoComponent implements OnInit {
         console.log(this.quoteId);
       }
     );
+    this.getDrivers();
+    this.announce();
   }
 
 
@@ -149,6 +153,10 @@ formChanged() {
 
 onValueChanged(data?: any) {
   let form = this.driverForm.form;
+}
+
+announce () {
+  this.navService.announceDriver();
 }
 
 };
