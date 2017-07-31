@@ -109,18 +109,14 @@ export class VehinfoComponent implements OnInit {
 
   ngOnInit() {
 
-    this.route.params.subscribe(
-      (params : Params) => {
-          this.quoteId = params["quoteId"];
-          this.vehicle.quote.quoteId = this.quoteId;
-          console.log(this.quoteId);
-      })
+    this.quoteId = sessionStorage.getItem('quoteId');  
+    this.vehicle.quote.quoteId = this.quoteId;
+    this.getVehicles();
 
-      this.dataService.getAvailableYears()
-        .subscribe(
-          years => {this.getValidYears(years); 
-            this.getVehicles();},
-          error =>  this.errorMessage = <any>error);
+    this.dataService.getAvailableYears()
+      .subscribe(
+        years => {this.getValidYears(years)},
+        error =>  this.errorMessage = <any>error);
 
     this.announce();      
   }    
@@ -132,7 +128,7 @@ export class VehinfoComponent implements OnInit {
           error =>  this.errorMessage = <any>error);
   }
 
-  getVehicles() {
+  getVehicles() {    
     this.quoteInfoService.getRecords("getVehicles", this.quoteId)
         .subscribe(
           vehicles => {this.vehicles = vehicles; this.getDrivers()},

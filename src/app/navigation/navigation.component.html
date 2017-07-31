@@ -1,23 +1,22 @@
-
 <md-toolbar color="primary">
 
   <span><img src="../../assets/images/569-872-logo_thumb_LMI-Masterbrand.gif" /></span>
 
   <span class="spacer"></span>
 
-    <span id='name'>ByMile Insurance</span>
+  <span id='name'>ByMile Insurance</span>
 
 </md-toolbar>
 
 <div ng-if="showNavigation===true" class="ng-scope">
-                    <!-- <redirect> -->
+              
                       <!-- ngIf: currentPageName!=='results' && currentPageName!=='sorry' && currentPageName!=='emailbuy' && currentPageName!=='brokerlanding' && currentPageName!=='prefillpolicyholder' --><div class="modProgress ng-scope">
     <ul>
         <!-- ngRepeat: selection in navigations -->
         <li class="nav-home currentSection">
             <div class="nav-content">
                 <div><span class="fa fa-home fa-lg ng-binding"></span></div>
-                <div class="adiv"><a href="#" data="selection.data" class="ng-binding">Home</a></div>
+                <div class="adiv"><a [routerLink]="homeRouterLink" data="selection.data" class="ng-binding">Home</a></div>
             </div>
         <li [ngClass]="driverEnabled ? 'nav-home currentSection' : 'nav-home'">
             <div class="nav-content">

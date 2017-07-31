@@ -26,10 +26,10 @@
       <button md-raised-button [disabled]="autocompleteStartFormControl.hasError('required') || autocompleteEndFormControl.hasError('required')" (click)="calculateDistance()">Calculate</button>
     </div>
     <!-- <div> -->
-  <br />
-  <br />
+    <br />
+    <br />
     <div id="distBetween">
-      Distance:  {{distanceBetween}}
+      Distance: {{distanceBetween}}
     </div>
     <div>
 
@@ -38,5 +38,5 @@
 
       <button id="return" md-raised-button md-dialog-close="{{distanceBetween}}">Return</button>
     </div>
-</form>
+  </form>
 </div>
