@@ -58,134 +58,96 @@
           </md-card-content>
         </div>
       </div>
+    <div class="panel panel-default panel-summary">
+      <div class="panel-heading">
+        <md-card-title class="panel-title">By Mile Insurance Estimate</md-card-title>
+      </div>
+      <div class="panel-body" *ngIf="premiums">
+        <md-card-content>
+          <div fxLayout="row" class="summary-heading">
+            <div class="vehcol">
+              Vehicle
+            </div>
+            <div class="amtcol">
+              Monthly By-Mile Base Cost
+            </div>
+            <div class="amtcol">
+              Estimated montly cost (Miles x Rate)
+            </div>
+            <div class="amtcol">
+              Total Monthly By-Mile Cost
+            </div>
+          </div>
+          <div *ngFor="let premium of premiums" fxLayout="row" class="summary-detail">
+            <div class="vehcol">
+              {{premium.vehicle.modelYear}} {{premium.vehicle.vehicleMakeRatingFactor.make}} {{premium.vehicle.model}}
+            </div>
+            <div class="amtcol">
+              ${{premium.monthlyByMileBasePremium.toFixed(2)}}
+            </div>
+            <div class="amtcol">
+              ${{(premium?.vehicle?.totalMiles * premium?.byMileRate).toFixed(2)}}
+            </div>
+            <div class="amtcol">
+              ${{(premium.monthlyByMileBasePremium + (premium.vehicle.totalMiles * premium.byMileRate)).toFixed(2)}}
+            </div>
+          </div>
+          <div fxLayout="row" class="summary-detail">
+            <div class="vehcol">
+              Total monthly cost
+            </div>
+            <div class="amtcol">
+              
+            </div>
+            <div class="amtcol">
+              
+            </div>
+            <div class="amtcol">
+              ${{totalMonthlyByMileCost.toFixed(2)}}
+            </div>
+            </div>
+          </md-card-content>
+        </div>
+      </div>
 
       <div class="panel panel-default panel-summary">
         <div class="panel-heading">
-          <md-card-title class="panel-title">By Mile Insurance Estimate</md-card-title>
+          <md-card-title class="panel-title">Traditional Insurance Estimate</md-card-title>
         </div>
-        <div class="panel-body" *ngIf="premiums">
+        <div class="panel-body">
           <md-card-content>
-            <div fxLayout="row" class="summary-heading">
-              <div class="vehcol">
-                Vehicle
-              </div>
-              <div class="amtcol">
-                Monthly By-Mile Base Cost
-              </div>
-              <div class="amtcol">
-                Estimated montly cost (Miles x Rate)
-              </div>
-              <div class="amtcol">
-                Total Monthly By-Mile Cost
-              </div>
-            </div>
-            <div *ngFor="let premium of premiums" fxLayout="row" class="summary-detail">
-              <div class="vehcol">
-                {{premium.vehicle.modelYear}} {{premium.vehicle.vehicleMakeRatingFactor.make}} {{premium.vehicle.model}}
-              </div>
-              <div class="amtcol">
-                ${{premium.monthlyByMileBasePremium.toFixed(2)}}
-              </div>
-              <div class="amtcol">
-                ${{(premium.vehicle.totalMiles * premium.byMileRate).toFixed(2)}}
-              </div>
-              <div class="amtcol">
-                ${{(premium.monthlyByMileBasePremium + (premium.vehicle.totalMiles * premium.byMileRate)).toFixed(2)}}
-              </div>
-            </div>
-            <div fxLayout="row" class="summary-detail">
-              <div class="vehcol">
-                Total monthly cost
-              </div>
-              <div class="amtcol">
-                <div class="panel panel-default panel-summary">
-                  <div class="panel-heading">
-                    <md-card-title class="panel-title">By Mile Insurance Estimate</md-card-title>
-                  </div>
-                  <div class="panel-body" *ngIf="premiums">
-                    <md-card-content>
-                      <div fxLayout="row" class="summary-heading">
-                        <div class="vehcol">
-                          Vehicle
-                        </div>
-                        <div class="amtcol">
-                          Monthly By-Mile Base Cost
-                        </div>
-                        <div class="amtcol">
-                          Estimated montly cost (Miles x Rate)
-                        </div>
-                        <div class="amtcol">
-                          Total Monthly By-Mile Cost
-                        </div>
-                      </div>
-                      <div *ngFor="let premium of premiums" fxLayout="row" class="summary-detail">
-                        <div class="vehcol">
-                          {{premium.vehicle.modelYear}} {{premium.vehicle.vehicleMakeRatingFactor.make}} {{premium.vehicle.model}}
-                        </div>
-                        <div class="amtcol">
-                          ${{premium.monthlyByMileBasePremium.toFixed(2)}}
-                        </div>
-                        <div class="amtcol">
-                          ${{(premium?.vehicle?.totalMiles * premium?.byMileRate).toFixed(2)}}
-                        </div>
-                        <div class="amtcol">
-                          ${{(premium.monthlyByMileBasePremium + (premium.vehicle.totalMiles * premium.byMileRate)).toFixed(2)}}
-                        </div>
-                      </div>
-                      <div fxLayout="row" class="summary-detail">
-                        <div class="vehcol">
-                          Total monthly cost
-                        </div>
-                        <div class="amtcol">
-                        </div>
-                        <div class="amtcol">
-
-                        </div>
-                        <div class="amtcol">
-                          ${{totalMonthlyByMileCost.toFixed(2)}}
-                        </div>
-                      </div>
-                    </md-card-content>
-                  </div>
-
-                    <div class="panel panel-default panel-summary">
-                      <div class="panel-heading">
-                        <md-card-title class="panel-title">Traditional Insurance Estimate</md-card-title>
-                      </div>
-                      <div class="panel-body">
-                        <md-card-content>
-                          <div fxLayout="column" class="summary-detail">
-                            <div>
-                              <b>Total Monthly Cost:</b> ${{traditionalMonthlyCost.toFixed(2)}}
-                            </div>
-                          </div>
-                        </md-card-content>
-                      </div>
-                    </div>
-
-                    <div class="panel panel-default panel-summary">
-                      <div class="panel-heading">
-                        <md-card-title class="panel-title">Cost Savings</md-card-title>
-                      </div>
-                      <div class="panel-body">
-                        <md-card-content>
-                          <div fxLayout="column" class="summary-detail">
-                            <div *ngIf="totalMonthlyByMileCost < traditionalMonthlyCost">
-                              <b>You will save an estimated ${{(traditionalMonthlyCost - totalMonthlyByMileCost).toFixed(2)}} monthly or ${{(traditionalAnnualCost - annualByMileCost).toFixed(2)}}  annually</b>
-                            </div>
-                            <div *ngIf="totalMonthlyByMileCost > traditionalMonthlyCost">
-                              <b>Based on your driving habits, our standard monthly premium plan would be a better option for you</b>
-                            </div>
-                          </div>
-                        </md-card-content>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              <br />
+            <div fxLayout="column" class="summary-detail">
               <div>
-                <h3>For more information and facts regarding ByMile Insurance <span><a id="lmi" href="https://www.libertymutual.com/bymile">Click Here</a></span> or speak to a representative at <u>1-800-341-3431</u>. </h3>
+                <b>Total Monthly Cost:</b> ${{traditionalMonthlyCost.toFixed(2)}}
               </div>
+            </div>
+          </md-card-content>
+        </div>
+      </div>
+
+      <div class="panel panel-default panel-summary">
+        <div class="panel-heading">
+          <md-card-title class="panel-title">Cost Savings</md-card-title>
+        </div>
+        <div class="panel-body">
+          <md-card-content>
+            <div fxLayout="column" class="summary-detail">
+              <div *ngIf="totalMonthlyByMileCost < traditionalMonthlyCost">
+                <b>You will save an estimated ${{(traditionalMonthlyCost - totalMonthlyByMileCost).toFixed(2)}} monthly or ${{(traditionalAnnualCost - annualByMileCost).toFixed(2)}}  annually</b>
+              </div>
+              <div *ngIf="totalMonthlyByMileCost > traditionalMonthlyCost">
+                <b>Based on your driving habits, our standard monthly premium plan would be a better option for you</b>
+              </div>
+            </div>
+          </md-card-content>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<br />
+<div>
+  <h3>For more information and facts regarding ByMile Insurance <span><a id="lmi" href="https://www.libertymutual.com/bymile">Click Here</a></span> or speak to a representative at <u>1-800-341-3431</u>. </h3>
+</div>
