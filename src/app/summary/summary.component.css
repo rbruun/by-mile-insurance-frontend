@@ -33,9 +33,11 @@ h3, md-card-content {
 }
 .vehcol {
   width: 30%;
+  text-align: left;
 }
 .amtcol {
   width: 22%;
+  text-align: right;
 }
 .labels{
   width: 20%;
@@ -45,8 +47,13 @@ h3, md-card-content {
   font-weight: bold;
 }
 .summary-detail {
-    text-align: left;
 }
+
+.summary-total {
+    font-weight: bold;
+    border-top: 1px #0C0C8D dotted;  
+}
+
 .summary-row {
   margin-bottom: 10px;
 }
