@@ -1,4 +1,4 @@
-<!-- <img src="../../assets/images/roadtrip.jpg" alt="Young Driver" id="youngDriver" class="img-responsive"> -->
+
 
 <h3>Please enter your trip information:</h3>
 
@@ -35,7 +35,7 @@
         <input mdInput placeholder="Weekly Frequency" [(ngModel)]="trip.frequency" type="text" class="form-control" id="frequency" name="frequency" required type="number" #frequency="ngModel">
         <md-error *ngIf="frequency.errors" class="alert alert-danger">
           <div>Trip frequency is required</div>
-        </md-error>     
+        </md-error>
       </md-input-container>
 
       <div class="form-group" *ngIf="vehicles">
