@@ -26,7 +26,8 @@ export class HomeComponent implements OnInit {
       .subscribe(
 
         quote => {this.quoteId = quote.quoteId;
-                  this.router.navigate(['driverinfo', this.quoteId]);},
+                  this.router.navigate(['driverinfo', this.quoteId]);
+                  sessionStorage.setItem('quoteId', this.quoteId);},
         error =>  this.errorMessage = <any>error);
 
   }
