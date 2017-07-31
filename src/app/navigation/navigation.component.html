@@ -19,31 +19,30 @@
                 <div><span class="fa fa-home fa-lg ng-binding"></span></div>
                 <div class="adiv"><a href="#" data="selection.data" class="ng-binding">Home</a></div>
             </div>
-        <li class="nav-driver">
+        <li [ngClass]="driverEnabled ? 'nav-home currentSection' : 'nav-home'">
             <div class="nav-content">
                 <div><span class="fa fa-users fa-lg "></span></div>
                 <div class="adiv"><a [routerLink]="driverRouterLink" data="selection.data" class="ng-binding">Driver</a></div>
             </div>
         </li>
-        <li class="nav-vehicle">
+        <li [ngClass]="vehicleEnabled ? 'nav-home currentSection' : 'nav-home'">
             <div class="nav-content">
                 <div><span class="fa fa-car fa-lg "></span></div>
                 <div class="adiv"><a [routerLink]="vehicleRouterLink"  data="selection.data" class="ng-binding">Vehicle</a></div>
             </div>
         </li>
-        <li class="nav-trip">
+        <li [ngClass]="tripEnabled ? 'nav-home currentSection' : 'nav-home'">
             <div class="nav-content">
                 <div><span class="fa fa-dashboard fa-lg "></span></div>
                 <div class="adiv"><a [routerLink]="tripRouterLink" data="selection.data" class="ng-binding">Trip</a></div>
             </div>
         </li>
-        <li class="nav-summary">
+        <li [ngClass]="summaryEnabled ? 'nav-home currentSection' : 'nav-home'">
             <div class="nav-content">
                 <div><span class="fa fa-file-text fa-lg "></span></div>
                 <div class="adiv"><a [routerLink]="summaryRouterLink" data="selection.data" class="ng-binding">Summary</a></div>
             </div>
         </li><!-- end ngRepeat: selection in navigations -->
     </ul>
-</div><!-- end ngIf: currentPageName!=='results' && currentPageName!=='sorry' && currentPageName!=='emailbuy' && currentPageName!=='brokerlanding' && currentPageName!=='prefillpolicyholder' -->
-<!-- </redirect> -->
+</div>
                 </div>

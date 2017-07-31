@@ -6,6 +6,7 @@ import { FormControl, NgForm, FormsModule, Validators } from "@angular/forms";
 
 import { QuoteInfoService } from '../quote-info.service';
 import { DistanceapiComponent } from './distanceapi.component';
+import { NavigationService } from '../navigation.service';
 
 @Component({
   selector: 'app-tripinfo',
@@ -17,7 +18,9 @@ export class TripinfoComponent implements OnInit {
   constructor(private navRoute: ActivatedRoute,
               private quoteInfoService: QuoteInfoService,
               public dialog: MdDialog,
-              private router: Router) { }
+              private router: Router,
+              private navigationService: NavigationService
+            ) { }
 
   tripinfoForm: NgForm;
   @ViewChild('tripinfoForm') currentForm: NgForm;
@@ -52,6 +55,7 @@ export class TripinfoComponent implements OnInit {
       }
     );
     this.getVehicles();
+    this.announce();
   }
 
   addTrip(){
@@ -151,5 +155,9 @@ export class TripinfoComponent implements OnInit {
 
   onValueChanged(data?: any) {
     let form = this.tripinfoForm.form;
+  }
+
+  announce () {
+    this.navigationService.announceTrip();
   }
 }

@@ -6,6 +6,7 @@ import { FormControl, NgForm, FormsModule, Validators } from "@angular/forms";
 
 import { VehInfoService } from '../veh-info.service'
 import { QuoteInfoService } from '../quote-info.service';
+import { NavigationService } from '../navigation.service';
 
 @Component({
   selector: 'app-vehinfo',
@@ -51,7 +52,8 @@ export class VehinfoComponent implements OnInit {
     private quoteInfoService: QuoteInfoService,
     private route: ActivatedRoute,
     private location: Location,
-    private router: Router
+    private router: Router,
+    private navService: NavigationService
   ) {}
 
   getValidYears(years) {
@@ -119,6 +121,8 @@ export class VehinfoComponent implements OnInit {
           years => {this.getValidYears(years); 
             this.getVehicles();},
           error =>  this.errorMessage = <any>error);
+
+    this.announce();      
   }    
 
   getDrivers () {
@@ -188,4 +192,8 @@ export class VehinfoComponent implements OnInit {
   onValueChanged(data?: any) {
     let form = this.vehinfoForm.form;
   }
+
+  announce () {
+    this.navService.announceVehicle();
+  }  
 }
