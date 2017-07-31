@@ -11,19 +11,37 @@
 
 <div ng-if="showNavigation===true" class="ng-scope">
                     <!-- <redirect> -->
-                      <!-- ngIf: currentPageName!=='results' && currentPageName!=='sorry' && currentPageName!=='emailbuy' && currentPageName!=='brokerlanding' && currentPageName!=='prefillpolicyholder' --><div class="modProgress ng-scope" ng-if="currentPageName!=='results' &amp;&amp; currentPageName!=='sorry' &amp;&amp; currentPageName!=='emailbuy' &amp;&amp; currentPageName!=='brokerlanding' &amp;&amp; currentPageName!=='prefillpolicyholder'">
+                      <!-- ngIf: currentPageName!=='results' && currentPageName!=='sorry' && currentPageName!=='emailbuy' && currentPageName!=='brokerlanding' && currentPageName!=='prefillpolicyholder' --><div class="modProgress ng-scope">
     <ul>
         <!-- ngRepeat: selection in navigations -->
-        <li ng-repeat="selection in navigations" ng-class="{currentSection: selection.isValid}" class="nav-home currentSection">
-            <a href="javascript:void(0);" ng-click="redirectTo(selection.data)" data="selection.data" class="ng-binding">Home</a>
-        <li ng-repeat="selection in navigations" ng-class="{currentSection: selection.isValid}" class="nav-driver">
-            <a href="javascript:void(0);" ng-click="redirectTo(selection.data)" data="selection.data" class="ng-binding">Driver</a>
-        </li><!-- end ngRepeat: selection in navigations --><li ng-repeat="selection in navigations" ng-class="{currentSection: selection.isValid}" class="nav-vehicle">
-            <a href="javascript:void(0);" ng-click="redirectTo(selection.data)" data="selection.data" class="ng-binding">Vehicle</a>
-        </li><!-- end ngRepeat: selection in navigations --><li ng-repeat="selection in navigations" ng-class="{currentSection: selection.isValid}" class="nav-trip">
-            <a href="javascript:void(0);" ng-click="redirectTo(selection.data)" data="selection.data" class="ng-binding">Trip</a>
-        </li><!-- end ngRepeat: selection in navigations --><li ng-repeat="selection in navigations" ng-class="{currentSection: selection.isValid}" class="nav-summary">
-            <a href="javascript:void(0);" ng-click="redirectTo(selection.data)" data="selection.data" class="ng-binding">Summary</a>
+        <li class="nav-home currentSection">
+            <div class="nav-content">
+                <div><span class="fa fa-home fa-lg ng-binding"></span></div>
+                <div class="adiv"><a href="#" data="selection.data" class="ng-binding">Home</a></div>
+            </div>
+        <li class="nav-driver">
+            <div class="nav-content">
+                <div><span class="fa fa-users fa-lg "></span></div>
+                <div class="adiv"><a [routerLink]="driverRouterLink" data="selection.data" class="ng-binding">Driver</a></div>
+            </div>
+        </li>
+        <li class="nav-vehicle">
+            <div class="nav-content">
+                <div><span class="fa fa-car fa-lg "></span></div>
+                <div class="adiv"><a [routerLink]="vehicleRouterLink"  data="selection.data" class="ng-binding">Vehicle</a></div>
+            </div>
+        </li>
+        <li class="nav-trip">
+            <div class="nav-content">
+                <div><span class="fa fa-dashboard fa-lg "></span></div>
+                <div class="adiv"><a [routerLink]="tripRouterLink" data="selection.data" class="ng-binding">Trip</a></div>
+            </div>
+        </li>
+        <li class="nav-summary">
+            <div class="nav-content">
+                <div><span class="fa fa-file-text fa-lg "></span></div>
+                <div class="adiv"><a [routerLink]="summaryRouterLink" data="selection.data" class="ng-binding">Summary</a></div>
+            </div>
         </li><!-- end ngRepeat: selection in navigations -->
     </ul>
 </div><!-- end ngIf: currentPageName!=='results' && currentPageName!=='sorry' && currentPageName!=='emailbuy' && currentPageName!=='brokerlanding' && currentPageName!=='prefillpolicyholder' -->
