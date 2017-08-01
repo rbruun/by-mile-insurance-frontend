@@ -3,6 +3,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import {DataSource} from '@angular/cdk';
 import { FormControl, NgForm, FormsModule, Validators } from "@angular/forms";
+import 'rxjs/add/observable/forkJoin';
+import { Observable } from 'rxjs/Observable';
 
 import { QuoteInfoService } from '../quote-info.service';
 import { DistanceapiComponent } from './distanceapi.component';
@@ -33,6 +35,7 @@ export class TripinfoComponent implements OnInit {
 
   showTable = false;
   tripsPresent;
+  updateVehicle = false;
   quoteId;
   errorMessage: string;
   successMesssage: string;
@@ -61,7 +64,7 @@ export class TripinfoComponent implements OnInit {
   addTrip(){
     // call the data service to add trip
     this.quoteInfoService.addRecord('addTrip', this.trip).subscribe(
-      trip => this.getTrips()
+      trip => this.getTrips(true)
     );
 
     this.trip.tripName = null;
@@ -72,18 +75,19 @@ export class TripinfoComponent implements OnInit {
     this.tripinfoForm.resetForm();
   }
 
-  getTrips() {
+  getTrips(update) {
     this.tripsPresent = false;
     for (let i=0; i < this.vehicles.length; i++) {
       this.quoteInfoService.getRecords("getTrips", this.vehicles[i].vehicleId)
         .subscribe(
           trips => {this.vehicles[i].trips = trips; 
-                    this.calcTableTotals(this.vehicles[i]);
+                    this.calcTableTotals(this.vehicles[i], update);
                         if (this.tripsPresent) {
                           this.showTable = true;
                         } else {
                           this.showTable = false;
-                        }  },
+                        }
+                      },
           error =>  this.errorMessage = <any>error);     
     } 
   }
@@ -91,7 +95,7 @@ export class TripinfoComponent implements OnInit {
   getVehicles() {
     this.quoteInfoService.getRecords("getVehicles", this.quoteId)
         .subscribe(
-          vehicles => {this.vehicles = vehicles; this.getTrips()},
+          vehicles => {this.vehicles = vehicles; this.getTrips(false)},
           error =>  this.errorMessage = <any>error);
   }
 
@@ -99,11 +103,11 @@ export class TripinfoComponent implements OnInit {
         this.quoteInfoService.deleteRecord("deleteTrip", id)
           .subscribe(
             trip => {this.successMesssage = "Record(s) deleted succesfully";
-                    console.log("record deleted");this.getTrips(); },
+                    this.getTrips(true); },
             error =>  console.log(error));
   }
 
-  calcTableTotals(vehicle) {
+  calcTableTotals(vehicle, update) {    
     vehicle.weeklyGrandTotal = 0;
     vehicle.monthlyGrandTotal = 0;
     vehicle.totalTrip = 0;
@@ -114,6 +118,11 @@ export class TripinfoComponent implements OnInit {
 
       vehicle.trips[i].monthlyTotalMiles = Math.ceil(parseInt(vehicle.trips[i].weeklyTotalMiles) * 52 / 12);
       vehicle.totalTrip += vehicle.trips[i].monthlyTotalMiles;
+    }
+    if (update) {
+      this.tripsTotal.vehicleId = vehicle.vehicleId;
+      this.tripsTotal.totalMiles = vehicle.totalTrip;          
+      this.quoteInfoService.editRecord("addTotalMiles", this.tripsTotal).subscribe();
     }
   }
 
@@ -129,16 +138,8 @@ export class TripinfoComponent implements OnInit {
     });
   }
 
-  goToSummary() {
-    for (let i=0; i < this.vehicles.length; i++) {
-      // call the data service to update the vehicle with the total trip miles
-      this.tripsTotal.vehicleId = this.vehicles[i].vehicleId;
-      this.tripsTotal.totalMiles = this.vehicles[i].totalTrip;
-      this.quoteInfoService.editRecord("addTotalMiles", this.tripsTotal).subscribe();
-    }
-
-    // route to the summary page
-    this.router.navigate(['summary', this.quoteId]);
+  goToSummary() { 
+    this.router.navigate(['summary', this.quoteId])
   }
 
   ngAfterViewChecked() {

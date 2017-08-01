@@ -44,8 +44,8 @@ export class QuoteInfoService {
           .catch(this.handleError);
     }
 
-    editRecord(endpoint: string, record:object): Observable<object> {
-        let apiUrl = `${this.baseUrl}${endpoint}`;
+    editRecord(endpoint: string, record:object): Observable<object> {      
+        let apiUrl = `${this.baseUrl}${endpoint}`;     
         return this.http.put(apiUrl, record)
             .map(this.extractData)
             .catch(this.handleError);
