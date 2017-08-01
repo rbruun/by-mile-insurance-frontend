@@ -13,9 +13,9 @@ p {
 }
 
 img {
-  height: 65%;
+  height: 50%;
   width: 100%;
-  padding-top: 40px;
+  padding-top: 50px;
 }
 
 
@@ -61,6 +61,7 @@ th {
 
 .item-2 {
   color: #0C0C8D;
+  padding-top: 5px;
 }
 
 .item-3 {
@@ -99,7 +100,7 @@ th {
 }
 
 .panel-default {
-  border: 1px;
+  border: 2px;
   border-color: #0C0C8D;
   border-style: solid;
   border-radius: 5px;
