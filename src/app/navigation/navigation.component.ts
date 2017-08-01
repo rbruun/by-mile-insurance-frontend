@@ -80,8 +80,6 @@ export class NavigationComponent implements OnInit {
 
 
   ngOnInit() {
-    this.quoteId = sessionStorage.getItem('quoteId');
-
     if (sessionStorage.getItem('driverEnabled') == 'true') {
       this.driverEnabled = true;
     }
@@ -98,6 +96,8 @@ export class NavigationComponent implements OnInit {
   }
 
   setNavigation() {
+    this.quoteId = sessionStorage.getItem('quoteId');
+
     if (this.driverEnabled) {
       this.driverRouterLink = "./driverinfo/" + this.quoteId;
     }  else {
