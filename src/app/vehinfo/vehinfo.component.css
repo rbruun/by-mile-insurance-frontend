@@ -13,14 +13,6 @@ img {
   padding-top: 40px;
 }
 
-/*button {
-  background-color: #0C0C8D;
-  color: white;
-  float: left;
-  margin-left: 50px;
-  border-radius: 5px;
-}*/
-
 .vehList {
   border-bottom: lightgray 1px dotted
 }
@@ -41,7 +33,7 @@ img {
   background-color: #0C0C8D;
   color: white;
   float: left;
-  margin-left: 165px;
+  margin-left: 99px;
   border-radius: 5px;
   width: 210px;
 }
@@ -82,14 +74,14 @@ img {
 .btn-primary {
   background-color: #0C0C8D !important;
   color: white !important;
-  /*width: 43.41px !important;*/
 }
 
 .panel-default {
   border: 2px;
   border-color: #0C0C8D;
   border-style: solid;
-    border-radius: 5px;
+  border-radius: 5px;
+
 }
 .panel-heading {
   background-color: #0C0C8D;
