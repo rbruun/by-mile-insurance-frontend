@@ -8,12 +8,19 @@ h1 {
   color: white;
 }
 
+#buttondiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
 #distBetween {
   color: #0C0C8D;
   float: left;
   font-weight: bold;
 }
 
-#return {
+/* #return {
   float: right;
-}
+} */
