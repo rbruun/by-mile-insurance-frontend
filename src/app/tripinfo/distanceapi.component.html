@@ -20,23 +20,19 @@
         Ending location is <strong>required</strong>
       </md-error>
     </md-input-container>
-
-    <!-- <div fxLayout.xs="column"> -->
-    <div id="calButton">
-      <button md-raised-button [disabled]="autocompleteStartFormControl.hasError('required') || autocompleteEndFormControl.hasError('required')" (click)="calculateDistance()">Calculate</button>
-    </div>
-    <!-- <div> -->
-    <br />
     <br />
     <div id="distBetween">
       Distance: {{distanceBetween}}
     </div>
-    <div>
+    <br>
+      <div id="buttondiv">   
+      <div id="calButton">
+        <button md-raised-button [disabled]="autocompleteStartFormControl.hasError('required') || autocompleteEndFormControl.hasError('required')" (click)="calculateDistance()">Calculate</button>
+      </div>
+      <div>
+        <button id="return" md-raised-button md-dialog-close="{{distanceBetween}}">Return</button>
+      </div>
+      </div>   
 
-      <br />
-      <br />
-
-      <button id="return" md-raised-button md-dialog-close="{{distanceBetween}}">Return</button>
-    </div>
   </form>
 </div>
