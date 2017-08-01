@@ -19,8 +19,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private navigationService: NavigationService) { }
 
-  ngOnInit() {
-console.log("home oninit")    
+  ngOnInit() {   
     this.announce();
   }
 
@@ -36,8 +35,7 @@ console.log("home oninit")
 
   }
 
-  announce() {
-console.log("home announcing");    
+  announce() {  
     this.navigationService.announceHome();
   }
 }
