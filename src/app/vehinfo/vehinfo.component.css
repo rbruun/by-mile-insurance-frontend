@@ -3,7 +3,7 @@ h3, label {
   float: left;
 }
 
-p, a{
+.selectpicker, p, a{
   color: #0C0C8D !important;
 }
 

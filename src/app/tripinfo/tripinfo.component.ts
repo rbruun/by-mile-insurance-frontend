@@ -49,14 +49,9 @@ export class TripinfoComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.navRoute.params.subscribe(
-      (params : Params) => {
-          this.quoteId = params["quoteId"];
-          this.trip.quote.quoteId = this.quoteId;
-          console.log(this.quoteId);
-      }
-    );
+    
+    this.quoteId = sessionStorage.getItem('quoteId'); 
+    this.trip.quote.quoteId = this.quoteId
     this.getVehicles();
     this.announce();
   }

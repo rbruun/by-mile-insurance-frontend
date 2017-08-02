@@ -30,11 +30,7 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit() {
 
-    this.navRoute.params.subscribe(
-      (params : Params) => {
-          this.quoteId = params["quoteId"];
-      }
-    );
+    this.quoteId = sessionStorage.getItem('quoteId');
     this.getDrivers();
     this.getPremium();
     this.announce();
@@ -46,14 +42,6 @@ export class SummaryComponent implements OnInit {
         premium => {this.premiums = premium; this.calcTotals()},
         error =>  this.errorMessage = <any>error);
   }
-
-  // getMileTotal() {
-  //   this.quoteInfoService.getRecord("getTotalTrip", this.quoteId)
-  //     .subscribe(
-  //       total => {this.totalMonthlyMiles = total.totalMiles; this.calcTotals()},
-  //       error =>  this.errorMessage = <any>error);
-
-  // }
 
   getDrivers(){
       this.quoteInfoService.getRecords("getDrivers", this.quoteId)
