@@ -94,6 +94,7 @@ export class VehinfoComponent implements OnInit {
   }
 
     saveVehicle(){
+
       // call api service to save vehicle
       if (this.vehicle.vehicleId == null) {
       this.quoteInfoService.addRecord('addVehicle', this.vehicle).subscribe(
@@ -160,6 +161,7 @@ export class VehinfoComponent implements OnInit {
   }
 
   resetVehicle(){
+    this.vehicle.vehicleId = null;
     this.vehicle.modelYear = null;
     this.vehicle.model = null;
     this.vehicle.vehicleMakeRatingFactor.make = null;
