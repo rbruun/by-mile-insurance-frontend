@@ -9,11 +9,11 @@ import { Subscription }   from 'rxjs/Subscription';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private navigationService: NavigationService) { 
+  constructor(private navigationService: NavigationService) {
 
     this.subscription = navigationService.homeAnnounced$.subscribe(
-        empty => {          
-        this.driverEnabled = false;       
+        empty => {
+        this.driverEnabled = false;
         sessionStorage.setItem('driverEnabled', 'false');
         this.vehicleEnabled = false;
         sessionStorage.setItem('vehicleEnabled', 'false');
@@ -25,7 +25,7 @@ export class NavigationComponent implements OnInit {
     });
 
     this.subscription = navigationService.driverAnnounced$.subscribe(
-        empty => {               
+        empty => {
         sessionStorage.setItem('driverEnabled', 'true');
         this.driverEnabled = true;
         this.vehicleEnabled = false;
@@ -38,7 +38,7 @@ export class NavigationComponent implements OnInit {
     });
 
     this.subscription = navigationService.vehicleAnnounced$.subscribe(
-        empty => {                
+        empty => {
         this.vehicleEnabled = true;
         sessionStorage.setItem('vehicleEnabled', 'true');
         this.tripEnabled = false;
@@ -46,25 +46,26 @@ export class NavigationComponent implements OnInit {
         this.summaryEnabled = false;
         sessionStorage.setItem('summaryEnabled', 'false');
         this.setNavigation();
-    });  
-      
+    });
+
     this.subscription = navigationService.tripAnnounced$.subscribe(
-        empty => {              
+        empty => {
         this.tripEnabled = true;
         sessionStorage.setItem('tripEnabled', 'true');
         this.summaryEnabled = false;
         sessionStorage.setItem('summaryEnabled', 'false');
         this.setNavigation();
-    });    
+    });
 
     this.subscription = navigationService.summaryAnnounced$.subscribe(
-        empty => {        
+        empty => {
         this.summaryEnabled = true;
         sessionStorage.setItem('summaryEnabled', 'true');
         this.setNavigation();
-    });     
+    });
   }
   quoteId;
+
 
   subscription: Subscription;
   homeRouterLink = "./home";

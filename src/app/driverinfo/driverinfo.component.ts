@@ -23,7 +23,7 @@ export class DriverinfoComponent implements OnInit {
 
   driver =
   {
-    quote: {quoteId: <string>null},
+    quote: { quoteId: <string>null },
     driverId: <string>null,
     firstName: <string>null,
     lastName: <string>null,
@@ -41,15 +41,29 @@ export class DriverinfoComponent implements OnInit {
 
   drivers = [];
   driversTotal = {
-    quote: {quoteId: <string> null},
-    driverId: <string> null,
+    quote: { quoteId: <string>null },
+    driverId: <string>null,
   }
+
+  vehicle = {
+    vehicleId: <number>null,
+    quote: { quoteId: <string>null },
+    modelYear: <string>null,
+    vehicleMakeRatingFactor: { make: <string>null },
+    model: <string>null,
+    trim: <string>null,
+    antiTheft: <string>null,
+    ownLease: <string>null,
+    driver: { driverId: <string>null }
+  }
+
+  vehicles: any[];
 
   errorMessage: string;
   successMesssage: string;
 
   driverFormControl = new FormControl('', [
-  Validators.required]);
+    Validators.required]);
 
   constructor(
     private quoteInfoService: QuoteInfoService,
@@ -72,91 +86,114 @@ export class DriverinfoComponent implements OnInit {
     );
     this.getDrivers();
     this.announce();
+    this.getVehicles();
   }
 
 
-addDriver() {
-  // call the data service to add trip
-  if (this.driver.driverId == null) {
-  this.quoteInfoService.addRecord('addDriver', this.driver).subscribe(
-    driver => {this.getDrivers(); this.resetDriver()}
-  );
-}else {
-  this.quoteInfoService.editRecord('updateDriver', this.driver).subscribe(
-    driver => {this.getDrivers(); this.resetDriver()}
-  );
-}
-  this.driverForm.resetForm();
-}
+  addDriver() {
+    // call the data service to add trip
+    if (this.driver.driverId == null) {
+      this.quoteInfoService.addRecord('addDriver', this.driver).subscribe(
+        driver => { this.getDrivers(); this.resetDriver() }
+      );
+    } else {
+      this.quoteInfoService.editRecord('updateDriver', this.driver).subscribe(
+        driver => { this.getDrivers(); this.resetDriver() }
+      );
+    }
+    this.driverForm.resetForm();
+  }
 
-getDrivers() {
-console.log("getDrivers");
-  this.quoteInfoService.getRecords("getDrivers", this.quoteId)
-    .subscribe(
-      drivers => {this.drivers = drivers},
-      error =>  this.errorMessage = <any>error);
-}
+  getDrivers() {
+    console.log("getDrivers");
+    this.quoteInfoService.getRecords("getDrivers", this.quoteId)
+      .subscribe(
+      drivers => { this.drivers = drivers },
+      error => this.errorMessage = <any>error);
+  }
 
-deleteDriver(id: number) {
-      this.quoteInfoService.deleteRecord("deleteDriver", id)
-        .subscribe(
-          driver => {this.successMesssage = "Record(s) deleted succesfully";
-                  console.log("record deleted");this.getDrivers(); },
-          error =>  console.log(error));
-}
+  getVehicles() {
+    this.quoteInfoService.getRecords("getVehicles", this.quoteId)
+      .subscribe(
+      vehicles => { this.vehicles = vehicles; this.getDrivers() },
+      error => this.errorMessage = <any>error);
+  }
 
-goToVehicle() {
-  this.driversTotal.quote.quoteId = this.quoteId;
-  // route to the vehicle page
-  this.router.navigate(['vehinfo', this.quoteId]);
-}
-
-editDriver(driverId) {
-  console.log("editing driver " + driverId);
-  // call service to get vehicle, populate vehicle object tied to view
-  this.quoteInfoService.getRecord("getDriver", driverId)
-  .subscribe(
-      driver => {
-        this.driver = null;
-        this.driver = driver;
+  deleteDriver(id: number) {
+    let deleteOk = true;
+    for (let i = 0; i < this.vehicles.length; ++i) {
+      if (this.vehicles[i].driver.driverId === id) {
+        deleteOk = false;
+        break;
       }
-    )
+    }
+      if (deleteOk) {
+        this.quoteInfoService.deleteRecord("deleteDriver", id)
+          .subscribe(
+          driver => {
+          this.successMesssage = "Record(s) deleted succesfully";
+            console.log("record deleted"); this.getDrivers();
+          },
+          error => console.log(error));
+      }
+      else {
+        this.errorMessage = "Driver must be removed from the vehicle before you can delete the driver."
+      }
+  }
 
-}
+    goToVehicle() {
+      this.driversTotal.quote.quoteId = this.quoteId;
+      // route to the vehicle page
+      this.router.navigate(['vehinfo', this.quoteId]);
+    }
 
-resetDriver(){
-  this.driver.firstName = null;
-  this.driver.lastName = null;
-  this.driver.addressLine1 = null;
-  this.driver.addressLine2 = null;
-  this.driver.city = null;
-  this.driver.state = null;
-  this.driver.zip_code = null;
-  this.driver.gender = null;
-  this.driver.birthDate = null;
-  this.driver.maritalStatus = null;
-  this.driver.education = null;
-  this.driver.homeOwnerStatus = null;
-}
+    editDriver(driverId) {
+      console.log("editing driver " + driverId);
+      // call service to get vehicle, populate vehicle object tied to view
+      this.quoteInfoService.getRecord("getDriver", driverId)
+        .subscribe(
+        driver => {
+          this.driver = null;
+          this.driver = driver;
+        }
+        )
 
-ngAfterViewChecked() {
-  this.formChanged();
-}
+    }
 
-formChanged() {
-  this.driverForm = this.currentForm;
-  this.driverForm.valueChanges
-    .subscribe(
-      data => this.onValueChanged(data)
-    );
-}
+    resetDriver(){
+      this.driver.driverId = null;
+      this.driver.firstName = null;
+      this.driver.lastName = null;
+      this.driver.addressLine1 = null;
+      this.driver.addressLine2 = null;
+      this.driver.city = null;
+      this.driver.state = null;
+      this.driver.zip_code = null;
+      this.driver.gender = null;
+      this.driver.birthDate = null;
+      this.driver.maritalStatus = null;
+      this.driver.education = null;
+      this.driver.homeOwnerStatus = null;
+    }
 
-onValueChanged(data?: any) {
-  let form = this.driverForm.form;
-}
+    ngAfterViewChecked() {
+      this.formChanged();
+    }
 
-announce () {
-  this.navService.announceDriver();
-}
+    formChanged() {
+      this.driverForm = this.currentForm;
+      this.driverForm.valueChanges
+        .subscribe(
+        data => this.onValueChanged(data)
+        );
+    }
 
-};
+    onValueChanged(data ?: any) {
+      let form = this.driverForm.form;
+    }
+
+    announce() {
+      this.navService.announceDriver();
+    }
+
+  };

@@ -29,7 +29,7 @@
     <h3>Please enter your driver information:</h3>
 
     <form (ngSubmit)="addDriver()" #driverForm="ngForm" class="form-horizontal">
-      <input [(ngModel)]="quote_id" #student_id="ngModel" type="hidden" name=quote_id>
+      <!-- <input [(ngModel)]="quote_id" #student_id="ngModel" type="hidden" name=quote_id> -->
 
 
       <md-input-container>
@@ -87,15 +87,17 @@
       <md-input-container>
         <input mdInput [dateFormat] [(ngModel)]="driver.birthDate" type="text" class="form-control" id="birthDate" name="birthDate" placeholder="2017-01-01" required pattern="(\d{4})-(\d{2})-(\d{2})" #birthDate="ngModel">
         <md-error *ngIf="birthDate.errors?.required" class="alert alert-danger">
-          <div>Birth Date is required</div>
+          <div>Birth Date is required YYYY-MM-DD</div>
+        </md-error>
+        <md-error *ngIf="birthDate.errors?.pattern" class="alert alert-danger">
+          <div>Birth Date should be YYYY-MM-DD</div>
         </md-error>
       </md-input-container>
-
 
       <div class="error">
         <div class="errorGender">
           <md-select placeholder="Gender" required [(ngModel)]="driver.gender" id="gender" name="gender" class="selectpicker" #gender="ngModel">
-            <md-option value="unselected"> </md-option>
+            <md-option value="unselected"></md-option>
             <md-option value="male">
               Male
             </md-option>
@@ -113,7 +115,7 @@
 
 
           <md-select placeholder="Marital Status" required [(ngModel)]="driver.maritalStatus" id="maritalStatus" name="maritalStatus" class="selectpicker" #maritalStatus="ngModel">
-            <md-option value="unselected"> </md-option>
+            <md-option value="unselected" class="select"> </md-option>
             <md-option value="married">
               Married
             </md-option>
@@ -134,7 +136,7 @@
 
         <div class="errorEd">
           <md-select placeholder="Education" required [(ngModel)]="driver.education" id="education" name="education" class="selectpicker" #education="ngModel">
-            <md-option value="unselected"> </md-option>
+            <md-option value="unselected" class="select"> </md-option>
             <md-option value="high_school">
               High School Degree
             </md-option>
@@ -155,7 +157,7 @@
 
         <div class="errorHome">
           <md-select placeholder="Home Owner Status" required [(ngModel)]="driver.homeOwnerStatus" id="homeOwnerStatus" name="homeOwnerStatus" class="selectpicker" #homeOwnerStatus="ngModel">
-            <md-option value="unselected"> </md-option>
+            <md-option value="unselected" class="select"> </md-option>
             <md-option value="own">
               Own
             </md-option>
@@ -194,6 +196,8 @@
           <div id="modify">
 
             <a class="btn btn-primary" id="edit" (click)=editDriver(driver.driverId)>Edit</a>
+
+
             <a class="btn btn-danger" id="delete" (click)=deleteDriver(driver.driverId)>Delete</a>
 
           </div>
@@ -203,6 +207,14 @@
       <br />
 
       <button md-button id="vehicleButton" (click)=goToVehicle()>Continue to Vehicle Info Page >></button>
+
+      <br />
+      <br />
+      <br />
+
+      <div [ngClass]="(errorMessage)?'alert alert-danger':'alert alert-success'" id="errorDelete" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
+      </div>
 
     </div>
   </div>

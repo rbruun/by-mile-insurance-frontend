@@ -19,11 +19,8 @@ img {
 }
 
 
-th {
-  background-color: #0C0C8D;
-  color: white;
-  width: 160px;
-  font-style: normal;
+md-option {
+  color: #0C0C8D !important;
 }
 
 .error {
@@ -37,7 +34,7 @@ th {
   padding-bottom: 20px;
 }
 
- .errorHome, #gender, #maritalStatus, #education, #homeOwnerStatus{
+ .errorHome, #gender, #maritalStatus, #education, #homeOwnerStatus {
   padding-top: 0;
   width: 180px;
 }
@@ -45,6 +42,11 @@ th {
 .errorEd {
   padding-top: 0;
   width: 160px;
+}
+
+#errorDelete {
+  color: red;
+  font-size: 12px;
 }
 
 #firstName, #lastName, #addressLine1, #addressLine2,
