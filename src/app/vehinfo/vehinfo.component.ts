@@ -65,6 +65,7 @@ export class VehinfoComponent implements OnInit {
   }
 
   getValidMakes() {
+console.log("getting makes");    
     this.makes = null;
     this.models = null;
     this.trims = null;
